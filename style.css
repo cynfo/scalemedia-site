@@ -912,6 +912,31 @@ body:hover .interactive-glow {
 @media (max-width: 768px) {
     .section-padding { padding: 4rem 0; }
     
+    .glass-hero-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+    
+    .hero-actions .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 1.1rem 1rem;
+        font-size: 1.05rem;
+    }
+    
+    .hero-actions .btn:active {
+        transform: scale(0.97);
+    }
+    
+
     .nav-links {
         display: none;
         position: absolute;
