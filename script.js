@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const counterElement = document.getElementById('counter-number');
     if (counterElement) {
         const targetNumber = 1204;
-        const duration = 2500; // 2.5 seconds
+        const duration = 4500; // 4.5 seconds (slower)
         let startTime = null;
 
         function updateCounter(currentTime) {
