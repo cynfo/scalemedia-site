@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     mobileMenuBtn.addEventListener('click', () => {
         navLinks.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
         // Toggle animation for hamburger
         const spans = mobileMenuBtn.querySelectorAll('span');
         if (navLinks.classList.contains('active')) {
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
+            document.body.classList.remove('menu-open');
             const spans = mobileMenuBtn.querySelectorAll('span');
             spans.forEach(span => span.style.transform = 'none');
             spans[1].style.opacity = '1';
