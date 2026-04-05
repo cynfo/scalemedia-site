@@ -26,6 +26,8 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <!-- Global Particle Canvas -->
+    <canvas id="particle-canvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
     <!-- Global Animated Background -->
     <div class="global-background">
         <div class="ambient-bg">
@@ -119,12 +121,12 @@
                                 <rect x="260" y="80" width="40" height="6" rx="3" fill="var(--text-muted)" class="svg-float-delayed" />
                                 <rect x="260" y="95" width="20" height="6" rx="3" fill="var(--primary)" class="svg-float-delayed" />
                                 
-                                <path d="M100 120 C 130 80, 270 80, 300 120" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-dasharray="5 5" />
+                                <path d="M100 120 C 130 80, 270 80, 300 120" fill="none" stroke="rgba(99,102,241,0.2)" stroke-width="2" stroke-dasharray="5 5" />
                                 
                                 <!-- Kjerne Glød -->
                                 <circle cx="200" cy="200" r="40" fill="var(--primary)" opacity="0.2" filter="blur(20px)" class="svg-pulse"/>
                                 <circle cx="200" cy="200" r="25" fill="var(--bg-color)" stroke="var(--secondary)" stroke-width="4" />
-                                <circle cx="200" cy="200" r="10" fill="#fff" />
+                                <circle cx="200" cy="200" r="10" fill="var(--secondary)" />
                             </svg>
                         </div>
                     </div>
@@ -174,7 +176,7 @@
         <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.8rem;">
             <div style="display: flex; gap: 1.5rem; color: var(--text-muted); font-size: 0.95rem; flex-wrap: wrap; justify-content: center; align-items: center;">
                 <span style="text-align: center; line-height: 1.4;">Kokstadvegen 41<br>5257 Kokstad</span>
-                <span>E-post: <a href="mailto:scale.media@outlook.com" style="color: var(--text-muted);">scale.media@outlook.com</a></span>
+                <span>E-post: <a href="mailto:post@scalemedia.no" style="color: var(--text-muted);">post@scalemedia.no</a></span>
                 <span>Tlf: <a href="tel:55095090" style="color: var(--text-muted);">55 09 50 90</a></span>
             </div>
             <div style="margin-top: 0.5rem; font-size: 0.95rem;">

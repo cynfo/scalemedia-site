@@ -1,3 +1,94 @@
+// ── Global Particle Canvas ────────────────────────────────────
+(function () {
+    const canvas = document.getElementById('particle-canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const COLORS = ['#7B5EA7', '#4A90D9', '#A855F7'];
+    const COUNT  = 60;
+    const LINK_DIST    = 150;
+    const LINK_DIST_SQ = LINK_DIST * LINK_DIST;
+
+    let W, H, particles;
+
+    function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+    }
+
+    function rand(min, max) { return Math.random() * (max - min) + min; }
+
+    function createParticle() {
+        return {
+            x:     rand(0, W),
+            y:     rand(0, H),
+            vx:    rand(-0.25, 0.25),
+            vy:    rand(-0.25, 0.25),
+            r:     rand(2, 4),
+            color: COLORS[Math.floor(Math.random() * COLORS.length)]
+        };
+    }
+
+    function init() {
+        resize();
+        particles = Array.from({ length: COUNT }, createParticle);
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+
+        // Update positions with wrap-around
+        for (const p of particles) {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < -p.r)    p.x = W + p.r;
+            if (p.x > W + p.r) p.x = -p.r;
+            if (p.y < -p.r)    p.y = H + p.r;
+            if (p.y > H + p.r) p.y = -p.r;
+        }
+
+        // Draw connecting lines
+        for (let i = 0; i < COUNT; i++) {
+            for (let j = i + 1; j < COUNT; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distSq = dx * dx + dy * dy;
+                if (distSq < LINK_DIST_SQ) {
+                    const alpha = (1 - distSq / LINK_DIST_SQ) * 0.15;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(123, 94, 167, ${alpha})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Draw particles
+        for (const p of particles) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = p.color + '99';
+            ctx.fill();
+        }
+
+        requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', () => {
+        resize();
+        for (const p of particles) {
+            p.x = Math.min(p.x, W);
+            p.y = Math.min(p.y, H);
+        }
+    });
+
+    init();
+    requestAnimationFrame(draw);
+})();
+
+// ─────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
     // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
@@ -83,52 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Interactive Background Features - Global
+    // Cursor glow follow
     const glow = document.querySelector('.interactive-glow');
-    const heroIllustration = document.querySelector('.hero-right');
-    const floatingShapes = document.querySelectorAll('.floating-shape');
-
     window.addEventListener('mousemove', (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
-        
-        // Move glow globally relative to viewport
         if (glow) {
-            glow.style.left = `${x}px`;
-            glow.style.top = `${y}px`;
-        }
-
-        // Parallax effect on illustration and shapes (only if they exist on the page)
-        const centerX = window.innerWidth / 2;
-        const centerY = window.innerHeight / 2;
-        const moveX = (x - centerX) / centerX; // -1 to 1
-        const moveY = (y - centerY) / centerY; // -1 to 1
-
-        if (heroIllustration) {
-            heroIllustration.style.transform = `translate(${moveX * -15}px, ${moveY * -15}px)`;
-        }
-
-        if (floatingShapes.length > 0) {
-            floatingShapes.forEach((shape, index) => {
-                const depth = (index + 1) * 20; // Varying depth for shapes
-                shape.style.transform = `translate(${moveX * depth}px, ${moveY * depth}px)`;
-            });
-        }
-    });
-
-    window.addEventListener('mouseleave', () => {
-        // Reset transforms smoothly when mouse leaves page
-        if (heroIllustration) {
-            heroIllustration.style.transition = 'transform 0.5s ease-out';
-            heroIllustration.style.transform = 'translate(0, 0)';
-            setTimeout(() => { heroIllustration.style.transition = ''; }, 500);
-        }
-        if (floatingShapes.length > 0) {
-            floatingShapes.forEach(shape => {
-                shape.style.transition = 'transform 0.5s ease-out';
-                shape.style.transform = '';
-                setTimeout(() => { shape.style.transition = ''; }, 500);
-            });
+            glow.style.left = `${e.clientX}px`;
+            glow.style.top  = `${e.clientY}px`;
         }
     });
 

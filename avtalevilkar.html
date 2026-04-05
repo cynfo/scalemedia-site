@@ -15,6 +15,8 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <!-- Global Particle Canvas -->
+    <canvas id="particle-canvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
     <!-- Global Animated Background -->
     <div class="global-background">
         <div class="ambient-bg">
@@ -80,7 +82,7 @@
         <!-- Terms Content -->
         <section class="terms section-padding position-relative pt-0" style="position: relative; overflow: hidden; min-height: 70vh;">
             <div class="container relative" style="position: relative; z-index: 2; max-width: 850px;">
-                <div class="glass animate-on-scroll" style="padding: 4rem; background: rgba(13, 15, 20, 0.4); border-color: rgba(255,255,255,0.05);">
+                <div class="glass animate-on-scroll" style="padding: 4rem; background: rgba(255, 255, 255, 0.85); border-color: rgba(99,102,241,0.12);">
                     <div style="font-size: 1.15rem; color: var(--text-color); line-height: 1.8; display: grid; gap: 2.5rem;">
                         
                         <div>
@@ -95,7 +97,7 @@
 
                         <div>
                             <h3 style="color: var(--primary); font-size: 1.4rem; margin-bottom: 0.8rem;">Varighet og oppsigelse</h3>
-                            <p style="color: var(--text-muted);">Avtaler løper normalt i 3 eller 12 måneder og fornyes automatisk med 12 måneder om gangen. Oppsigelse må sendes skriftlig til <a href="mailto:scale.media@outlook.com" style="color: var(--secondary); font-weight: 600;">scale.media@outlook.com</a> senest 3 måneder før fornyelse.</p>
+                            <p style="color: var(--text-muted);">Avtaler løper normalt i 3 eller 12 måneder og fornyes automatisk med 12 måneder om gangen. Oppsigelse må sendes skriftlig til <a href="mailto:post@scalemedia.no" style="color: var(--secondary); font-weight: 600;">post@scalemedia.no</a> senest 3 måneder før fornyelse.</p>
                         </div>
 
                         <div>
@@ -128,7 +130,7 @@
         <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.8rem;">
             <div style="display: flex; gap: 1.5rem; color: var(--text-muted); font-size: 0.95rem; flex-wrap: wrap; justify-content: center; align-items: center;">
                 <span style="text-align: center; line-height: 1.4;">Kokstadvegen 41<br>5257 Kokstad</span>
-                <span>E-post: <a href="mailto:scale.media@outlook.com" style="color: var(--text-muted);">scale.media@outlook.com</a></span>
+                <span>E-post: <a href="mailto:post@scalemedia.no" style="color: var(--text-muted);">post@scalemedia.no</a></span>
                 <span>Tlf: <a href="tel:55095090" style="color: var(--text-muted);">55 09 50 90</a></span>
             </div>
             <div style="margin-top: 0.5rem; font-size: 0.95rem;">

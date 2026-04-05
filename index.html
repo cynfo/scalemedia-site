@@ -32,7 +32,7 @@
       "@type": "MarketingAgency",
       "name": "Scale Media AS",
       "url": "https://scalemedia.no",
-      "email": "scale.media@outlook.com",
+      "email": "post@scalemedia.no",
       "telephone": "+4755095090",
       "address": {
         "@type": "PostalAddress",
@@ -45,13 +45,10 @@
     </script>
 </head>
 <body>
+    <!-- Global Particle Canvas -->
+    <canvas id="particle-canvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
     <!-- Global Animated Background -->
     <div class="global-background">
-        <div class="ambient-bg">
-            <div class="ambient-orb orb-1"></div>
-            <div class="ambient-orb orb-2"></div>
-            <div class="ambient-orb orb-3"></div>
-        </div>
         <div class="interactive-glow"></div>
         <div class="premium-grid"></div>
         <div class="particles-container">
@@ -115,93 +112,137 @@
                     </div>
                 </div>
 
-                <!-- Right: 3D Animated Illustration -->
+                <!-- Right: Dashboard Card -->
                 <div class="hero-right">
-                    <div class="premium-illustration">
-                        <svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Drop Shadow Def -->
-                            <defs>
-                                <filter id="glass-shadow" x="-10%" y="-10%" width="120%" height="120%">
-                                    <feDropShadow dx="0" dy="20" stdDeviation="30" flood-color="#000" flood-opacity="0.4" />
-                                </filter>
-                                <linearGradient id="chartGrad" x1="0" y1="0" x2="1" y2="0">
-                                    <stop offset="0%" stop-color="#ef4444" />
-                                    <stop offset="50%" stop-color="#eab308" />
-                                    <stop offset="100%" stop-color="#22c55e" />
-                                </linearGradient>
-                                <linearGradient id="fillGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#22c55e" stop-opacity="0.2"/>
-                                    <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
-                                </linearGradient>
-                            </defs>
+                    <div class="hero-dashboard">
 
-                            <!-- Background App Window -->
-                            <g class="svg-float">
-                                <rect x="50" y="80" width="480" height="340" rx="20" fill="rgba(13, 15, 20, 0.6)" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" filter="url(#glass-shadow)" />
-                                
-                                <!-- Mac-style Window Controls -->
-                                <circle cx="80" cy="110" r="6" fill="#ef4444" opacity="0.8" />
-                                <circle cx="100" cy="110" r="6" fill="#eab308" opacity="0.8" />
-                                <circle cx="120" cy="110" r="6" fill="#22c55e" opacity="0.8" />
+                        <!-- Header row -->
+                        <div class="hd-header">
+                            <div class="hd-header-left">
+                                <div class="hd-dot"></div>
+                                <span>ScaleMedia Dashboard</span>
+                            </div>
+                            <div class="hd-period">Siste 30 dager</div>
+                        </div>
 
-                                <!-- Sidebar Mockup -->
-                                <rect x="50" y="140" width="120" height="280" fill="rgba(255,255,255,0.02)" />
-                                <rect x="70" y="160" width="80" height="12" rx="6" fill="var(--primary)" opacity="0.8" />
-                                <rect x="70" y="190" width="60" height="10" rx="5" fill="rgba(255,255,255,0.1)" />
-                                <rect x="70" y="215" width="70" height="10" rx="5" fill="rgba(255,255,255,0.1)" />
-                                <rect x="70" y="240" width="50" height="10" rx="5" fill="rgba(255,255,255,0.1)" />
-                                <rect x="70" y="265" width="60" height="10" rx="5" fill="rgba(255,255,255,0.1)" />
+                        <!-- Stat pills row -->
+                        <div class="hd-stats">
+                            <div class="hd-stat">
+                                <div class="hd-stat-label">ROI</div>
+                                <div class="hd-stat-value hd-green">+247%</div>
+                                <div class="hd-stat-delta">↑ 38% vs forrige</div>
+                            </div>
+                            <div class="hd-stat">
+                                <div class="hd-stat-label">Nye kunder</div>
+                                <div class="hd-stat-value hd-purple" id="counter-number">1 204</div>
+                                <div class="hd-stat-delta">↑ 124 denne måneden</div>
+                            </div>
+                            <div class="hd-stat">
+                                <div class="hd-stat-label">Konverteringsrate</div>
+                                <div class="hd-stat-value hd-blue">4,8%</div>
+                                <div class="hd-stat-delta">↑ 1,2% vs snitt</div>
+                            </div>
+                        </div>
 
-                                <!-- Chart Container -->
-                                <rect x="190" y="140" width="310" height="250" rx="12" fill="rgba(0,0,0,0.3)" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
-                                
-                                <!-- Y-Axis Lines -->
-                                <line x1="210" y1="180" x2="480" y2="180" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4 4" />
-                                <line x1="210" y1="230" x2="480" y2="230" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4 4" />
-                                <line x1="210" y1="280" x2="480" y2="280" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4 4" />
-                                <line x1="210" y1="330" x2="480" y2="330" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4 4" />
+                        <!-- Chart area -->
+                        <div class="hd-chart-wrap">
+                            <div class="hd-chart-label">Omsetningsvekst</div>
+                            <svg class="hd-chart" viewBox="0 0 360 120" preserveAspectRatio="none">
+                                <defs>
+                                    <linearGradient id="hd-fill" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#6366f1" stop-opacity="0.25"/>
+                                        <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+                                    </linearGradient>
+                                    <linearGradient id="hd-line" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stop-color="#6366f1"/>
+                                        <stop offset="100%" stop-color="#22c55e"/>
+                                    </linearGradient>
+                                </defs>
+                                <!-- Grid lines -->
+                                <line x1="0" y1="30" x2="360" y2="30" stroke="rgba(99,102,241,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
+                                <line x1="0" y1="60" x2="360" y2="60" stroke="rgba(99,102,241,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
+                                <line x1="0" y1="90" x2="360" y2="90" stroke="rgba(99,102,241,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
+                                <!-- Fill -->
+                                <path d="M0 100 C40 95, 60 80, 90 70 S140 50, 180 42 S240 25, 280 18 S330 12, 360 8 L360 120 L0 120 Z" fill="url(#hd-fill)"/>
+                                <!-- Line -->
+                                <path d="M0 100 C40 95, 60 80, 90 70 S140 50, 180 42 S240 25, 280 18 S330 12, 360 8" fill="none" stroke="url(#hd-line)" stroke-width="2.5" stroke-linecap="round"/>
+                                <!-- Dots -->
+                                <circle cx="90" cy="70" r="4" fill="#fff" stroke="#6366f1" stroke-width="2"/>
+                                <circle cx="180" cy="42" r="4" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+                                <circle cx="280" cy="18" r="4" fill="#fff" stroke="#22c55e" stroke-width="2"/>
+                                <circle cx="360" cy="8" r="5" fill="#22c55e"/>
+                            </svg>
+                            <!-- X-axis labels -->
+                            <div class="hd-xlabels">
+                                <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>Mai</span><span>Jun</span>
+                            </div>
+                        </div>
 
-                                <!-- Growth Line Chart & Fill -->
-                                <g class="animated-chart-group">
-                                    <path d="M210 330 Q240 310 270 260 T330 230 T390 180 T470 160 L470 340 L210 340 Z" fill="url(#fillGrad)" opacity="0.6" class="svg-pulse" />
-                                    <path d="M210 330 Q240 310 270 260 T330 230 T390 180 T470 160" fill="none" stroke="url(#chartGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" class="svg-pulse" />
-                                    
-                                    <!-- Data Points -->
-                                    <circle cx="270" cy="260" r="6" fill="var(--bg-color)" stroke="#ef4444" stroke-width="3" class="svg-pulse" />
-                                    <circle cx="330" cy="230" r="6" fill="var(--bg-color)" stroke="#f59e0b" stroke-width="3" class="svg-pulse" />
-                                    <circle cx="390" cy="180" r="6" fill="var(--bg-color)" stroke="#84cc16" stroke-width="3" class="svg-pulse" />
-                                    <circle cx="470" cy="160" r="8" fill="var(--bg-color)" stroke="#22c55e" stroke-width="4" class="svg-pulse" />
-                                </g>
+                        <!-- Bottom mini-stats -->
+                        <div class="hd-bottom">
+                            <div class="hd-mini">
+                                <span class="hd-mini-icon">📣</span>
+                                <div>
+                                    <div class="hd-mini-val">84 200</div>
+                                    <div class="hd-mini-lbl">Rekkevidde</div>
+                                </div>
+                            </div>
+                            <div class="hd-mini">
+                                <span class="hd-mini-icon">🎯</span>
+                                <div>
+                                    <div class="hd-mini-val">12 580</div>
+                                    <div class="hd-mini-lbl">Klikk totalt</div>
+                                </div>
+                            </div>
+                            <div class="hd-mini">
+                                <span class="hd-mini-icon">💰</span>
+                                <div>
+                                    <div class="hd-mini-val">3,2 kr</div>
+                                    <div class="hd-mini-lbl">Kostnad/klikk</div>
+                                </div>
+                            </div>
+                        </div>
 
-                                <!-- Active Stats Badge -->
-                                <g class="svg-float-delayed">
-                                    <rect x="360" y="100" width="130" height="40" rx="20" fill="rgba(13, 15, 20, 0.9)" stroke="var(--secondary)" stroke-width="1" filter="url(#glass-shadow)" />
-                                    <circle cx="380" cy="120" r="5" fill="#22c55e" class="svg-pulse" />
-                                    <text x="395" y="125" fill="#fff" font-family="Outfit, sans-serif" font-size="14" font-weight="600">+124% Vekst</text>
-                                </g>
-                            </g>
-
-                            <!-- Floating Cards Data (Foreground) -->
-                            <g class="svg-float-delayed" transform="translate(0, -20)">
-                                <rect x="30" y="320" width="160" height="80" rx="12" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255,255,255,0.15)" stroke-width="1" filter="url(#glass-shadow)" />
-                                <text x="50" y="350" fill="var(--text-muted)" font-family="Outfit, sans-serif" font-size="12">Kundeinteraksjoner</text>
-                                <text id="counter-number" x="50" y="380" fill="#fff" font-family="Outfit, sans-serif" font-size="24" font-weight="800">0</text>
-                            </g>
-                            
-                            <!-- Soft flare behind graphics -->
-                            <circle cx="280" cy="250" r="100" fill="var(--primary)" opacity="0.1" filter="blur(30px)" class="svg-spin" />
-                        </svg>
                     </div>
                 </div>
             </div>
             
-            <!-- Extra Screen Effects -->
-            <div class="floating-shape shape-1 glass"></div>
-            <div class="floating-shape shape-2 glass"></div>
-            <div class="floating-ring"></div>
+            <!-- Hero blobs (z-index:1 so they sit above canvas but below content) -->
+            <div style="position:absolute;top:-100px;right:-100px;width:600px;height:600px;background:#7B5EA7;border-radius:50%;filter:blur(120px);opacity:0.12;z-index:1;pointer-events:none;"></div>
+            <div style="position:absolute;bottom:-100px;left:-80px;width:500px;height:500px;background:#4A90D9;border-radius:50%;filter:blur(100px);opacity:0.10;z-index:1;pointer-events:none;"></div>
+            <div style="position:absolute;top:50%;right:5%;transform:translateY(-50%);width:400px;height:400px;background:#A855F7;border-radius:50%;filter:blur(90px);opacity:0.08;z-index:1;pointer-events:none;"></div>
+            <!-- Decorative watermark -->
+            <div class="hero-watermark" aria-hidden="true">SCALE</div>
         </section>
 
-        <section id="tjenester" class="services section-padding">
+        <!-- Stats Strip -->
+        <section class="stats-strip">
+            <div class="container">
+                <div class="stats-row">
+                    <div class="stat-item animate-on-scroll">
+                        <div class="stat-number gradient-text">50+</div>
+                        <div class="stat-label">Fornøyde kunder</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item animate-on-scroll">
+                        <div class="stat-number gradient-text">+180%</div>
+                        <div class="stat-label">Trafikkvekst i snitt</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item animate-on-scroll">
+                        <div class="stat-number gradient-text">3×</div>
+                        <div class="stat-label">Gjennomsnittlig ROI</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item animate-on-scroll">
+                        <div class="stat-number gradient-text">100%</div>
+                        <div class="stat-label">Datadrevet tilnærming</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section id="tjenester" class="services section-padding section-alt">
             <div class="container">
                 <div class="section-heading">
                     <h2>Hva vi kan <span class="gradient-text">gjøre for deg</span></h2>
@@ -212,31 +253,37 @@
                         <div class="icon">🎨</div>
                         <h3>Design & Innhold</h3>
                         <p>Visuell identitet, grafisk design, og illustrasjoner som fanger oppmerksomhet.</p>
+                        <span class="card-arrow">Les mer →</span>
                     </a>
                     <a href="nettsider.html" class="card glass" style="display: block;">
                         <div class="icon">💻</div>
                         <h3>Nettside-utvikling</h3>
                         <p>Strategiske og responsive plattformer, WordPress, og sylskarpt UX/UI-design.</p>
+                        <span class="card-arrow">Les mer →</span>
                     </a>
                     <a href="sokemotoroptimalisering.html" class="card glass" style="display: block;">
                         <div class="icon">🔍</div>
                         <h3>Søkemotoroptimalisering</h3>
                         <p>Teknisk SEO og innholdsoptimalisering slik at du dominerer søkefeltet organisk.</p>
+                        <span class="card-arrow">Les mer →</span>
                     </a>
                     <a href="google-ads.html" class="card glass" style="display: block;">
                         <div class="icon">📈</div>
                         <h3>Digital Markedsføring</h3>
                         <p>Målrettede kampanjer i Google Ads, Meta Ads og LinkedIn Ads som gir deg sterk ROI.</p>
+                        <span class="card-arrow">Les mer →</span>
                     </a>
                     <a href="sosiale-medier.html" class="card glass" style="display: block;">
                         <div class="icon">📱</div>
                         <h3>Sosiale Medier</h3>
                         <p>Engasjerende innholdsstrategier og community management på TikTok og Instagram.</p>
+                        <span class="card-arrow">Les mer →</span>
                     </a>
                     <a href="medieradgivning.html" class="card glass" style="display: block;">
                         <div class="icon">🤝</div>
                         <h3>Medierådgivning</h3>
                         <p>Personlig strategisk oppfølgning og datadreven kanalutvelgelse i et uoversiktig landskap.</p>
+                        <span class="card-arrow">Les mer →</span>
                     </a>
                 </div>
                 <div style="text-align: center; margin-top: 3rem;" class="animate-on-scroll">
@@ -245,7 +292,7 @@
             </div>
         </section>
 
-        <section class="seo-content section-padding" style="border-top: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden; transform: translateY(-40px);">
+        <section class="seo-content section-padding" style="border-top: 1px solid rgba(99,102,241,0.1); position: relative; overflow: hidden; transform: translateY(-40px);">
             <div class="container glass" style="padding: 4rem; border-radius: 20px;">
                 <div class="badge" style="margin-bottom: 1.5rem;"><span class="pulse-dot"></span> Digital Markedsføring Norge</div>
                 <h2 style="font-size: 2.8rem; margin-bottom: 3rem; max-width: 800px;">Vi skaper dominerende organisk synlighet, hete leads og skalerbar omsetning</h2>
@@ -266,7 +313,66 @@
             </div>
         </section>
 
-        <section id="prosjekter" class="projects section-padding">
+        <!-- Anmeldelser -->
+        <section class="reviews-section section-padding">
+            <div class="container">
+                <div class="section-heading animate-on-scroll">
+                    <a href="https://no.trustpilot.com/review/scalemedia.no" target="_blank" rel="noopener" class="tp-logo-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Trustpilot_Logo_%282022%29.svg" alt="Trustpilot" class="tp-logo-img">
+                    </a>
+                    <h2>Hva kunder skriver <span class="gradient-text">om oss</span></h2>
+                </div>
+
+                <div class="reviews-grid animate-on-scroll">
+
+                    <div class="review-card glass">
+                        <div class="review-stars">★★★★★</div>
+                        <h4 class="review-title">"Jeg kunne ikke vært mer fornøyd"</h4>
+                        <p class="review-text">Imponert over hvor tett de følger opp og hvor godt de tilpasser strategien etter våre behov. Vi ser allerede målbare forbedringer i trafikk og kunder.</p>
+                        <div class="review-author">
+                            <div class="review-avatar">J</div>
+                            <div>
+                                <div class="review-name">Jørgen</div>
+                                <div class="review-date">31. mars 2026</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card glass">
+                        <div class="review-stars">★★★★★</div>
+                        <h4 class="review-title">"Veldig organisert og flinke folk 😊"</h4>
+                        <p class="review-text">Veldig organisert og flinke folk. Profesjonell gjeng som vet hva de driver med. Anbefales!</p>
+                        <div class="review-author">
+                            <div class="review-avatar">S</div>
+                            <div>
+                                <div class="review-name">Scott Goode</div>
+                                <div class="review-date">31. mars 2026</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card glass">
+                        <div class="review-stars">★★★★★</div>
+                        <h4 class="review-title">"Supert!"</h4>
+                        <p class="review-text">Ryddig og fin nettside, lett å finne fram. Profesjonelt byrå med god service og solid kompetanse.</p>
+                        <div class="review-author">
+                            <div class="review-avatar">J</div>
+                            <div>
+                                <div class="review-name">Jonas Ask</div>
+                                <div class="review-date">31. mars 2026</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div style="text-align:center; margin-top:2.5rem;" class="animate-on-scroll">
+                    <a href="https://no.trustpilot.com/review/scalemedia.no" target="_blank" rel="noopener" class="btn btn-outline">Se alle anmeldelser på Trustpilot</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="prosjekter" class="projects section-padding section-alt">
             <div class="container">
                 <div class="section-heading">
                     <h2>Våre <span class="gradient-text">Prosjekter</span></h2>
@@ -274,7 +380,7 @@
                 </div>
                 <div class="grid projects-grid">
                     <div class="card glass project-card">
-                        <div style="font-size: 4rem; text-align: center; padding: 2.5rem 0; background: rgba(99, 102, 241, 0.05); border-radius: 16px 16px 0 0; border-bottom: 1px solid rgba(255,255,255,0.05);">🏗️</div>
+                        <div style="font-size: 4rem; text-align: center; padding: 2.5rem 0; background: rgba(99, 102, 241, 0.05); border-radius: 16px 16px 0 0; border-bottom: 1px solid rgba(99,102,241,0.1);">🏗️</div>
                         <div class="project-info" style="padding: 1.5rem;">
                             <div class="tag" style="color: var(--primary); font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem;">SEO & Nettside</div>
                             <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Hammerø Bygg AS</h3>
@@ -283,7 +389,7 @@
                     </div>
                     
                     <div class="card glass project-card">
-                        <div style="font-size: 4rem; text-align: center; padding: 2.5rem 0; background: rgba(34, 197, 94, 0.05); border-radius: 16px 16px 0 0; border-bottom: 1px solid rgba(255,255,255,0.05);">🎨</div>
+                        <div style="font-size: 4rem; text-align: center; padding: 2.5rem 0; background: rgba(34, 197, 94, 0.05); border-radius: 16px 16px 0 0; border-bottom: 1px solid rgba(99,102,241,0.1);">🎨</div>
                         <div class="project-info" style="padding: 1.5rem;">
                             <div class="tag" style="color: #22c55e; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem;">B2B Merkevarebygging & Video Ads</div>
                             <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Studio Blend AS</h3>
@@ -292,7 +398,7 @@
                     </div>
                     
                     <div class="card glass project-card">
-                        <div style="font-size: 4rem; text-align: center; padding: 2.5rem 0; background: rgba(245, 158, 11, 0.05); border-radius: 16px 16px 0 0; border-bottom: 1px solid rgba(255,255,255,0.05);">🛞</div>
+                        <div style="font-size: 4rem; text-align: center; padding: 2.5rem 0; background: rgba(245, 158, 11, 0.05); border-radius: 16px 16px 0 0; border-bottom: 1px solid rgba(99,102,241,0.1);">🛞</div>
                         <div class="project-info" style="padding: 1.5rem;">
                             <div class="tag" style="color: #f59e0b; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem;">Google Ads & Leads</div>
                             <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Dekkis AS</h3>
@@ -379,13 +485,25 @@
             </div>
         </section>
         
+        <!-- Bold CTA Banner -->
+        <section class="cta-banner">
+            <div class="container">
+                <div class="cta-banner-inner animate-on-scroll">
+                    <div class="badge" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.25); color: #fff; margin-bottom: 1.5rem;"><span class="pulse-dot" style="background:#fff; box-shadow: 0 0 10px #fff;"></span> La oss snakke</div>
+                    <h2>Klar til å skalere<br>bedriften din?</h2>
+                    <p>Uforpliktende strategimøte – vi ser på potensialet ditt og forteller deg ærlig hva som vil virke.</p>
+                    <a href="#kontakt" class="btn btn-white">Start samtalen <span>→</span></a>
+                </div>
+            </div>
+        </section>
+
         <section id="kontakt" class="contact section-padding">
             <div class="container contact-container glass">
                 <div class="contact-info">
                     <h2>Book et <span class="gradient-text">strategimøte</span></h2>
                     <p>Vi vil gjerne høre mer om ditt neste prosjekt! Send oss en henvendelse, så identifiserer vi behovet ditt over en uforpliktende kaffe.</p>
                     <div class="contact-details">
-                        <a href="mailto:scale.media@outlook.com">scale.media@outlook.com</a>
+                        <a href="mailto:post@scalemedia.no">post@scalemedia.no</a>
                         <p>Kokstadvegen 41<br>5257 Kokstad</p>
                     </div>
                 </div>
@@ -411,13 +529,13 @@
         <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.8rem;">
             <div style="display: flex; gap: 1.5rem; color: var(--text-muted); font-size: 0.95rem; flex-wrap: wrap; justify-content: center; align-items: center;">
                 <span style="text-align: center; line-height: 1.4;">Kokstadvegen 41<br>5257 Kokstad</span>
-                <span>E-post: <a href="mailto:scale.media@outlook.com" style="color: var(--text-muted);">scale.media@outlook.com</a></span>
+                <span>E-post: <a href="mailto:post@scalemedia.no" style="color: var(--text-muted);">post@scalemedia.no</a></span>
                 <span>Tlf: <a href="tel:55095090" style="color: var(--text-muted);">55 09 50 90</a></span>
             </div>
             <div style="margin-top: 0.5rem; font-size: 0.95rem;">
                 <a href="avtalevilkar.html" style="color: var(--text-muted); text-decoration: underline;">Se våre avtalevilkår</a>
             </div>
-            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.4);">2026 optimalisert av scale media AS</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">© 2026 ScaleMedia AS</p>
         </div>
     </footer>
 </body>

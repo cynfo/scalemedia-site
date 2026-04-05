@@ -13,6 +13,8 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <!-- Global Particle Canvas -->
+    <canvas id="particle-canvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
     <div class="global-background">
         <div class="ambient-bg"><div class="ambient-orb orb-1"></div><div class="ambient-orb orb-2"></div><div class="ambient-orb orb-3"></div></div>
         <div class="interactive-glow"></div><div class="premium-grid"></div>
@@ -50,7 +52,7 @@
             <div class="container relative">
                 <div class="about-grid" style="align-items: flex-start; gap: 3rem;">
                     
-                    <div class="glass animate-on-scroll" style="padding: 3rem; background: rgba(13, 15, 20, 0.4); border-color: rgba(99,102,241,0.1);">
+                    <div class="glass animate-on-scroll" style="padding: 3rem; background: rgba(255, 255, 255, 0.85); border-color: rgba(99,102,241,0.1);">
                         <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-color);">Rett budskap. Til rett person. Til rett tid.</h2>
                         <p style="color: var(--text-muted); font-size: 1.15rem; line-height: 1.7; margin-bottom: 1.5rem;">Veldig mange bedrifter setter opp en Google Ads-kampanje, velger noen søkeord, og lar det surre og gå. Dette fører ofte til hundrevis – eller tusenvis – av uønskede klikk, hvor budsjettet "spises opp" uten reelle konverteringer.</p>
                         
@@ -74,7 +76,7 @@
                         <p style="color: var(--text-muted); font-size: 1.15rem; line-height: 1.7;">Gjetting skaper ikke verdier; måling gjør det. Gjennom Google Tag Manager (GTM) og GA4 implementerer vi full konverterings-sporing (conversion tracking), slik at vi og du forstår 100% nøyaktig hvilke annonser som trigget et klikk, sammenlignet med de som skapte faktisk overskudd. Slik kalkulerer vi din eksakte ROAS (Return On Ad Spend) for maksimal profitt.</p>
                     </div>
 
-                    <div class="glass animate-on-scroll" style="padding: 2.5rem; background: linear-gradient(145deg, rgba(99,102,241,0.05), rgba(13, 15, 20, 0.4));">
+                    <div class="glass animate-on-scroll" style="padding: 2.5rem; background: linear-gradient(145deg, rgba(99,102,241,0.06), rgba(255,255,255,0.88));">
                         <div class="icon" style="font-size: 3.5rem; margin-bottom: 1.5rem;">📈</div>
                         <h3 style="font-size: 1.6rem; margin-bottom: 1rem;">Passer mitt budsjett?</h3>
                         <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Vi er spesialister på å skalere budsjetter, men en velfungerende kampanje starter ikke nødvendigvis skyhøyt. Ofte starter vi lavt for å sanke markedsdata – før vi trapper opp på vinnende formler.</p>
@@ -96,7 +98,7 @@
         <div class="container">
             <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: center; flex-wrap: wrap;">
                 <span>Kokstadvegen 41, 5257 Kokstad</span>
-                <span><a href="mailto:scale.media@outlook.com">scale.media@outlook.com</a></span>
+                <span><a href="mailto:post@scalemedia.no">post@scalemedia.no</a></span>
                 <span><a href="tel:55095090">55 09 50 90</a></span>
             </div>
             <div style="margin-top: 0.5rem;"><a href="avtalevilkar.html" style="text-decoration: underline;">Se våre avtalevilkår</a></div>

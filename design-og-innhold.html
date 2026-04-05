@@ -13,6 +13,8 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <!-- Global Particle Canvas -->
+    <canvas id="particle-canvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
     <div class="global-background">
         <div class="ambient-bg"><div class="ambient-orb orb-1"></div><div class="ambient-orb orb-2"></div><div class="ambient-orb orb-3"></div></div>
         <div class="interactive-glow"></div><div class="premium-grid"></div>
@@ -50,7 +52,7 @@
             <div class="container relative">
                 <div class="about-grid" style="align-items: flex-start; gap: 3rem;">
                     
-                    <div class="glass animate-on-scroll" style="padding: 3rem; background: rgba(13, 15, 20, 0.4); border-color: rgba(99,102,241,0.1);">
+                    <div class="glass animate-on-scroll" style="padding: 3rem; background: rgba(255, 255, 255, 0.85); border-color: rgba(99,102,241,0.1);">
                         <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-color);">Visuell kommunikasjon der design møter budskap</h2>
                         <p style="color: var(--text-muted); font-size: 1.15rem; line-height: 1.7; margin-bottom: 1.5rem;">Folk husker ikke bare hva du selger, men hvordan merkevaren din får dem til å føle seg. Enten behovet en re-branding eller grafikk som krever oppmerksomheten umiddelbart, bistår designteamet vårt ut fra dyp og oppdatert farge-/ og kommunikasjonspsykologi.</p>
                         
@@ -70,7 +72,7 @@
                         <p style="color: var(--text-muted); font-size: 1.15rem; line-height: 1.7;">En sterk bedrift opptrer hundre prosent konsekvent (Brand uniformity) uavhengig av distribusjonskanal. Enten et potensielt prospekt ser bannerannonsen din på VG.no, navigerer rundt på hovednettsiden, eller mottar et tilbudsdokument utformet i PDF, må typografi, skrifttyper, fargekoder, logo og den overordnede "Tone-of-Voice" stemme presis overens. Denne sømløse tråden er selve byggeklossen som konverterer fremmede besøkende til engasjerte ambassadører for din merkevare.</p>
                     </div>
 
-                    <div class="glass animate-on-scroll" style="padding: 2.5rem; background: linear-gradient(145deg, rgba(99,102,241,0.05), rgba(13, 15, 20, 0.4));">
+                    <div class="glass animate-on-scroll" style="padding: 2.5rem; background: linear-gradient(145deg, rgba(99,102,241,0.06), rgba(255,255,255,0.88));">
                         <div class="icon" style="font-size: 3.5rem; margin-bottom: 1.5rem;">🎨</div>
                         <h3 style="font-size: 1.6rem; margin-bottom: 1rem;">Illustrasjon til nettsiden din</h3>
                         <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Våre designere er spesialiserte opp mot moderne 3D og SVG vektorgrafikk for nettsider og markedsføring. Bruk tilpasset og unik grafikk i stedet for kjedelige "stock photos" som oser uprofesjonell.</p>
@@ -92,7 +94,7 @@
         <div class="container">
             <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: center; flex-wrap: wrap;">
                 <span>Kokstadvegen 41, 5257 Kokstad</span>
-                <span><a href="mailto:scale.media@outlook.com">scale.media@outlook.com</a></span>
+                <span><a href="mailto:post@scalemedia.no">post@scalemedia.no</a></span>
                 <span><a href="tel:55095090">55 09 50 90</a></span>
             </div>
             <div style="margin-top: 0.5rem;"><a href="avtalevilkar.html" style="text-decoration: underline;">Se våre avtalevilkår</a></div>

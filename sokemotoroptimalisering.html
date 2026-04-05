@@ -15,6 +15,8 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <!-- Global Particle Canvas -->
+    <canvas id="particle-canvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
     <div class="global-background">
         <div class="ambient-bg"><div class="ambient-orb orb-1"></div><div class="ambient-orb orb-2"></div><div class="ambient-orb orb-3"></div></div>
         <div class="interactive-glow"></div><div class="premium-grid"></div>
@@ -54,7 +56,7 @@
                 
                 <div class="about-grid" style="align-items: flex-start; gap: 3rem;">
                     <!-- Hovedinnhold i venstre glasskort -->
-                    <div class="glass animate-on-scroll" style="padding: 3rem; background: rgba(13, 15, 20, 0.4); border-color: rgba(99,102,241,0.1);">
+                    <div class="glass animate-on-scroll" style="padding: 3rem; background: rgba(255, 255, 255, 0.85); border-color: rgba(99,102,241,0.1);">
                         
                         <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-color);">Hvorfor er SEO så avgjørende?</h2>
                         <p style="color: var(--text-muted); font-size: 1.15rem; line-height: 1.7; margin-bottom: 1.5rem;">Søkemotoroptimalisering (SEO) betyr i praksis å tilpasse nettsiden din teknisk, innholdsmessig og strukturelt slik at den verdsettes maksimalt av Googles algoritmer. Over 90% av alle kjøpsbeslutninger starter i dagelt med et Google-søk. Vinner du søket, vinner du som regel kunden.</p>
@@ -86,7 +88,7 @@
                     </div>
 
                     <!-- Sidepanel -->
-                    <div class="glass animate-on-scroll" style="padding: 2.5rem; background: linear-gradient(145deg, rgba(99,102,241,0.05), rgba(13, 15, 20, 0.4));">
+                    <div class="glass animate-on-scroll" style="padding: 2.5rem; background: linear-gradient(145deg, rgba(99,102,241,0.06), rgba(255,255,255,0.88));">
                         <div class="icon" style="font-size: 3.5rem; margin-bottom: 1.5rem;">🔍</div>
                         <h3 style="font-size: 1.6rem; margin-bottom: 1rem;">SEO vs Ads?</h3>
                         <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Google ads gir umiddelbare resultater for penger i det korte løpet. SEO er en investering: arbeidet stenger seg selv over tid og gir kontinuerlig gratis klikk og uvurderlig tillit. Våre største suksesser for kunder bygger på en kombinasjon av begge fremgangsmåter.</p>
@@ -114,7 +116,7 @@
         <div class="container">
             <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: center; flex-wrap: wrap;">
                 <span>Kokstadvegen 41, 5257 Kokstad</span>
-                <span><a href="mailto:scale.media@outlook.com">scale.media@outlook.com</a></span>
+                <span><a href="mailto:post@scalemedia.no">post@scalemedia.no</a></span>
                 <span><a href="tel:55095090">55 09 50 90</a></span>
             </div>
             <div style="margin-top: 0.5rem;"><a href="avtalevilkar.html" style="text-decoration: underline;">Se våre avtalevilkår</a></div>
