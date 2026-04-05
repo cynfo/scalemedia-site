@@ -5,9 +5,12 @@
 
     const ctx = canvas.getContext('2d');
     const COLORS = ['#7B5EA7', '#4A90D9', '#A855F7'];
-    const COUNT  = 60;
-    const LINK_DIST    = 150;
+
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const COUNT     = isMobile ? 25 : 60;
+    const LINK_DIST = isMobile ? 0  : 150;   // no lines on mobile
     const LINK_DIST_SQ = LINK_DIST * LINK_DIST;
+    const SPEED     = isMobile ? 0.18 : 0.25;
 
     let W, H, particles;
 
@@ -22,9 +25,9 @@
         return {
             x:     rand(0, W),
             y:     rand(0, H),
-            vx:    rand(-0.25, 0.25),
-            vy:    rand(-0.25, 0.25),
-            r:     rand(2, 4),
+            vx:    rand(-SPEED, SPEED),
+            vy:    rand(-SPEED, SPEED),
+            r:     rand(2, isMobile ? 3 : 4),
             color: COLORS[Math.floor(Math.random() * COLORS.length)]
         };
     }
@@ -37,7 +40,7 @@
     function draw() {
         ctx.clearRect(0, 0, W, H);
 
-        // Update positions with wrap-around
+        // Update positions
         for (const p of particles) {
             p.x += p.vx;
             p.y += p.vy;
@@ -47,20 +50,22 @@
             if (p.y > H + p.r) p.y = -p.r;
         }
 
-        // Draw connecting lines
-        for (let i = 0; i < COUNT; i++) {
-            for (let j = i + 1; j < COUNT; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const distSq = dx * dx + dy * dy;
-                if (distSq < LINK_DIST_SQ) {
-                    const alpha = (1 - distSq / LINK_DIST_SQ) * 0.15;
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(123, 94, 167, ${alpha})`;
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
+        // Connecting lines (desktop only)
+        if (LINK_DIST > 0) {
+            for (let i = 0; i < COUNT; i++) {
+                for (let j = i + 1; j < COUNT; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distSq = dx * dx + dy * dy;
+                    if (distSq < LINK_DIST_SQ) {
+                        const alpha = (1 - distSq / LINK_DIST_SQ) * 0.15;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(123, 94, 167, ${alpha})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
                 }
             }
         }

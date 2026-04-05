@@ -1413,11 +1413,12 @@ header, main, footer {
     .mobile-menu-btn { display: flex; }
 
     /* Hero */
+    .premium-hero { padding-top: 100px; }
     .hero-split {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 2rem;
-        padding: 1rem 0;
+        padding: 2rem 0 1rem;
     }
     .glass-hero-card { padding: 2rem 1.5rem; }
     .hero-left h1 { margin-bottom: 1rem; }
@@ -1507,7 +1508,6 @@ header, main, footer {
 
     /* Hero */
     .glass-hero-card { padding: 1.5rem 1rem; }
-    .premium-hero { padding-top: 70px; }
 
     /* Dashboard – stack on tiny screens */
     .hd-stats { grid-template-columns: 1fr 1fr; }
