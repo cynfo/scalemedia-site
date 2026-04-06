@@ -491,7 +491,7 @@ header, main, footer {
     padding: 0.85rem 1rem;
     opacity: 0;
     transform: translateY(16px);
-    animation: notifPop 10s ease-in-out infinite both;
+    animation: notifPop 7s ease-in-out infinite both;
 }
 .nw-card-1 { animation-delay: 0s;  }
 .nw-card-2 { animation-delay: 2s;  }
@@ -1440,8 +1440,8 @@ header, main, footer {
     .hero-split {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 2rem;
-        padding: 2rem 0 1rem;
+        gap: 0;
+        padding: 1.5rem 0 2rem;
     }
     .glass-hero-card { padding: 2rem 1.5rem; }
     .hero-left h1 { margin-bottom: 1rem; }
@@ -1465,9 +1465,8 @@ header, main, footer {
     .hero-actions .btn:active { transform: scale(0.97); }
     .hero-watermark { font-size: 5rem; bottom: -1rem; right: -1rem; }
 
-    /* Hero laptop */
-    .laptop-wrap { max-width: 340px; }
-    .laptop-screen { height: 184px; }
+    /* Hero widget – hide on mobile to avoid cramped stacking */
+    .hero-right { display: none; }
 
     /* Stats strip */
     .stats-row { flex-direction: column; gap: 0; }
