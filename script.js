@@ -136,26 +136,97 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    // ── Scroll Animation System ──────────────────────────────────
+    const hero = document.querySelector('.premium-hero');
 
-    const observer = new IntersectionObserver((entries) => {
+    function isInHero(el) {
+        return hero && hero.contains(el);
+    }
+
+    function assignAnimations() {
+        // Section headings → fade up
+        document.querySelectorAll('.section-heading').forEach(el => {
+            if (isInHero(el)) return;
+            el.setAttribute('data-sa', 'fade-up');
+        });
+
+        // Service cards → fade up with 0.1s stagger
+        document.querySelectorAll('#tjenester .card, .services .card').forEach((el, i) => {
+            if (isInHero(el)) return;
+            el.setAttribute('data-sa', 'fade-up');
+            el.style.setProperty('--sa-delay', (i * 0.1) + 's');
+        });
+
+        // Project cards → alternate left/right
+        document.querySelectorAll('.project-card').forEach((el, i) => {
+            el.setAttribute('data-sa', i % 2 === 0 ? 'from-left' : 'from-right');
+        });
+
+        // Pricing cards → fade from bottom with 0.15s stagger
+        document.querySelectorAll('.pricing-card').forEach((el, i) => {
+            el.setAttribute('data-sa', 'fade-bottom');
+            el.style.setProperty('--sa-delay', (i * 0.15) + 's');
+        });
+
+        // Trustpilot review cards → alternate sides
+        document.querySelectorAll('.review-card').forEach((el, i) => {
+            el.setAttribute('data-sa', i % 2 === 0 ? 'from-left' : 'from-right');
+            el.style.setProperty('--sa-delay', (i * 0.1) + 's');
+        });
+
+        // Customer quote cards → alternate sides
+        document.querySelectorAll('.cr-card').forEach((el, i) => {
+            el.setAttribute('data-sa', i % 2 === 0 ? 'from-left' : 'from-right');
+            el.style.setProperty('--sa-delay', (i * 0.1) + 's');
+        });
+
+        // Stat items → fade up with stagger
+        document.querySelectorAll('.stat-item').forEach((el, i) => {
+            el.setAttribute('data-sa', 'fade-up');
+            el.style.setProperty('--sa-delay', (i * 0.1) + 's');
+        });
+
+        // FAQ, contact, CTA sections → fade up
+        document.querySelectorAll('.faq-accordion, .contact-container, .mid-cta-inner, .cta-banner-inner, .pricing-toggle-wrap').forEach(el => {
+            el.setAttribute('data-sa', 'fade-up');
+        });
+
+        // SEO content, seo badge → fade up
+        document.querySelectorAll('.seo-content .container').forEach(el => {
+            el.setAttribute('data-sa', 'fade-up');
+        });
+
+        // Mid-CTA trust markers
+        document.querySelectorAll('.mid-cta-trust span').forEach((el, i) => {
+            el.setAttribute('data-sa', 'fade-up');
+            el.style.setProperty('--sa-delay', (i * 0.1) + 's');
+        });
+    }
+
+    assignAnimations();
+
+    // Single observer for all [data-sa] elements
+    const saObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('sa-visible');
+                saObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('[data-sa]').forEach(el => saObserver.observe(el));
+
+    // Legacy .animate-on-scroll support
+    const legacyObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                legacyObserver.unobserve(entry.target);
             }
         });
-    }, observerOptions);
-
-    // Add animation classes to elements
-    const elementsToAnimate = document.querySelectorAll('.section-heading, .card, .contact-container, .service-block, .faq-accordion, .animate-on-scroll');
-    elementsToAnimate.forEach(el => {
-        el.classList.add('animate-on-scroll');
-        observer.observe(el);
-    });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => legacyObserver.observe(el));
 
     // FAQ Accordion Logikk
     const faqItems = document.querySelectorAll('.faq-item');

@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ScaleMedia | Mediebyrå i Norge</title>
-    <meta name="description" content="Vi skaper strategiske nettsider, engasjerende design og resultatorientert markedsføring. Alt for å styrke din merkevare på nett.">
+    <meta name="description" content="ScaleMedia er Norges raskeste digitalbyrå. Vi leverer SEO, Google Ads, nettsider og sosiale medier – skreddersydd for å gi din bedrift en jevn strøm av nye betalende kunder.">
     <meta name="keywords" content="markedsføring, webutvikling, SEO, digital byrå, ScaleMedia, Norge, annonsering, konvertering">
     
     <!-- Canonical URL -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="canonical" href="https://scalemedia.no/">
     
     <!-- Open Graph / Facebook -->
@@ -15,11 +19,13 @@
     <meta property="og:url" content="https://scalemedia.no/">
     <meta property="og:title" content="ScaleMedia | Mediebyrå i Norge">
     <meta property="og:description" content="Vi skaper strategiske nettsider, engasjerende design og resultatorientert markedsføring.">
+    <meta property="og:image" content="https://scalemedia.no/og-image.jpg">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ScaleMedia | Mediebyrå i Norge">
     <meta name="twitter:description" content="Vi skaper strategiske nettsider, engasjerende design og resultatorientert markedsføring.">
+    <meta name="twitter:image" content="https://scalemedia.no/og-image.jpg">
     
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -99,53 +105,38 @@
 
     <main>
         <section id="hjem" class="hero premium-hero">
-            <div class="container hero-split">
-                <!-- Left: Typography & Glassmorphism -->
-                <div class="hero-left glass-hero-card">
-                    <div class="badge">
-                        <span class="pulse-dot"></span> Fremtiden er her
-                    </div>
-                    <h1 style="font-size: clamp(3rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem;">Ditt byrå for <br><span class="gradient-text">digital markedsføring</span></h1>
-                    <p style="margin-bottom: 2rem; font-size: 1.15rem; color: var(--text-muted); line-height: 1.7;">Velkommen til ScaleMedia. Vi fjerner all gjetting fra markedsføringen din. Gjennom nettsider som selger, lønnsomme Google Ads og moderne video-annonsering, skaffer vi bedriften din en jevn strøm av nye og betalende kunder på nett.</p>
-                    <div class="hero-actions">
-                        <a href="tjenester.html" class="btn btn-primary premium-btn">Utforsk Våre Tjenester <span class="arrow">→</span></a>
-                        <a href="#kontakt" class="btn btn-secondary premium-btn-outline">Kontakt Oss</a>
-                    </div>
+            <div class="container hero-centered">
+
+                <div class="badge hero-badge">
+                    <span class="pulse-dot"></span> ⚡ Norges raskeste digitalbyrå
                 </div>
 
-                <!-- Right: Process Cards -->
-                <div class="hero-right">
-                    <div class="process-cards">
-                        <div class="process-card pc-1">
-                            <div class="pc-icon">🤝</div>
-                            <div class="pc-text">
-                                <div class="pc-title">1. Gratis møte</div>
-                                <div class="pc-sub">Vi kartlegger behovene dine på 30 min</div>
-                            </div>
-                        </div>
-                        <div class="process-card pc-2">
-                            <div class="pc-icon">🎯</div>
-                            <div class="pc-text">
-                                <div class="pc-title">2. Skreddersydd strategi</div>
-                                <div class="pc-sub">Vi lager en plan som passer din bedrift</div>
-                            </div>
-                        </div>
-                        <div class="process-card pc-3">
-                            <div class="pc-icon">📈</div>
-                            <div class="pc-text">
-                                <div class="pc-title">3. Målbare resultater</div>
-                                <div class="pc-sub">Du ser vekst – eller vi jobber gratis</div>
-                            </div>
-                        </div>
-                    </div>
+                <h1 class="hero-title">
+                    Ditt byrå for<br>
+                    <span class="hero-gradient-text">digital markedsføring</span>
+                </h1>
+
+                <p class="hero-sub">
+                    Vi fjerner all gjetting fra markedsføringen din og skaffer<br class="hero-br"> bedriften din en jevn strøm av nye betalende kunder.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="tjenester.html" class="btn btn-primary premium-btn">Utforsk Våre Tjenester <span class="arrow">→</span></a>
+                    <a href="#kontakt" class="btn btn-secondary premium-btn-outline">Kontakt Oss</a>
                 </div>
+
+                <div class="hero-trust">
+                    <span>✅ Gratis første møte</span>
+                    <span>✅ Svar innen 24 timer</span>
+                    <span>✅ Ingen binding</span>
+                </div>
+
             </div>
-            
-            <!-- Hero blobs (z-index:1 so they sit above canvas but below content) -->
-            <div style="position:absolute;top:-100px;right:-100px;width:600px;height:600px;background:#7B5EA7;border-radius:50%;filter:blur(120px);opacity:0.12;z-index:1;pointer-events:none;"></div>
-            <div style="position:absolute;bottom:-100px;left:-80px;width:500px;height:500px;background:#4A90D9;border-radius:50%;filter:blur(100px);opacity:0.10;z-index:1;pointer-events:none;"></div>
-            <div style="position:absolute;top:50%;right:5%;transform:translateY(-50%);width:400px;height:400px;background:#A855F7;border-radius:50%;filter:blur(90px);opacity:0.08;z-index:1;pointer-events:none;"></div>
-            <!-- Decorative watermark -->
+
+            <!-- Blobs -->
+            <div style="position:absolute;top:-100px;right:-100px;width:min(600px,100vw);height:min(600px,100vw);background:#7B5EA7;border-radius:50%;filter:blur(120px);opacity:0.12;z-index:1;pointer-events:none;"></div>
+            <div style="position:absolute;bottom:-100px;left:-80px;width:min(500px,90vw);height:min(500px,90vw);background:#4A90D9;border-radius:50%;filter:blur(100px);opacity:0.10;z-index:1;pointer-events:none;"></div>
+            <div style="position:absolute;top:50%;right:5%;transform:translateY(-50%);width:min(400px,80vw);height:min(400px,80vw);background:#A855F7;border-radius:50%;filter:blur(90px);opacity:0.08;z-index:1;pointer-events:none;"></div>
             <div class="hero-watermark" aria-hidden="true">SCALE</div>
         </section>
 
@@ -470,7 +461,7 @@
                 <div class="faq-accordion glass animate-on-scroll">
                     <div class="faq-item">
                         <button class="faq-question">Hvor lang tid tar det å lage en nettside? <span class="arrow">▼</span></button>
-                        <div class="faq-answer"><p>Tiden det tar avhenger av prosjektets kompleksitet. En enkel nettside eller landingsside (webdesign) med ferdigskrevet copywriting kan være klar på 2-4 uker. For større, skreddersydde webløsninger (for eksempel komplekse WordPress-sider bygget fra bunnen med fokus på Core Web Vitals, API-integrasjoner og avansert konverteringsoptimalisering) ser vi ofte et rammeverk på 6-12 uker. Vi jobber agilt og tett med din bedrift gjennom hele prosessen for å sikre et femsjerners sluttresultat bygget for varig søkemotoroptimalisering.</p></div>
+                        <div class="faq-answer"><p>Takket være vårt moderne AI-verktøy leverer vi ferdige nettsider på <strong>under 3 dager</strong> – uansett størrelse eller kompleksitet. Du slipper å vente i uker eller måneder. Vi jobber tett med deg gjennom hele prosessen for å sikre at resultatet er akkurat slik du vil ha det, levert raskt og uten kompromiss på kvalitet.</p></div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-question">Tilbyr dere fullservice markedsføring og rådgivning? <span class="arrow">▼</span></button>
@@ -543,6 +534,24 @@
             <div style="margin-top: 0.5rem; font-size: 0.95rem;">
                 <a href="avtalevilkar.html" style="color: var(--text-muted); text-decoration: underline;">Se våre avtalevilkår</a>
             </div>
+
+            <!-- Google Partner Badge -->
+            <div class="google-partner-badge">
+                <div class="gp-icon">
+                    <svg width="22" height="22" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                        <path fill="none" d="M0 0h48v48H0z"/>
+                    </svg>
+                </div>
+                <div class="gp-text">
+                    <span class="gp-label">Sertifisert</span>
+                    <span class="gp-name">Google Partner</span>
+                </div>
+            </div>
+
             <p style="font-size: 0.85rem; color: var(--text-muted);">© 2026 ScaleMedia AS</p>
         </div>
     </footer>

@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tjenester | ScaleMedia</title>
-    <meta name="description" content="Dypdykk i våre digitale tjenester: Medierådgivning, SEO, Google Ads, Sosiale Medier og Nettsider.">
+    <meta name="description" content="Utforsk ScaleMedias digitale tjenester: strategisk medierådgivning, SEO, Google Ads, sosiale medier og nettsider – alt skreddersydd for vekst og synlighet.">
     <meta name="keywords" content="tjenester, markedsføring, webutvikling, SEO, Google Ads, design">
     
     <!-- Canonical URL -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="canonical" href="https://scalemedia.no/tjenester.html">
     
     <!-- Open Graph / Facebook -->
@@ -15,16 +19,28 @@
     <meta property="og:url" content="https://scalemedia.no/tjenester.html">
     <meta property="og:title" content="Tjenester | ScaleMedia">
     <meta property="og:description" content="Dypdykk i våre digitale tjenester: Medierådgivning, SEO, Google Ads, Sosiale Medier og Nettsider.">
+    <meta property="og:image" content="https://scalemedia.no/og-image.jpg">
     
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Tjenester | ScaleMedia">
     <meta name="twitter:description" content="Dypdykk i våre digitale tjenester: Medierådgivning, SEO, Google Ads, Sosiale Medier og Nettsider.">
+    <meta name="twitter:image" content="https://scalemedia.no/og-image.jpg">
     
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
-
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Digitale Tjenester",
+      "provider": { "@type": "Organization", "name": "ScaleMedia AS", "url": "https://scalemedia.no" },
+      "areaServed": "Norge",
+      "serviceType": ["SEO", "Google Ads", "Nettsider", "Sosiale Medier", "Medierådgivning"],
+      "url": "https://scalemedia.no/tjenester.html"
+    }
+    </script>
 </head>
 <body>
     <!-- Global Particle Canvas -->
@@ -69,7 +85,7 @@
                     <li><a href="om-oss.html">Om oss</a></li>
                     <li><a href="tjenester.html" style="color: var(--primary);">Tjenester</a></li>
                     <li><a href="index.html#priser">Priser</a></li>
-                    <li><a href="index.html#referanser">Referanser</a></li>
+                    <li><a href="index.html#prosjekter">Referanser</a></li>
                 </ul>
             </nav>
             <div class="nav-cta">
@@ -84,9 +100,9 @@
     </header>
 
     <main>
-        <section class="page-header" style="padding: 10rem 0 4rem; text-align: center; position: relative;">
+        <section class="page-header" style="padding: 9rem 0 2.5rem; text-align: center; position: relative;">
             <div class="container relative z-2" style="position: relative; z-index: 2;">
-                <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Våre <span class="gradient-text">Tjenester</span></h1>
+                <h1 style="font-size: clamp(2rem, 6vw, 3.5rem); margin-bottom: 1rem;">Våre <span class="gradient-text">Tjenester</span></h1>
                 <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Vi tilbyr et komplett spekter av tjenester – fra strategisk medierådgivning til utvikling av nettsider og drift av digitale kampanjer. Alt skreddersydd for din suksess.</p>
             </div>
             <div class="hero-bg-glow" style="width: 400px; height: 400px; top: 0;"></div>
