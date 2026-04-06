@@ -323,6 +323,62 @@ ul {
     gap: 6px;
 }
 
+/* ── Typewriter ── */
+.typewriter-text {
+    display: inline;
+    background: linear-gradient(270deg, #7B5EA7, #4A90D9, #A855F7, #7B5EA7);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease infinite;
+}
+.typewriter-cursor {
+    display: inline-block;
+    font-weight: 300;
+    color: #7B5EA7;
+    -webkit-text-fill-color: #7B5EA7;
+    animation: cursorBlink 0.75s step-end infinite;
+    margin-left: 1px;
+}
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+/* ── Hero Stats ── */
+.hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    animation: fadeInUp 0.8s ease 0.75s both;
+}
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+.hero-stat-number {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 900;
+    color: var(--text-color);
+    letter-spacing: -0.03em;
+    line-height: 1;
+}
+.hero-stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+.hero-stat-divider {
+    width: 1px;
+    height: 2.5rem;
+    background: rgba(99, 102, 241, 0.2);
+}
+
 
 /* Ensure all page content sits above the fixed particle canvas */
 header, main, footer {
@@ -1702,6 +1758,17 @@ header, main, footer {
     .section-heading p { font-size: 0.93rem; }
 
     /* ── Navbar ── */
+    .navbar {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(245, 244, 255, 0.97);
+        will-change: auto;
+    }
+    .navbar.scrolled {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgb(255, 255, 255);
+    }
     .logo { font-size: 1.55rem; }
     .nav-links {
         display: none;
@@ -1751,6 +1818,15 @@ header, main, footer {
     .hero-sub { font-size: 0.96rem; margin-bottom: 1.75rem; }
     .hero-br { display: none; }
     .hero-trust { gap: 0.75rem; font-size: 0.82rem; }
+    .hero-stats { gap: 1.25rem; margin-top: 2rem; }
+    .hero-stat-number { font-size: 1.4rem; }
+    .hero-stat-label { font-size: 0.72rem; }
+    /* Stopp animert gradient på mobil – sparer GPU */
+    .hero-gradient-text,
+    .typewriter-text {
+        animation: none;
+        background-position: 0% 50%;
+    }
     .hero-centered .hero-actions {
         flex-direction: column;
         align-items: center;

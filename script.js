@@ -37,7 +37,21 @@
         particles = Array.from({ length: COUNT }, createParticle);
     }
 
+    let paused = false;
+    let scrollTimer = null;
+
+    // Pause canvas while scrolling on mobile to free up GPU
+    if (isMobile) {
+        window.addEventListener('scroll', () => {
+            paused = true;
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => { paused = false; draw(); }, 150);
+        }, { passive: true });
+    }
+
     function draw() {
+        if (paused) return;
+
         ctx.clearRect(0, 0, W, H);
 
         // Update positions
@@ -87,24 +101,107 @@
             p.x = Math.min(p.x, W);
             p.y = Math.min(p.y, H);
         }
-    });
+    }, { passive: true });
 
     init();
     requestAnimationFrame(draw);
 })();
 
+// ── Typewriter Effect ─────────────────────────────────────────
+(function () {
+    const el = document.getElementById('typewriter-text');
+    if (!el) return;
+
+    const words = [
+        'nettsider som selger',
+        'Google Ads som konverterer',
+        'sosiale medier som engasjerer',
+        'SEO som dominerer'
+    ];
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    const TYPE_SPEED = 60;
+    const DELETE_SPEED = 35;
+    const PAUSE_END = 1800;
+    const PAUSE_START = 300;
+
+    function tick() {
+        const current = words[wordIndex];
+
+        if (deleting) {
+            charIndex--;
+            el.textContent = current.slice(0, charIndex);
+            if (charIndex === 0) {
+                deleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                setTimeout(tick, PAUSE_START);
+                return;
+            }
+            setTimeout(tick, DELETE_SPEED);
+        } else {
+            charIndex++;
+            el.textContent = current.slice(0, charIndex);
+            if (charIndex === current.length) {
+                deleting = true;
+                setTimeout(tick, PAUSE_END);
+                return;
+            }
+            setTimeout(tick, TYPE_SPEED);
+        }
+    }
+
+    setTimeout(tick, 600);
+})();
+
+// ── Hero Stats Counter ────────────────────────────────────────
+(function () {
+    const stats = document.querySelectorAll('.hero-stat-number');
+    if (!stats.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            observer.unobserve(entry.target);
+
+            const el = entry.target;
+            const target = parseInt(el.dataset.target, 10);
+            const prefix = el.dataset.prefix || '';
+            const suffix = el.dataset.suffix || '';
+            const duration = 1400;
+            const start = performance.now();
+
+            function update(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const value = Math.round(eased * target);
+                el.textContent = prefix + value + suffix;
+                if (progress < 1) requestAnimationFrame(update);
+            }
+
+            requestAnimationFrame(update);
+        });
+    }, { threshold: 0.5 });
+
+    stats.forEach(el => observer.observe(el));
+})();
+
 // ─────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-    // Navbar scroll effect
+    // Navbar scroll effect (throttled)
     const navbar = document.querySelector('.navbar');
-    
+    let ticking = false;
+
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+                ticking = false;
+            });
+            ticking = true;
         }
-    });
+    }, { passive: true });
 
     // Mobile menu toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
