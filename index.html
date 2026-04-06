@@ -112,94 +112,43 @@
                     </div>
                 </div>
 
-                <!-- Right: Dashboard Card -->
+                <!-- Right: Live Notification Widget -->
                 <div class="hero-right">
-                    <div class="hero-dashboard">
+                    <div class="notif-widget">
 
-                        <!-- Header row -->
-                        <div class="hd-header">
-                            <div class="hd-header-left">
-                                <div class="hd-dot"></div>
-                                <span>ScaleMedia Dashboard</span>
-                            </div>
-                            <div class="hd-period">Siste 30 dager</div>
+                        <!-- Header -->
+                        <div class="nw-header">
+                            <span class="nw-live-dot"></span>
+                            <span class="nw-live-text">Live – akkurat nå</span>
                         </div>
 
-                        <!-- Stat pills row -->
-                        <div class="hd-stats">
-                            <div class="hd-stat">
-                                <div class="hd-stat-label">ROI</div>
-                                <div class="hd-stat-value hd-green">+247%</div>
-                                <div class="hd-stat-delta">↑ 38% vs forrige</div>
-                            </div>
-                            <div class="hd-stat">
-                                <div class="hd-stat-label">Nye kunder</div>
-                                <div class="hd-stat-value hd-purple" id="counter-number">1 204</div>
-                                <div class="hd-stat-delta">↑ 124 denne måneden</div>
-                            </div>
-                            <div class="hd-stat">
-                                <div class="hd-stat-label">Konverteringsrate</div>
-                                <div class="hd-stat-value hd-blue">4,8%</div>
-                                <div class="hd-stat-delta">↑ 1,2% vs snitt</div>
+                        <!-- Card 1 -->
+                        <div class="nw-card nw-card-1">
+                            <div class="nw-icon">🔔</div>
+                            <div class="nw-content">
+                                <div class="nw-title">Ny henvendelse!</div>
+                                <div class="nw-body">"Hei, vi trenger hjelp med Google Ads"</div>
+                                <div class="nw-meta">Kari N. · for 2 min siden</div>
                             </div>
                         </div>
 
-                        <!-- Chart area -->
-                        <div class="hd-chart-wrap">
-                            <div class="hd-chart-label">Omsetningsvekst</div>
-                            <svg class="hd-chart" viewBox="0 0 360 120" preserveAspectRatio="none">
-                                <defs>
-                                    <linearGradient id="hd-fill" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0%" stop-color="#6366f1" stop-opacity="0.25"/>
-                                        <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
-                                    </linearGradient>
-                                    <linearGradient id="hd-line" x1="0" y1="0" x2="1" y2="0">
-                                        <stop offset="0%" stop-color="#6366f1"/>
-                                        <stop offset="100%" stop-color="#22c55e"/>
-                                    </linearGradient>
-                                </defs>
-                                <!-- Grid lines -->
-                                <line x1="0" y1="30" x2="360" y2="30" stroke="rgba(99,102,241,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
-                                <line x1="0" y1="60" x2="360" y2="60" stroke="rgba(99,102,241,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
-                                <line x1="0" y1="90" x2="360" y2="90" stroke="rgba(99,102,241,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
-                                <!-- Fill -->
-                                <path d="M0 100 C40 95, 60 80, 90 70 S140 50, 180 42 S240 25, 280 18 S330 12, 360 8 L360 120 L0 120 Z" fill="url(#hd-fill)"/>
-                                <!-- Line -->
-                                <path d="M0 100 C40 95, 60 80, 90 70 S140 50, 180 42 S240 25, 280 18 S330 12, 360 8" fill="none" stroke="url(#hd-line)" stroke-width="2.5" stroke-linecap="round"/>
-                                <!-- Dots -->
-                                <circle cx="90" cy="70" r="4" fill="#fff" stroke="#6366f1" stroke-width="2"/>
-                                <circle cx="180" cy="42" r="4" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
-                                <circle cx="280" cy="18" r="4" fill="#fff" stroke="#22c55e" stroke-width="2"/>
-                                <circle cx="360" cy="8" r="5" fill="#22c55e"/>
-                            </svg>
-                            <!-- X-axis labels -->
-                            <div class="hd-xlabels">
-                                <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>Mai</span><span>Jun</span>
+                        <!-- Card 2 -->
+                        <div class="nw-card nw-card-2">
+                            <div class="nw-icon">📈</div>
+                            <div class="nw-content">
+                                <div class="nw-title">Trafikk opp +43% denne uken!</div>
+                                <div class="nw-body">Automatisk rapport fra ScaleMedia</div>
+                                <div class="nw-meta">Rapport · nettopp</div>
                             </div>
                         </div>
 
-                        <!-- Bottom mini-stats -->
-                        <div class="hd-bottom">
-                            <div class="hd-mini">
-                                <span class="hd-mini-icon">📣</span>
-                                <div>
-                                    <div class="hd-mini-val">84 200</div>
-                                    <div class="hd-mini-lbl">Rekkevidde</div>
-                                </div>
-                            </div>
-                            <div class="hd-mini">
-                                <span class="hd-mini-icon">🎯</span>
-                                <div>
-                                    <div class="hd-mini-val">12 580</div>
-                                    <div class="hd-mini-lbl">Klikk totalt</div>
-                                </div>
-                            </div>
-                            <div class="hd-mini">
-                                <span class="hd-mini-icon">💰</span>
-                                <div>
-                                    <div class="hd-mini-val">3,2 kr</div>
-                                    <div class="hd-mini-lbl">Kostnad/klikk</div>
-                                </div>
+                        <!-- Card 3 -->
+                        <div class="nw-card nw-card-3">
+                            <div class="nw-icon">✅</div>
+                            <div class="nw-content">
+                                <div class="nw-title">Kampanje godkjent og live!</div>
+                                <div class="nw-body">Google Ads · budsjett kr 5 000/mnd</div>
+                                <div class="nw-meta">Google Ads · akkurat nå</div>
                             </div>
                         </div>
 
@@ -421,37 +370,16 @@
                     <div class="cr-card animate-on-scroll">
                         <div class="cr-stars">⭐⭐⭐⭐⭐</div>
                         <p class="cr-quote">"ScaleMedia doblet trafikken vår på under 3 måneder. Profesjonelt team som leverer det de lover."</p>
-                        <div class="cr-author">
-                            <div class="cr-avatar">J</div>
-                            <div>
-                                <div class="cr-name">Jonas Berg</div>
-                                <div class="cr-company">Daglig Leder, Hammerø Bygg AS</div>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="cr-card animate-on-scroll">
                         <div class="cr-stars">⭐⭐⭐⭐⭐</div>
                         <p class="cr-quote">"Endelig et byrå som faktisk forstår B2B. ROI på annonsene har aldri vært bedre."</p>
-                        <div class="cr-author">
-                            <div class="cr-avatar">M</div>
-                            <div>
-                                <div class="cr-name">Marte Lund</div>
-                                <div class="cr-company">Markedssjef, Studio Blend AS</div>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="cr-card animate-on-scroll">
                         <div class="cr-stars">⭐⭐⭐⭐⭐</div>
                         <p class="cr-quote">"Konkret, datadrevet og ærlig rådgivning. Vi fornyer avtalen år etter år."</p>
-                        <div class="cr-author">
-                            <div class="cr-avatar">K</div>
-                            <div>
-                                <div class="cr-name">Kristoffer Dale</div>
-                                <div class="cr-company">Eier, Dekkis AS</div>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
