@@ -154,22 +154,22 @@
             <div class="container">
                 <div class="stats-row">
                     <div class="stat-item animate-on-scroll">
-                        <div class="stat-number gradient-text">50+</div>
+                        <div class="stat-number gradient-text" data-counter="50" data-suffix="+">50+</div>
                         <div class="stat-label">Fornøyde kunder</div>
                     </div>
                     <div class="stat-divider"></div>
                     <div class="stat-item animate-on-scroll">
-                        <div class="stat-number gradient-text">+180%</div>
+                        <div class="stat-number gradient-text" data-counter="180" data-prefix="+" data-suffix="%">+180%</div>
                         <div class="stat-label">Trafikkvekst i snitt</div>
                     </div>
                     <div class="stat-divider"></div>
                     <div class="stat-item animate-on-scroll">
-                        <div class="stat-number gradient-text">3×</div>
+                        <div class="stat-number gradient-text" data-counter="3" data-suffix="×">3×</div>
                         <div class="stat-label">Gjennomsnittlig ROI</div>
                     </div>
                     <div class="stat-divider"></div>
                     <div class="stat-item animate-on-scroll">
-                        <div class="stat-number gradient-text">100%</div>
+                        <div class="stat-number gradient-text" data-counter="100" data-suffix="%">100%</div>
                         <div class="stat-label">Datadrevet tilnærming</div>
                     </div>
                 </div>
@@ -306,6 +306,25 @@
             </div>
         </section>
 
+        <!-- Mid-page CTA -->
+        <section class="mid-cta">
+            <div class="container">
+                <div class="mid-cta-inner animate-on-scroll">
+                    <h2 class="mid-cta-title">Klar til å vokse?</h2>
+                    <p class="mid-cta-sub">Book et gratis 30-minutters strategimøte – helt uforpliktende</p>
+                    <div class="mid-cta-btns">
+                        <a href="#kontakt" class="btn mid-cta-btn-primary">Book gratis møte →</a>
+                        <a href="#priser" class="btn mid-cta-btn-outline">Se våre priser</a>
+                    </div>
+                    <div class="mid-cta-trust">
+                        <span>✅ Ingen binding</span>
+                        <span>✅ Svar innen 24 timer</span>
+                        <span>✅ Gratis første møte</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="prosjekter" class="projects section-padding section-alt">
             <div class="container">
                 <div class="section-heading">
@@ -374,47 +393,69 @@
         <section id="priser" class="pricing section-padding">
             <div class="container">
                 <div class="section-heading">
-                    <h2>Langsiktige <span class="gradient-text">Samarbeidsavtaler</span></h2>
-                    <p>Den beste løsningen for kunder som ønsker forutsigbarhet uten kompromiss på kvalitet.</p>
+                    <h2><span class="gradient-text">Nettsidepakker</span></h2>
+                    <p>Profesjonelle nettsider levert raskt – til en fast, forutsigbar pris.</p>
                 </div>
+
+                <!-- Pricing Toggle -->
+                <div class="pricing-toggle-wrap">
+                    <div class="pricing-toggle">
+                        <button class="toggle-btn active" id="toggle-engang" onclick="setPricing('engang')">Engang</button>
+                        <button class="toggle-btn" id="toggle-monthly" onclick="setPricing('monthly')">
+                            Månedlig (12 mnd)
+                            <span class="toggle-badge">Fleksibelt</span>
+                        </button>
+                    </div>
+                </div>
+
                 <div class="grid pricing-grid">
                     <div class="card glass pricing-card">
-                        <h3>Vekst Basic</h3>
-                        <div class="price">4 900,- <span>/mnd</span></div>
+                        <h3>One Page</h3>
+                        <div class="price-wrap">
+                            <div class="price price-engang">7 990,- <span>engangsbeløp</span></div>
+                            <div class="price price-monthly" style="display:none;">749,- <span>/mnd</span><div class="price-total">Totalt 8 988,- over 12 mnd</div></div>
+                        </div>
                         <ul class="features">
-                            <li>SEO & Søkeordsanalyse</li>
-                            <li>Teknisk Håndtering</li>
-                            <li>Copywriting for blogg/sider</li>
-                            <li>Løpende Rapportering</li>
+                            <li>Moderne one page nettside</li>
+                            <li>Mobiloptimalisert</li>
+                            <li>Kontaktskjema</li>
+                            <li>Grunnleggende SEO</li>
+                            <li>Levert på 3 dager</li>
                         </ul>
-                        <a href="#kontakt" class="btn btn-outline">Velg Basic</a>
+                        <a href="#kontakt" class="btn btn-outline">Velg One Page</a>
                     </div>
                     <div class="card glass pricing-card popular">
                         <div class="popular-badge">Sterkest Anbefalt</div>
-                        <h3>Vekst Medium</h3>
-                        <div class="price">8 900,- <span>/mnd</span></div>
+                        <h3>Business</h3>
+                        <div class="price-wrap">
+                            <div class="price price-engang">11 990,- <span>engangsbeløp</span></div>
+                            <div class="price price-monthly" style="display:none;">1 099,- <span>/mnd</span><div class="price-total">Totalt 13 188,- over 12 mnd</div></div>
+                        </div>
                         <ul class="features">
-                            <li>SEO & Søkeordsanalyse</li>
-                            <li>Teknisk Håndtering</li>
-                            <li>Copywriting og Designtweak</li>
-                            <li>Ads-administrasjon (Meta/Google)</li>
-                            <li>Komplett Rapportering</li>
+                            <li>Opptil 8 undersider</li>
+                            <li>Mobiloptimalisert</li>
+                            <li>Avansert SEO-oppsett</li>
+                            <li>Google Analytics</li>
+                            <li>Kontaktskjema & chat</li>
+                            <li>Levert på 3 dager</li>
                         </ul>
-                        <a href="#kontakt" class="btn btn-primary">Velg Medium</a>
+                        <a href="#kontakt" class="btn btn-primary">Velg Business</a>
                     </div>
                     <div class="card glass pricing-card">
-                        <h3>Vekst Pluss</h3>
-                        <div class="price">14 900,- <span>/mnd</span></div>
+                        <h3>Premium</h3>
+                        <div class="price-wrap">
+                            <div class="price price-engang">19 990,- <span>engangsbeløp</span></div>
+                            <div class="price price-monthly" style="display:none;">1 799,- <span>/mnd</span><div class="price-total">Totalt 21 588,- over 12 mnd</div></div>
+                        </div>
                         <ul class="features">
-                            <li>Løpende SEO Strategi</li>
-                            <li>Teknisk Håndtering</li>
-                            <li>Kontinuerlig Innholdsproduksjon</li>
-                            <li>Avansert Ads & Retargeting</li>
-                            <li>Hyppig Rapportering & Møter</li>
-                            <li>Aktiv Lenkebygging</li>
-                            <li>Hosting & Vedlikehold</li>
+                            <li>Ubegrenset undersider</li>
+                            <li>Skreddersydd design</li>
+                            <li>Full SEO-pakke</li>
+                            <li>Booking/bestillingssystem</li>
+                            <li>Prioritert support</li>
+                            <li>Levert på 3 dager</li>
                         </ul>
-                        <a href="#kontakt" class="btn btn-outline">Velg Pluss</a>
+                        <a href="#kontakt" class="btn btn-outline">Velg Premium</a>
                     </div>
                 </div>
             </div>
@@ -470,17 +511,22 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form onsubmit="event.preventDefault(); alert('Takk for at du tar kontakt. Vi kommer tilbake til deg snart!');">
+                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="31513e19-e95a-4a15-a525-9e93df0d729f">
+                        <input type="hidden" name="subject" value="Ny henvendelse fra scalemedia.no">
+                        <input type="hidden" name="redirect" value="false">
                         <div class="form-group">
-                            <input type="text" placeholder="Ditt Navn" required>
+                            <input type="text" name="name" placeholder="Ditt Navn" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Din E-post" required>
+                            <input type="email" name="email" placeholder="Din E-post" required>
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="Fortell kort om prosjektet" rows="4" required></textarea>
+                            <textarea name="message" placeholder="Fortell kort om prosjektet" rows="4" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Send Forespørsel</button>
+                        <p id="form-success" style="display:none; color:#22c55e; text-align:center; margin-top:1rem; font-weight:600;">✓ Takk! Vi kommer tilbake til deg snart.</p>
+                        <p id="form-error" style="display:none; color:#ef4444; text-align:center; margin-top:1rem;">Noe gikk galt. Prøv igjen eller send e-post direkte.</p>
                     </form>
                 </div>
             </div>

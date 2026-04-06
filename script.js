@@ -220,3 +220,108 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 });
+
+// ── Pricing Toggle ─────────────────────────────────────────────
+function setPricing(type) {
+    const engangEls  = document.querySelectorAll('.price-engang');
+    const monthlyEls = document.querySelectorAll('.price-monthly');
+    const btnEngang  = document.getElementById('toggle-engang');
+    const btnMonthly = document.getElementById('toggle-monthly');
+
+    if (type === 'engang') {
+        engangEls.forEach(el => { el.style.display = ''; });
+        monthlyEls.forEach(el => { el.style.display = 'none'; });
+        btnEngang.classList.add('active');
+        btnMonthly.classList.remove('active');
+    } else {
+        engangEls.forEach(el => { el.style.display = 'none'; });
+        monthlyEls.forEach(el => { el.style.display = ''; });
+        btnMonthly.classList.add('active');
+        btnEngang.classList.remove('active');
+    }
+
+    // Trigger fade animation
+    const all = document.querySelectorAll('.price-engang, .price-monthly');
+    all.forEach(el => {
+        if (el.style.display !== 'none') {
+            el.style.animation = 'none';
+            el.offsetHeight; // reflow
+            el.style.animation = 'priceFade 0.3s ease';
+        }
+    });
+}
+
+// ── Stats Counter Animation ────────────────────────────────────
+(function () {
+    const counters = document.querySelectorAll('[data-counter]');
+    if (!counters.length) return;
+
+    const easeOut = t => 1 - Math.pow(1 - t, 3); // cubic ease-out
+
+    function animateCounter(el) {
+        const target   = parseInt(el.dataset.counter, 10);
+        const prefix   = el.dataset.prefix  || '';
+        const suffix   = el.dataset.suffix  || '';
+        const duration = 2000; // ms
+        const start    = performance.now();
+
+        function step(now) {
+            const elapsed  = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const value    = Math.round(easeOut(progress) * target);
+            el.textContent = prefix + value + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target); // run once
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(el => observer.observe(el));
+})();
+
+// ── Web3Forms kontaktskjema ────────────────────────────────────
+(function () {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        const success = document.getElementById('form-success');
+        const error   = document.getElementById('form-error');
+
+        btn.disabled = true;
+        btn.textContent = 'Sender...';
+        success.style.display = 'none';
+        error.style.display   = 'none';
+
+        try {
+            const res  = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: new FormData(form)
+            });
+            const data = await res.json();
+
+            if (data.success) {
+                success.style.display = 'block';
+                form.reset();
+            } else {
+                error.style.display = 'block';
+            }
+        } catch {
+            error.style.display = 'block';
+        }
+
+        btn.disabled = false;
+        btn.textContent = 'Send Forespørsel';
+    });
+})();
