@@ -1716,11 +1716,18 @@ header, main, footer {
         text-align: center;
         overflow-y: auto;
         gap: 1.5rem;
-        z-index: 998;
+        z-index: 999;
     }
-    .nav-links.active { display: flex; }
+    .nav-links.active {
+        display: flex;
+        animation: menuFadeIn 0.25s ease forwards;
+    }
+    @keyframes menuFadeIn {
+        from { opacity: 0; transform: translateY(-8px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
     .nav-cta { display: none; }
-    .mobile-menu-btn { display: flex; }
+    .mobile-menu-btn { display: flex; z-index: 1001; }
 
     /* ── Hero – new centered layout ── */
     .premium-hero {

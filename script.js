@@ -126,14 +126,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Close mobile menu when clicking a link
+    function closeMenu() {
+        navLinks.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        const spans = mobileMenuBtn.querySelectorAll('span');
+        spans.forEach(span => span.style.transform = 'none');
+        spans[1].style.opacity = '1';
+    }
+
     document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            document.body.classList.remove('menu-open');
-            const spans = mobileMenuBtn.querySelectorAll('span');
-            spans.forEach(span => span.style.transform = 'none');
-            spans[1].style.opacity = '1';
-        });
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('active') &&
+            !navLinks.contains(e.target) &&
+            !mobileMenuBtn.contains(e.target)) {
+            closeMenu();
+        }
     });
 
     // ── Scroll Animation System ──────────────────────────────────
