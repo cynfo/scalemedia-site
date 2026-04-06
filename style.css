@@ -1818,9 +1818,7 @@ header, main, footer {
     .hero-sub { font-size: 0.96rem; margin-bottom: 1.75rem; }
     .hero-br { display: none; }
     .hero-trust { gap: 0.75rem; font-size: 0.82rem; }
-    .hero-stats { gap: 1.25rem; margin-top: 2rem; }
-    .hero-stat-number { font-size: 1.4rem; }
-    .hero-stat-label { font-size: 0.72rem; }
+    .hero-stats { display: none; }
     /* Stopp animert gradient på mobil – sparer GPU */
     .hero-gradient-text,
     .typewriter-text {

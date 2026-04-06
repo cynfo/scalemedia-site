@@ -7,10 +7,11 @@
     const COLORS = ['#7B5EA7', '#4A90D9', '#A855F7'];
 
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    const COUNT     = isMobile ? 25 : 60;
-    const LINK_DIST = isMobile ? 0  : 150;   // no lines on mobile
+    if (isMobile) { canvas.style.display = 'none'; return; }
+    const COUNT     = 60;
+    const LINK_DIST = 150;
     const LINK_DIST_SQ = LINK_DIST * LINK_DIST;
-    const SPEED     = isMobile ? 0.18 : 0.25;
+    const SPEED     = 0.25;
 
     let W, H, particles;
 
