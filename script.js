@@ -312,30 +312,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    assignAnimations();
+    const isMobileDevice = window.matchMedia('(max-width: 768px)').matches;
 
-    // Single observer for all [data-sa] elements
-    const saObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('sa-visible');
-                saObserver.unobserve(entry.target);
-            }
+    // På mobil: hopp over scroll-animasjoner helt, vis alt med én gang
+    if (isMobileDevice) {
+        document.querySelectorAll('[data-sa], .animate-on-scroll').forEach(el => {
+            el.classList.add('sa-visible', 'visible');
+            el.style.removeProperty('--sa-delay');
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    } else {
+        assignAnimations();
 
-    document.querySelectorAll('[data-sa]').forEach(el => saObserver.observe(el));
+        // Single observer for all [data-sa] elements
+        const saObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('sa-visible');
+                    saObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    // Legacy .animate-on-scroll support
-    const legacyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                legacyObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.animate-on-scroll').forEach(el => legacyObserver.observe(el));
+        document.querySelectorAll('[data-sa]').forEach(el => saObserver.observe(el));
+    }
+
+    // Legacy .animate-on-scroll support (desktop only)
+    if (!isMobileDevice) {
+        const legacyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    legacyObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => legacyObserver.observe(el));
+    }
 
     // FAQ Accordion Logikk
     const faqItems = document.querySelectorAll('.faq-item');

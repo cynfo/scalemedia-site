@@ -2009,3 +2009,75 @@ header, main, footer {
     .faq-question { font-size: 0.88rem; padding: 0.95rem 1rem; }
     .faq-answer p { font-size: 0.83rem; padding: 0 1rem 1rem; }
 }
+
+/* ═══════════════════════════════════
+   MOBIL YTELSE – deaktiver alt som
+   ikke er nødvendig under scrolling
+═══════════════════════════════════ */
+@media (max-width: 768px) {
+
+    /* Skru av alle dekorative animasjoner */
+    .orbit-glow,
+    .float-core,
+    .pulse-core,
+    .float-node,
+    .float-node-delayed,
+    .svg-float,
+    .svg-float-delayed,
+    .svg-pulse,
+    .svg-spin,
+    .floating-shape,
+    .rotating-ring,
+    .bubble,
+    .hero-watermark {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    /* Fjern backdrop-filter fra alle glass-kort */
+    .glass,
+    .glass-hero-card,
+    .review-card,
+    .cr-card,
+    .contact-container,
+    .faq-item,
+    .pricing-card,
+    .project-card {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(255, 255, 255, 0.96) !important;
+    }
+
+    /* Fjern tunge box-shadows */
+    .card,
+    .glass,
+    .pricing-card,
+    .project-card,
+    .review-card,
+    .cr-card {
+        box-shadow: 0 2px 12px rgba(99, 102, 241, 0.08) !important;
+    }
+
+    /* Skru av hover-transformasjoner */
+    .card:hover,
+    .glass:hover,
+    .project-card:hover,
+    .review-card:hover,
+    .pricing-card:hover {
+        transform: none !important;
+        box-shadow: 0 2px 12px rgba(99, 102, 241, 0.08) !important;
+    }
+
+    /* Navbar på eget compositor-lag */
+    .navbar {
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+    }
+
+    /* Reduser filter-blur på blobs */
+    .hero-blob { filter: blur(60px) !important; }
+
+    /* Slå av transition: all – bruk kun det som trengs */
+    * { transition-property: opacity, transform !important; }
+    a, button { transition: opacity 0.2s ease !important; }
+}
