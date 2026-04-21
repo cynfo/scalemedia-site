@@ -167,7 +167,288 @@
             </div>
         </section>
 
-<section id="tjenester" class="services section-padding section-alt">
+        <!-- ROI-kalkulator -->
+        <section id="kalkulator" class="calc-section" aria-labelledby="calc-heading">
+          <div class="calc-container container">
+
+            <header class="calc-header">
+              <div class="calc-badge" role="presentation">
+                <span class="pulse-dot" aria-hidden="true"></span>
+                Beregn potensialet ditt
+              </div>
+              <h2 id="calc-heading">
+                Regn ut <span class="gradient-text">vekstpotensialet</span> ditt
+              </h2>
+              <p>Dra i glidebryteren og se hva annonsebudsjettet ditt faktisk kan gi deg i leads og omsetning.</p>
+            </header>
+
+            <div class="calc-grid">
+
+              <!-- Venstre: slider + metrikker -->
+              <div class="calc-card left-panel">
+                <div class="slider-label-row">
+                  <span class="slider-label">Månedlig annonsebudsjett</span>
+                  <span class="budget-display" id="budget-display" aria-live="polite" aria-atomic="true">10 000 NOK</span>
+                </div>
+
+                <div class="slider-wrap">
+                  <div class="slider-track-bg" aria-hidden="true">
+                    <div class="slider-track-fill" id="track-fill"></div>
+                  </div>
+                  <input
+                    type="range"
+                    class="calc-slider"
+                    id="budget-slider"
+                    min="5000" max="50000" step="500" value="10000"
+                    aria-label="Månedlig annonsebudsjett i norske kroner"
+                    aria-valuemin="5000" aria-valuemax="50000"
+                    aria-valuenow="10000" aria-valuetext="10 000 kroner"
+                  >
+                </div>
+
+                <div class="slider-range-labels" aria-hidden="true">
+                  <span>5 000 NOK</span>
+                  <span>50 000 NOK</span>
+                </div>
+
+                <div class="metrics-grid" role="list">
+                  <div class="metric-card" role="listitem">
+                    <!-- Target/crosshair icon -->
+                    <svg class="metric-icon-svg" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+                      <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>
+                      <line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
+                    </svg>
+                    <div class="metric-label">Leads / mnd</div>
+                    <div class="metric-value accent" id="metric-leads">20</div>
+                  </div>
+                  <div class="metric-card" role="listitem">
+                    <!-- Coin/money icon -->
+                    <svg class="metric-icon-svg success" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"/>
+                      <path d="M15 9.5a3.5 3.5 0 0 0-6 2.45c0 2.05 1.5 3.05 3 3.55s3 1.5 3 3.5a3.5 3.5 0 0 1-6 .95"/>
+                      <line x1="12" y1="6" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="18"/>
+                    </svg>
+                    <div class="metric-label">Omsetning / mnd</div>
+                    <div class="metric-value success" id="metric-revenue">60 000 NOK</div>
+                  </div>
+                  <div class="metric-card" role="listitem">
+                    <!-- Trending up icon -->
+                    <svg class="metric-icon-svg" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                      <polyline points="17 6 23 6 23 12"/>
+                    </svg>
+                    <div class="metric-label">ROI</div>
+                    <div class="metric-value" id="metric-roi">6.0x</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Høyre: leads-grid -->
+              <div class="calc-card leads-panel">
+
+                <div class="leads-panel-header">
+                  <div class="leads-panel-title">Din månedlige leads-kapasitet</div>
+                  <div class="leads-panel-sub">Hver rute = 1 lead generert fra budsjettet ditt</div>
+                </div>
+
+                <ul class="breakdown-list" aria-label="Beregningsgrunnlag">
+                  <li class="breakdown-row">
+                    <span class="breakdown-label">Budsjett per lead</span>
+                    <span class="breakdown-value">500 NOK</span>
+                  </li>
+                  <li class="breakdown-row">
+                    <span class="breakdown-label">Verdi per lead</span>
+                    <span class="breakdown-value">3 000 NOK</span>
+                  </li>
+                  <li class="breakdown-row breakdown-row--last">
+                    <span class="breakdown-label">Netto per lead</span>
+                    <span class="breakdown-value breakdown-value--accent">2 500 NOK</span>
+                  </li>
+                </ul>
+
+                <div class="leads-counter-row">
+                  <span class="leads-counter-label">Leads du genererer per måned</span>
+                  <span class="leads-counter-value" id="leads-big-count">20</span>
+                </div>
+
+                <div
+                  class="leads-grid"
+                  id="leads-grid"
+                  role="img"
+                  aria-label="20 av 100 mulige leads visualisert som rutenett"
+                ></div>
+
+                <div class="leads-insight-box">
+                  <p id="leads-insight-quote">Med <strong>20</strong> leads i måneden får annonsene dine nok signal til at algoritmen optimaliserer skikkelig. De fleste bedrifter kjører en brøkdel av dette — og derfor stopper veksten opp.</p>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Innsikt + CTA -->
+            <div class="calc-insight">
+              <div class="insight-text-wrap">
+                <div class="insight-eyebrow">⚡ Din prognose</div>
+                <p class="insight-text" id="insight-text" aria-live="polite" aria-atomic="true">
+                  Med <strong id="ins-budget">10 000 NOK</strong>/måned kan du generere omtrent
+                  <strong id="ins-leads">20 leads</strong> og
+                  <strong id="ins-revenue">60 000 NOK</strong> i omsetning — en
+                  <strong id="ins-roi">6.0x</strong> avkastning på investeringen din.
+                </p>
+              </div>
+              <a href="#kontakt" class="calc-cta" id="calc-cta-btn">
+                Book et gratis strategimøte
+                <span class="cta-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+
+          </div>
+        </section>
+
+        <script>
+        (function () {
+          'use strict';
+
+          var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+          /* ── DOM refs ── */
+          var slider        = document.getElementById('budget-slider');
+          var budgetDisp    = document.getElementById('budget-display');
+          var trackFill     = document.getElementById('track-fill');
+          var mLeads        = document.getElementById('metric-leads');
+          var mRev          = document.getElementById('metric-revenue');
+          var mRoi          = document.getElementById('metric-roi');
+          var leadsBigCount = document.getElementById('leads-big-count');
+          var leadsGrid     = document.getElementById('leads-grid');
+          var insightQuote  = document.getElementById('leads-insight-quote');
+          var insBudget     = document.getElementById('ins-budget');
+          var insLeads      = document.getElementById('ins-leads');
+          var insRevenue    = document.getElementById('ins-revenue');
+          var insRoi        = document.getElementById('ins-roi');
+
+          /* ── Formatters ── */
+          function fmtNOK(n) {
+            return Math.round(n).toLocaleString('nb-NO').replace(/\u00A0/g, '\u0020');
+          }
+          function fmtROI(n) { return n.toFixed(1) + 'x'; }
+
+          /* ── Model ── */
+          function calc(b) {
+            var leads   = b / 500;
+            var revenue = leads * 3000;
+            return { leads: leads, revenue: revenue, roi: revenue / b };
+          }
+
+          /* ── Animated counter ── */
+          function animateVal(el, from, to, duration, fmt) {
+            if (REDUCED) { el.textContent = fmt(to); return; }
+            var start = performance.now();
+            function step(now) {
+              var t  = Math.min((now - start) / duration, 1);
+              var et = 1 - Math.pow(1 - t, 3);
+              el.textContent = fmt(from + (to - from) * et);
+              if (t < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+          }
+
+          /* ── Slider track + tooltip ── */
+          function updateTrack(val) {
+            var pct = (val - 5000) / 45000;
+            trackFill.style.width = (pct * 100) + '%';
+          }
+
+          /* ── Leads grid: build once ── */
+          var dotEls = null;
+
+          function buildGrid() {
+            var frag = document.createDocumentFragment();
+            for (var i = 0; i < 100; i++) {
+              var dot = document.createElement('div');
+              dot.className = 'lead-dot';
+              dot.setAttribute('aria-hidden', 'true');
+              if (!REDUCED) {
+                dot.style.transitionDelay = Math.min(i * 8, 400) + 'ms';
+              }
+              frag.appendChild(dot);
+            }
+            leadsGrid.appendChild(frag);
+            dotEls = leadsGrid.querySelectorAll('.lead-dot');
+          }
+
+          /* ── Leads grid: update colours only ── */
+          function updateGrid(leads) {
+            var active = Math.min(Math.round(leads), 100);
+            leadsGrid.setAttribute(
+              'aria-label',
+              active + ' av 100 mulige leads visualisert som rutenett'
+            );
+            for (var i = 0; i < 100; i++) {
+              if (i < active) {
+                dotEls[i].classList.add('active');
+              } else {
+                dotEls[i].classList.remove('active');
+              }
+            }
+          }
+
+          /* ── Insight quote ── */
+          function updateInsightQuote(leads) {
+            var n = Math.round(leads);
+            insightQuote.innerHTML =
+              'Med <strong>' + n + '</strong> leads i måneden f\u00E5r annonsene dine ' +
+              'nok signal til at algoritmen optimaliserer skikkelig. De fleste bedrifter ' +
+              'kj\u00F8rer en br\u00F8kdel av dette\u00A0\u2014 og derfor stopper veksten opp.';
+          }
+
+          /* ── Main update ── */
+          var prev = calc(+slider.value);
+
+          function update(animate) {
+            var budget = +slider.value;
+            var cur    = calc(budget);
+
+            updateTrack(budget);
+            slider.setAttribute('aria-valuenow',  budget);
+            slider.setAttribute('aria-valuetext', fmtNOK(budget) + ' kroner');
+            budgetDisp.textContent = fmtNOK(budget) + ' NOK';
+
+            if (animate) {
+              animateVal(mLeads,        prev.leads,   cur.leads,   400, function(v){ return Math.round(v).toString(); });
+              animateVal(mRev,          prev.revenue, cur.revenue, 400, function(v){ return fmtNOK(v) + ' NOK'; });
+              animateVal(mRoi,          prev.roi,     cur.roi,     400, fmtROI);
+              animateVal(leadsBigCount, prev.leads,   cur.leads,   400, function(v){ return Math.round(v).toString(); });
+            } else {
+              mLeads.textContent        = Math.round(cur.leads).toString();
+              mRev.textContent          = fmtNOK(cur.revenue) + ' NOK';
+              mRoi.textContent          = fmtROI(cur.roi);
+              leadsBigCount.textContent = Math.round(cur.leads).toString();
+            }
+
+            updateGrid(cur.leads);
+            updateInsightQuote(cur.leads);
+
+            insBudget.textContent  = fmtNOK(budget) + ' NOK';
+            insLeads.textContent   = Math.round(cur.leads) + ' leads';
+            insRevenue.textContent = fmtNOK(cur.revenue) + ' NOK';
+            insRoi.textContent     = fmtROI(cur.roi);
+
+            prev = cur;
+          }
+
+          /* ── Boot ── */
+          buildGrid();
+          update(false);
+
+          slider.addEventListener('input',  function(){ update(true); });
+          slider.addEventListener('change', function(){ update(true); });
+
+        }());
+        </script>
+
+        <section id="tjenester" class="services section-padding section-alt">
             <div class="container">
                 <div class="section-heading">
                     <h2>Hva vi kan <span class="gradient-text">gjøre for deg</span></h2>
@@ -265,13 +546,13 @@
 
                     <div class="review-card glass">
                         <div class="review-stars">★★★★★</div>
-                        <h4 class="review-title">"Veldig organisert og flinke folk 😊"</h4>
-                        <p class="review-text">Veldig organisert og flinke folk. Profesjonell gjeng som vet hva de driver med. Anbefales!</p>
+                        <h4 class="review-title">"Kommunikasjonen med dette firmaet var…"</h4>
+                        <p class="review-text">Kommunikasjonen med dette firmaet var veldig god. Tilbud ble presentert på en ryddig, fin og oversiktlig måte, og dokument som ble sendt meg var nydelig utført, og ga virkelig mersmak! Personen jeg var i kontakt med var blid, hyggelig og imøtekommende, og jeg gleder meg til å fortsette samarbeidet med denne bedriften! Med beste hilsen Mona Almåsstø, fotterapeut hos Monas Fotterapi AS</p>
                         <div class="review-author">
-                            <div class="review-avatar">S</div>
+                            <div class="review-avatar">M</div>
                             <div>
-                                <div class="review-name">Scott Goode</div>
-                                <div class="review-date">31. mars 2026</div>
+                                <div class="review-name">Mona Almåsstø</div>
+                                <div class="review-date">14. april 2026</div>
                             </div>
                         </div>
                     </div>
