@@ -8,10 +8,10 @@
 
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     if (isMobile) { canvas.style.display = 'none'; return; }
-    const COUNT     = 60;
-    const LINK_DIST = 150;
+    const COUNT        = 38;
+    const LINK_DIST    = 110;
     const LINK_DIST_SQ = LINK_DIST * LINK_DIST;
-    const SPEED     = 0.25;
+    const SPEED        = 0.22;
 
     let W, H, particles;
 
@@ -371,14 +371,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Cursor glow follow
+    // Cursor glow follow – throttled with rAF to avoid layout thrashing
     const glow = document.querySelector('.interactive-glow');
-    window.addEventListener('mousemove', (e) => {
-        if (glow) {
-            glow.style.left = `${e.clientX}px`;
-            glow.style.top  = `${e.clientY}px`;
-        }
-    });
+    if (glow) {
+        let glowRaf = null;
+        let glowX = 0, glowY = 0;
+        window.addEventListener('mousemove', (e) => {
+            glowX = e.clientX;
+            glowY = e.clientY;
+            if (!glowRaf) {
+                glowRaf = requestAnimationFrame(() => {
+                    glow.style.left = `${glowX}px`;
+                    glow.style.top  = `${glowY}px`;
+                    glowRaf = null;
+                });
+            }
+        }, { passive: true });
+    }
 
     // Number Counter Animation for 'Kundeinteraksjoner'
     const counterElement = document.getElementById('counter-number');

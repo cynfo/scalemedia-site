@@ -175,6 +175,8 @@ ul {
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(99, 102, 241, 0.08);
     transition: var(--transition);
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 .navbar.scrolled {
@@ -394,6 +396,8 @@ header, main, footer {
     pointer-events: none;
     overflow: hidden;
     background: transparent;
+    contain: layout style;
+    will-change: transform;
 }
 
 /* Ambient Animated Mesh Background */
@@ -2035,6 +2039,11 @@ header, main, footer {
         transition: none !important;
     }
 
+    /* Skjul CSS-partikler og dot-grid – sparer GPU på mobil */
+    .particle,
+    .particles-container { display: none !important; }
+    .premium-grid { display: none !important; }
+
     /* Fjern backdrop-filter fra alle glass-kort */
     .glass,
     .glass-hero-card,
@@ -2075,12 +2084,17 @@ header, main, footer {
         -webkit-transform: translateZ(0);
     }
 
-    /* Reduser filter-blur på blobs */
-    .hero-blob { filter: blur(60px) !important; }
+    /* Fjern filtrer-blur blobs helt på mobil – sparer GPU */
+    .hero-blob { display: none !important; }
 
-    /* Slå av transition: all – bruk kun det som trengs */
+    /* Begrens transition-properties for scroll-ytelse */
     * { transition-property: opacity, transform !important; }
-    a, button { transition: opacity 0.2s ease !important; }
+    /* Gjenopprett nødvendige transitions for interaktive elementer */
+    a, button, .btn, input, textarea, select {
+        transition: opacity 0.15s ease, background-color 0.15s ease,
+                    color 0.15s ease, border-color 0.15s ease,
+                    transform 0.15s ease !important;
+    }
 }
 
 /* ─────────────────────────────────────────
@@ -2538,4 +2552,216 @@ input[type=range].calc-slider::-moz-range-track {
   .slider-track-fill,
   .metric-card,
   .calc-cta { transition-duration: 0.01ms !important; }
+}
+
+/* ── Trust line directly under hero CTA ── */
+.hero-trust-line {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.015em;
+    margin-top: -0.75rem;
+    margin-bottom: 0;
+    opacity: 0.85;
+    animation: fadeInUp 0.8s ease 0.55s both;
+}
+
+/* ── Hero trust bar items with inline SVG icons ── */
+.trust-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.trust-item svg {
+    flex-shrink: 0;
+    opacity: 0.65;
+}
+
+/* ── Mid-CTA trust items with inline SVG icons ── */
+.mid-trust-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.mid-trust-item svg {
+    flex-shrink: 0;
+}
+
+/* ── Customer review stars: solid unicode, no emoji ── */
+.cr-stars {
+    color: #f59e0b;
+    letter-spacing: 3px;
+}
+
+@media (max-width: 768px) {
+    .hero-trust-line { font-size: 0.75rem; margin-top: -0.5rem; }
+}
+
+/* ── Hero primary CTA – conversion-focused, extra prominent ── */
+.hero-cta-primary {
+    font-size: 1.2rem;
+    padding: 1.15rem 2.75rem;
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.45);
+    letter-spacing: -0.01em;
+    gap: 10px;
+}
+.hero-cta-primary:hover {
+    box-shadow: 0 14px 44px rgba(99, 102, 241, 0.65);
+    transform: translateY(-3px);
+    filter: brightness(1.08);
+}
+.hero-cta-primary .arrow {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+.hero-cta-primary:hover .arrow {
+    transform: translateX(6px);
+}
+
+@media (max-width: 768px) {
+    .hero-cta-primary {
+        font-size: 1.05rem;
+        padding: 1rem 2rem;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ROI CALCULATOR — MOBILE COMPACT (≤768px)
+   Single column, fits in 1–2 screen heights, no jank
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+    /* Section: tighter vertical rhythm */
+    .calc-section { padding: 2.5rem 0 2rem !important; }
+    .calc-section::before { display: none; }
+
+    /* Header */
+    .calc-header { margin-bottom: 1.5rem; }
+    .calc-badge {
+        font-size: 0.72rem;
+        padding: 5px 13px;
+        margin-bottom: 0.8rem;
+    }
+    .calc-header h2 {
+        font-size: clamp(1.35rem, 5.5vw, 1.8rem);
+        margin-bottom: 0.5rem;
+    }
+    .calc-header p { font-size: 0.87rem; line-height: 1.55; }
+
+    /* Grid: force single column, tight gap */
+    .calc-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.8rem;
+    }
+
+    /* Both panels: compact padding, no entry animation */
+    .left-panel,
+    .leads-panel {
+        padding: 1.1rem 1rem !important;
+        animation: none !important;
+    }
+
+    /* Slider label row: stacked so the big number has room */
+    .slider-label-row {
+        flex-direction: column !important;
+        gap: 0.15rem;
+        margin-bottom: 0.9rem;
+    }
+    .slider-label { font-size: 0.74rem; }
+    .budget-display { font-size: 1.7rem; line-height: 1.1; }
+
+    /* Slider track & range labels */
+    .slider-wrap { padding: 6px 0; }
+    .slider-range-labels { font-size: 10.5px; margin-top: 10px; }
+
+    /* Slider thumb: larger touch target (44px+) */
+    input[type=range].calc-slider::-webkit-slider-thumb {
+        width: 34px;
+        height: 34px;
+        box-shadow: 0 0 0 8px rgba(99,102,241,0.13), 0 2px 6px rgba(0,0,0,0.12);
+    }
+    input[type=range].calc-slider::-moz-range-thumb {
+        width: 34px;
+        height: 34px;
+    }
+
+    /* Metrics: 3 tight columns, icon and values scaled down */
+    .metrics-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 0.5rem !important;
+        margin-top: 1rem;
+    }
+    .metric-card {
+        padding: 0.7rem 0.55rem 0.65rem !important;
+    }
+    .metric-icon-svg { width: 16px; height: 16px; margin-bottom: 0.28rem; }
+    .metric-label { font-size: 0.63rem; margin-bottom: 0.18rem; letter-spacing: 0.03em; }
+    .metric-value { font-size: 0.85rem; }
+
+    /* Leads panel header */
+    .leads-panel-header { margin-bottom: 0.6rem; }
+    .leads-panel-title { font-size: 13px; }
+    .leads-panel-sub   { font-size: 11px; }
+
+    /* Breakdown rows */
+    .breakdown-row { padding: 6px 0; }
+    .breakdown-label { font-size: 12.5px; }
+    .breakdown-value { font-size: 13px; }
+
+    /* Big leads counter */
+    .leads-counter-row { margin-top: 11px; margin-bottom: 11px; }
+    .leads-counter-value { font-size: 32px; letter-spacing: -0.02em; }
+    .leads-counter-label { font-size: 11.5px; max-width: 120px; }
+
+    /* Dot grid: smaller dots, guaranteed no overflow */
+    .leads-grid {
+        grid-template-columns: repeat(auto-fill, 13px) !important;
+        gap: 3px !important;
+    }
+    .lead-dot {
+        width: 13px !important;
+        height: 13px !important;
+        transition: background-color 0.18s ease;
+    }
+
+    /* Insight quote box */
+    .leads-insight-box {
+        margin-top: 11px;
+        padding: 10px 13px;
+        border-radius: 8px;
+    }
+    .leads-insight-box p {
+        font-size: 11.5px;
+        line-height: 1.55;
+    }
+
+    /* Bottom insight + CTA row */
+    .calc-insight {
+        margin-top: 0.8rem !important;
+        padding: 1rem !important;
+        gap: 0.85rem;
+        animation: none !important;
+    }
+    .insight-eyebrow { font-size: 0.68rem; margin-bottom: 0.28rem; }
+    .insight-text { font-size: 0.87rem; line-height: 1.6; }
+    .calc-cta {
+        padding: 0.8rem 1.4rem;
+        font-size: 0.9rem;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Very small screens (≤360px): collapse metrics to 2-col */
+@media (max-width: 360px) {
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .metric-card:nth-child(3) { grid-column: 1 / -1; }
+    .budget-display  { font-size: 1.5rem; }
+    .leads-counter-value { font-size: 28px; }
+    .leads-grid {
+        grid-template-columns: repeat(auto-fill, 11px) !important;
+        gap: 2px !important;
+    }
+    .lead-dot { width: 11px !important; height: 11px !important; }
 }
