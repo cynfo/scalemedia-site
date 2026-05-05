@@ -105,14 +105,14 @@
         return el;
     }
 
-    /* ── Vis/skjul ── */
+    /* ── Vis/skjul – inline style vinner alltid over CSS ── */
     function showBanner() {
         var b = document.getElementById('cookie-banner');
-        if (b) b.classList.add('cb-visible');
+        if (b) b.style.display = 'block';
     }
     function hideBanner() {
         var b = document.getElementById('cookie-banner');
-        if (b) b.classList.remove('cb-visible');
+        if (b) b.style.display = 'none';
     }
     function showPanel() {
         var o = document.getElementById('cookie-overlay');
@@ -120,15 +120,14 @@
         var chk = document.getElementById('cp-analytics');
         var saved = loadConsent();
         if (chk) chk.checked = saved ? !!saved.analytics : false;
-        o.classList.add('cp-visible');
+        o.style.display = 'flex';
         document.body.style.overflow = 'hidden';
-        /* Focus first focusable element */
         var first = o.querySelector('button, [href], input');
         if (first) setTimeout(function () { first.focus(); }, 50);
     }
     function hidePanel(reopenBanner) {
         var o = document.getElementById('cookie-overlay');
-        if (o) o.classList.remove('cp-visible');
+        if (o) o.style.display = 'none';
         document.body.style.overflow = '';
         if (reopenBanner && !loadConsent()) showBanner();
     }
