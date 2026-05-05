@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScaleMedia | Mediebyrå i Norge</title>
+    <meta name="description" content="ScaleMedia er Norges raskeste digitalbyrå. Vi leverer SEO, Google Ads, nettsider og sosiale medier – skreddersydd for å gi din bedrift en jevn strøm av nye betalende kunder.">
+    <meta name="keywords" content="markedsføring, webutvikling, SEO, digital byrå, ScaleMedia, Norge, annonsering, konvertering">
+    
+    <!-- Canonical URL -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="canonical" href="https://scalemedia.no/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://scalemedia.no/">
+    <meta property="og:title" content="ScaleMedia | Mediebyrå i Norge">
+    <meta property="og:description" content="Vi skaper strategiske nettsider, engasjerende design og resultatorientert markedsføring.">
+    <meta property="og:image" content="https://scalemedia.no/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ScaleMedia | Mediebyrå i Norge">
+    <meta name="twitter:description" content="Vi skaper strategiske nettsider, engasjerende design og resultatorientert markedsføring.">
+    <meta name="twitter:image" content="https://scalemedia.no/og-image.jpg">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Google Consent Mode V2 – standardverdier satt til "denied" FØR gtag lastes -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'default', {
+            'ad_storage':          'denied',
+            'ad_user_data':        'denied',
+            'ad_personalization':  'denied',
+            'analytics_storage':   'denied',
+            'wait_for_update':     500
+        });
+    </script>
+    <!-- Google tag (gtag.js) – lastes async etter at samtykke-standardene er satt -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PBRKN3JVGW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PBRKN3JVGW');
+    </script>
+
+    <script src="script.js" defer></script>
+    
+    <!-- Schema.org for Local SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MarketingAgency",
+      "name": "Scale Media AS",
+      "url": "https://scalemedia.no",
+      "email": "post@scalemedia.no",
+      "telephone": "+4755095090",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Kokstadvegen 41",
+        "postalCode": "5257",
+        "addressLocality": "Kokstad",
+        "addressCountry": "NO"
+      }
+    }
+    </script>
+
+</head>
+<body>
+    <!-- Global Particle Canvas -->
+    <canvas id="particle-canvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+    <!-- Global Animated Background -->
+    <div class="global-background">
+        <div class="interactive-glow"></div>
+        <div class="premium-grid"></div>
+        <div class="particles-container">
+            <div class="particle p1"></div>
+            <div class="particle p2"></div>
+            <div class="particle p3"></div>
+            <div class="particle p4"></div>
+            <div class="particle p5"></div>
+            <div class="particle p6"></div>
+            <div class="particle p7"></div>
+            <div class="particle p8"></div>
+            <div class="particle p9"></div>
+            <div class="particle p10"></div>
+        </div>
+    </div>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 12px;">
+                    <path d="M18 2 L32 10 L32 26 L18 34 L4 26 L4 10 Z" fill="rgba(99, 102, 241, 0.15)" stroke="var(--primary)" stroke-width="2"/>
+                    <path d="M12 24 L12 18 L18 12 L24 18 L24 24" fill="none" stroke="var(--secondary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M18 12 L18 24" fill="none" stroke="var(--secondary)" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="18" cy="8" r="2" fill="var(--primary)"/>
+                </svg>
+                Scale<span>Media</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Hjem</a></li>
+                    <li><a href="om-oss.html">Om oss</a></li>
+                    <li><a href="tjenester.html">Tjenester</a></li>
+                    <li><a href="#prosjekter">Prosjekter</a></li>
+                    <li><a href="#priser">Priser</a></li>
+                </ul>
+            </nav>
+            <div class="nav-cta">
+                <a href="#kontakt" class="btn btn-primary">Kontakt Oss</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Meny">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="hjem" class="hero premium-hero">
+            <div class="container hero-centered">
+
+                <div class="badge hero-badge">
+                    <span class="pulse-dot"></span> Helt gratis – ingen forpliktelser
+                </div>
+
+                <h1 class="hero-title">
+                    Ditt byrå for<br>
+                    <span class="typewriter-text" id="typewriter-text"></span><span class="typewriter-cursor">|</span>
+                </h1>
+
+                <p class="hero-sub">
+                    Vi lager en skreddersydd demo av nettsiden din – helt gratis og uten forpliktelser.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#kontakt" class="btn btn-primary premium-btn hero-cta-primary">Få gratis forhåndsvisning <span class="arrow">→</span></a>
+                    <a href="tjenester.html" class="btn btn-secondary premium-btn-outline">Se hva vi tilbyr</a>
+                </div>
+
+                <p class="hero-trust-line">100% gratis – ingen forpliktelser</p>
+
+                <div class="hero-trust">
+                    <span class="trust-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        Levert på 3 dager
+                    </span>
+                    <span class="trust-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        Svar innen 24 timer
+                    </span>
+                    <span class="trust-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        100% gratis demo
+                    </span>
+                </div>
+
+
+            </div>
+
+            <!-- Blobs -->
+            <div class="hero-blob" style="position:absolute;top:-100px;right:-100px;width:min(600px,100vw);height:min(600px,100vw);background:#7B5EA7;border-radius:50%;filter:blur(120px);opacity:0.12;z-index:1;pointer-events:none;"></div>
+            <div class="hero-blob" style="position:absolute;bottom:-100px;left:-80px;width:min(500px,90vw);height:min(500px,90vw);background:#4A90D9;border-radius:50%;filter:blur(100px);opacity:0.10;z-index:1;pointer-events:none;"></div>
+            <div class="hero-blob" style="position:absolute;top:50%;right:5%;transform:translateY(-50%);width:min(400px,80vw);height:min(400px,80vw);background:#A855F7;border-radius:50%;filter:blur(90px);opacity:0.08;z-index:1;pointer-events:none;"></div>
+            <div class="hero-watermark" aria-hidden="true">SCALE</div>
+        </section>
+
+        <!-- Stats Strip -->
+        <section class="stats-strip">
+            <div class="container">
+                <div class="stats-row">
+                    <div class="stat-item animate-on-scroll">
+                        <div class="stat-number gradient-text" data-counter="50" data-suffix="+">50+</div>
+                        <div class="stat-label">Fornøyde kunder</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item animate-on-scroll">
+                        <div class="stat-number gradient-text" data-counter="180" data-prefix="+" data-suffix="%">+180%</div>
+                        <div class="stat-label">Trafikkvekst i snitt</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item animate-on-scroll">
+                        <div class="stat-number gradient-text" data-counter="3" data-suffix="×">3×</div>
+                        <div class="stat-label">Gjennomsnittlig ROI</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item animate-on-scroll">
+                        <div class="stat-number gradient-text" data-counter="100" data-suffix="%">100%</div>
+                        <div class="stat-label">Datadrevet tilnærming</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROI-kalkulator -->
+        <section id="kalkulator" class="calc-section" aria-labelledby="calc-heading">
+          <div class="calc-container container">
+
+            <header class="calc-header">
+              <div class="calc-badge" role="presentation">
+                <span class="pulse-dot" aria-hidden="true"></span>
+                Beregn potensialet ditt
+              </div>
+              <h2 id="calc-heading">
+                Regn ut <span class="gradient-text">vekstpotensialet</span> ditt
+              </h2>
+              <p>Dra i glidebryteren og se hva annonsebudsjettet ditt faktisk kan gi deg i leads og omsetning.</p>
+            </header>
+
+            <div class="calc-grid">
+
+              <!-- Venstre: slider + metrikker -->
+              <div class="calc-card left-panel">
+                <div class="slider-label-row">
+                  <span class="slider-label">Månedlig annonsebudsjett</span>
+                  <span class="budget-display" id="budget-display" aria-live="polite" aria-atomic="true">10 000 NOK</span>
+                </div>
+
+                <div class="slider-wrap">
+                  <div class="slider-track-bg" aria-hidden="true">
+                    <div class="slider-track-fill" id="track-fill"></div>
+                  </div>
+                  <input
+                    type="range"
+                    class="calc-slider"
+                    id="budget-slider"
+                    min="5000" max="50000" step="500" value="10000"
+                    aria-label="Månedlig annonsebudsjett i norske kroner"
+                    aria-valuemin="5000" aria-valuemax="50000"
+                    aria-valuenow="10000" aria-valuetext="10 000 kroner"
+                  >
+                </div>
+
+                <div class="slider-range-labels" aria-hidden="true">
+                  <span>5 000 NOK</span>
+                  <span>50 000 NOK</span>
+                </div>
+
+                <div class="metrics-grid" role="list">
+                  <div class="metric-card" role="listitem">
+                    <!-- Target/crosshair icon -->
+                    <svg class="metric-icon-svg" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+                      <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>
+                      <line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
+                    </svg>
+                    <div class="metric-label">Leads / mnd</div>
+                    <div class="metric-value accent" id="metric-leads">20</div>
+                  </div>
+                  <div class="metric-card" role="listitem">
+                    <!-- Coin/money icon -->
+                    <svg class="metric-icon-svg success" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"/>
+                      <path d="M15 9.5a3.5 3.5 0 0 0-6 2.45c0 2.05 1.5 3.05 3 3.55s3 1.5 3 3.5a3.5 3.5 0 0 1-6 .95"/>
+                      <line x1="12" y1="6" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="18"/>
+                    </svg>
+                    <div class="metric-label">Omsetning / mnd</div>
+                    <div class="metric-value success" id="metric-revenue">60 000 NOK</div>
+                  </div>
+                  <div class="metric-card" role="listitem">
+                    <!-- Trending up icon -->
+                    <svg class="metric-icon-svg" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                      <polyline points="17 6 23 6 23 12"/>
+                    </svg>
+                    <div class="metric-label">ROI</div>
+                    <div class="metric-value" id="metric-roi">6.0x</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Høyre: leads-grid -->
+              <div class="calc-card leads-panel">
+
+                <div class="leads-panel-header">
+                  <div class="leads-panel-title">Din månedlige leads-kapasitet</div>
+                  <div class="leads-panel-sub">Hver rute = 1 lead generert fra budsjettet ditt</div>
+                </div>
+
+                <ul class="breakdown-list" aria-label="Beregningsgrunnlag">
+                  <li class="breakdown-row">
+                    <span class="breakdown-label">Budsjett per lead</span>
+                    <span class="breakdown-value">500 NOK</span>
+                  </li>
+                  <li class="breakdown-row">
+                    <span class="breakdown-label">Verdi per lead</span>
+                    <span class="breakdown-value">3 000 NOK</span>
+                  </li>
+                  <li class="breakdown-row breakdown-row--last">
+                    <span class="breakdown-label">Netto per lead</span>
+                    <span class="breakdown-value breakdown-value--accent">2 500 NOK</span>
+                  </li>
+                </ul>
+
+                <div class="leads-counter-row">
+                  <span class="leads-counter-label">Leads du genererer per måned</span>
+                  <span class="leads-counter-value" id="leads-big-count">20</span>
+                </div>
+
+                <div
+                  class="leads-grid"
+                  id="leads-grid"
+                  role="img"
+                  aria-label="20 av 100 mulige leads visualisert som rutenett"
+                ></div>
+
+                <div class="leads-insight-box">
+                  <p id="leads-insight-quote">Med <strong>20</strong> leads i måneden får annonsene dine nok signal til at algoritmen optimaliserer skikkelig. De fleste bedrifter kjører en brøkdel av dette — og derfor stopper veksten opp.</p>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Innsikt + CTA -->
+            <div class="calc-insight">
+              <div class="insight-text-wrap">
+                <div class="insight-eyebrow">⚡ Din prognose</div>
+                <p class="insight-text" id="insight-text" aria-live="polite" aria-atomic="true">
+                  Med <strong id="ins-budget">10 000 NOK</strong>/måned kan du generere omtrent
+                  <strong id="ins-leads">20 leads</strong> og
+                  <strong id="ins-revenue">60 000 NOK</strong> i omsetning — en
+                  <strong id="ins-roi">6.0x</strong> avkastning på investeringen din.
+                </p>
+              </div>
+              <a href="#kontakt" class="calc-cta" id="calc-cta-btn">
+                Book et gratis strategimøte
+                <span class="cta-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+
+          </div>
+        </section>
+
+        <script>
+        (function () {
+          'use strict';
+
+          var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+          /* ── DOM refs ── */
+          var slider        = document.getElementById('budget-slider');
+          var budgetDisp    = document.getElementById('budget-display');
+          var trackFill     = document.getElementById('track-fill');
+          var mLeads        = document.getElementById('metric-leads');
+          var mRev          = document.getElementById('metric-revenue');
+          var mRoi          = document.getElementById('metric-roi');
+          var leadsBigCount = document.getElementById('leads-big-count');
+          var leadsGrid     = document.getElementById('leads-grid');
+          var insightQuote  = document.getElementById('leads-insight-quote');
+          var insBudget     = document.getElementById('ins-budget');
+          var insLeads      = document.getElementById('ins-leads');
+          var insRevenue    = document.getElementById('ins-revenue');
+          var insRoi        = document.getElementById('ins-roi');
+
+          /* ── Formatters ── */
+          function fmtNOK(n) {
+            return Math.round(n).toLocaleString('nb-NO').replace(/\u00A0/g, '\u0020');
+          }
+          function fmtROI(n) { return n.toFixed(1) + 'x'; }
+
+          /* ── Model ── */
+          function calc(b) {
+            var leads   = b / 500;
+            var revenue = leads * 3000;
+            return { leads: leads, revenue: revenue, roi: revenue / b };
+          }
+
+          /* ── Animated counter ── */
+          function animateVal(el, from, to, duration, fmt) {
+            if (REDUCED) { el.textContent = fmt(to); return; }
+            var start = performance.now();
+            function step(now) {
+              var t  = Math.min((now - start) / duration, 1);
+              var et = 1 - Math.pow(1 - t, 3);
+              el.textContent = fmt(from + (to - from) * et);
+              if (t < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+          }
+
+          /* ── Slider track + tooltip ── */
+          function updateTrack(val) {
+            var pct = (val - 5000) / 45000;
+            trackFill.style.width = (pct * 100) + '%';
+          }
+
+          /* ── Leads grid: build once ── */
+          var dotEls = null;
+
+          function buildGrid() {
+            var frag = document.createDocumentFragment();
+            for (var i = 0; i < 100; i++) {
+              var dot = document.createElement('div');
+              dot.className = 'lead-dot';
+              dot.setAttribute('aria-hidden', 'true');
+              if (!REDUCED) {
+                dot.style.transitionDelay = Math.min(i * 8, 400) + 'ms';
+              }
+              frag.appendChild(dot);
+            }
+            leadsGrid.appendChild(frag);
+            dotEls = leadsGrid.querySelectorAll('.lead-dot');
+          }
+
+          /* ── Leads grid: update colours only ── */
+          function updateGrid(leads) {
+            var active = Math.min(Math.round(leads), 100);
+            leadsGrid.setAttribute(
+              'aria-label',
+              active + ' av 100 mulige leads visualisert som rutenett'
+            );
+            for (var i = 0; i < 100; i++) {
+              if (i < active) {
+                dotEls[i].classList.add('active');
+              } else {
+                dotEls[i].classList.remove('active');
+              }
+            }
+          }
+
+          /* ── Insight quote ── */
+          function updateInsightQuote(leads) {
+            var n = Math.round(leads);
+            insightQuote.innerHTML =
+              'Med <strong>' + n + '</strong> leads i måneden f\u00E5r annonsene dine ' +
+              'nok signal til at algoritmen optimaliserer skikkelig. De fleste bedrifter ' +
+              'kj\u00F8rer en br\u00F8kdel av dette\u00A0\u2014 og derfor stopper veksten opp.';
+          }
+
+          /* ── Main update ── */
+          var prev = calc(+slider.value);
+
+          function update(animate) {
+            var budget = +slider.value;
+            var cur    = calc(budget);
+
+            updateTrack(budget);
+            slider.setAttribute('aria-valuenow',  budget);
+            slider.setAttribute('aria-valuetext', fmtNOK(budget) + ' kroner');
+            budgetDisp.textContent = fmtNOK(budget) + ' NOK';
+
+            if (animate) {
+              animateVal(mLeads,        prev.leads,   cur.leads,   400, function(v){ return Math.round(v).toString(); });
+              animateVal(mRev,          prev.revenue, cur.revenue, 400, function(v){ return fmtNOK(v) + ' NOK'; });
+              animateVal(mRoi,          prev.roi,     cur.roi,     400, fmtROI);
+              animateVal(leadsBigCount, prev.leads,   cur.leads,   400, function(v){ return Math.round(v).toString(); });
+            } else {
+              mLeads.textContent        = Math.round(cur.leads).toString();
+              mRev.textContent          = fmtNOK(cur.revenue) + ' NOK';
+              mRoi.textContent          = fmtROI(cur.roi);
+              leadsBigCount.textContent = Math.round(cur.leads).toString();
+            }
+
+            updateGrid(cur.leads);
+            updateInsightQuote(cur.leads);
+
+            insBudget.textContent  = fmtNOK(budget) + ' NOK';
+            insLeads.textContent   = Math.round(cur.leads) + ' leads';
+            insRevenue.textContent = fmtNOK(cur.revenue) + ' NOK';
+            insRoi.textContent     = fmtROI(cur.roi);
+
+            prev = cur;
+          }
+
+          /* ── Boot ── */
+          buildGrid();
+          update(false);
+
+          slider.addEventListener('input',  function(){ update(true); });
+          slider.addEventListener('change', function(){ update(true); });
+
+        }());
+        </script>
+
+        <section id="tjenester" class="services section-padding section-alt">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Hva vi kan <span class="gradient-text">gjøre for deg</span></h2>
+                    <p>En helhetlig løsning drevet av analyse, markedsføring og skarpt design.</p>
+                </div>
+                <div class="grid services-grid">
+                    <a href="design-og-innhold.html" class="card glass" style="display: block;">
+                        <div class="icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                        </div>
+                        <h3>Design & Innhold</h3>
+                        <p>Visuell identitet, grafisk design, og illustrasjoner som fanger oppmerksomhet.</p>
+                        <span class="card-arrow">Les mer →</span>
+                    </a>
+                    <a href="nettsider.html" class="card glass" style="display: block;">
+                        <div class="icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                        <h3>Nettside-utvikling</h3>
+                        <p>Strategiske og responsive plattformer, WordPress, og sylskarpt UX/UI-design.</p>
+                        <span class="card-arrow">Les mer →</span>
+                    </a>
+                    <a href="sokemotoroptimalisering.html" class="card glass" style="display: block;">
+                        <div class="icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        </div>
+                        <h3>Søkemotoroptimalisering</h3>
+                        <p>Teknisk SEO og innholdsoptimalisering slik at du dominerer søkefeltet organisk.</p>
+                        <span class="card-arrow">Les mer →</span>
+                    </a>
+                    <a href="google-ads.html" class="card glass" style="display: block;">
+                        <div class="icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        </div>
+                        <h3>Digital Markedsføring</h3>
+                        <p>Målrettede kampanjer i Google Ads, Meta Ads og LinkedIn Ads som gir deg sterk ROI.</p>
+                        <span class="card-arrow">Les mer →</span>
+                    </a>
+                    <a href="sosiale-medier.html" class="card glass" style="display: block;">
+                        <div class="icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                        </div>
+                        <h3>Sosiale Medier</h3>
+                        <p>Engasjerende innholdsstrategier og community management på TikTok og Instagram.</p>
+                        <span class="card-arrow">Les mer →</span>
+                    </a>
+                    <a href="medieradgivning.html" class="card glass" style="display: block;">
+                        <div class="icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h3>Medierådgivning</h3>
+                        <p>Personlig strategisk oppfølgning og datadreven kanalutvelgelse i et uoversiktig landskap.</p>
+                        <span class="card-arrow">Les mer →</span>
+                    </a>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;" class="animate-on-scroll">
+                    <a href="tjenester.html" class="btn btn-outline">Les mer detaljert om våre tjenester</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="seo-content section-padding" style="border-top: 1px solid rgba(99,102,241,0.1); position: relative; overflow: hidden; transform: translateY(-40px);">
+            <div class="container glass" style="padding: 4rem; border-radius: 20px;">
+                <div class="badge" style="margin-bottom: 1.5rem;"><span class="pulse-dot"></span> Digital Markedsføring Norge</div>
+                <h2 style="font-size: 2.8rem; margin-bottom: 3rem; max-width: 800px;">Vi skaper dominerende organisk synlighet, hete leads og skalerbar omsetning</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; color: var(--text-muted); font-size: 1.15rem; line-height: 1.8;">
+                    
+                    <div>
+                        <h3 style="color: var(--text-color); font-size: 1.3rem; margin-bottom: 0.8rem;">Målrettet Synlighet</h3>
+                        <p style="margin-bottom: 1.5rem;">ScaleMedia er et byrå for resultatskapende <strong style="color:var(--text-color);">digital markedsføring i Norge</strong>. Vår jobb er å rydde opp i ineffektive annonser og teknisk støy. Gjennom presise <strong style="color:var(--text-color);">Google Ads</strong>-kampanjer jakter vi utelukkende på de som faktisk er klare til å kjøpe tjenestene dine – og luker ut ukommersielle klikk.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text-color); font-size: 1.3rem; margin-bottom: 0.8rem;">Troverdig Innhold</h3>
+                        <p style="margin-bottom: 1.5rem;">Polert studioreklame ignoreres ofte av dagens forbrukere. Som et moderne <strong style="color:var(--text-color);">TikTok Ads byrå</strong> produserer vi heller ekte, ufiltrert mobilinnhold og troverdig <strong style="color:var(--text-color);">video annonsering i Norge</strong> (B2B/B2C). Vi fanger oppmerksomheten med en gang og omdanner trafikk til varme, betalende kunder.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Anmeldelser -->
+        <section class="reviews-section section-padding">
+            <div class="container">
+                <div class="section-heading animate-on-scroll">
+                    <a href="https://no.trustpilot.com/review/scalemedia.no" target="_blank" rel="noopener" class="tp-logo-link">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Trustpilot_Logo_%282022%29.svg" alt="Trustpilot" class="tp-logo-img">
+                    </a>
+                    <h2>Hva kunder skriver <span class="gradient-text">om oss</span></h2>
+                </div>
+
+                <div class="reviews-grid animate-on-scroll">
+
+                    <div class="review-card glass">
+                        <div class="review-stars">★★★★★</div>
+                        <h4 class="review-title">"Jeg kunne ikke vært mer fornøyd"</h4>
+                        <p class="review-text">Imponert over hvor tett de følger opp og hvor godt de tilpasser strategien etter våre behov. Vi ser allerede målbare forbedringer i trafikk og kunder.</p>
+                        <div class="review-author">
+                            <div class="review-avatar">J</div>
+                            <div>
+                                <div class="review-name">Jørgen</div>
+                                <div class="review-date">31. mars 2026</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card glass">
+                        <div class="review-stars">★★★★★</div>
+                        <h4 class="review-title">"Kommunikasjonen med dette firmaet var…"</h4>
+                        <p class="review-text">Kommunikasjonen med dette firmaet var veldig god. Tilbud ble presentert på en ryddig, fin og oversiktlig måte, og dokument som ble sendt meg var nydelig utført, og ga virkelig mersmak! Personen jeg var i kontakt med var blid, hyggelig og imøtekommende, og jeg gleder meg til å fortsette samarbeidet med denne bedriften! Med beste hilsen Mona Almåsstø, fotterapeut hos Monas Fotterapi AS</p>
+                        <div class="review-author">
+                            <div class="review-avatar">M</div>
+                            <div>
+                                <div class="review-name">Mona Almåsstø</div>
+                                <div class="review-date">14. april 2026</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card glass">
+                        <div class="review-stars">★★★★★</div>
+                        <h4 class="review-title">"Veldig fornøyd med opplevelsen"</h4>
+                        <p class="review-text">Veldig fornøyd med opplevelsen! Dyktige folk som vet hva de driver med, god oppfølging hele veien og konkurransedyktige priser. Anbefales!</p>
+                        <div class="review-author">
+                            <div class="review-avatar">F</div>
+                            <div>
+                                <div class="review-name">Fredrik Remi Binnie Jensen</div>
+                                <div class="review-date">14. april 2026</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div style="text-align:center; margin-top:2.5rem;" class="animate-on-scroll">
+                    <a href="https://no.trustpilot.com/review/scalemedia.no" target="_blank" rel="noopener" class="btn btn-outline">Se alle anmeldelser på Trustpilot</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mid-page CTA -->
+        <section class="mid-cta">
+            <div class="container">
+                <div class="mid-cta-inner animate-on-scroll">
+                    <h2 class="mid-cta-title">Klar til å vokse?</h2>
+                    <p class="mid-cta-sub">Book et gratis 30-minutters strategimøte – helt uforpliktende</p>
+                    <div class="mid-cta-btns">
+                        <a href="#kontakt" class="btn mid-cta-btn-primary">Book gratis møte →</a>
+                        <a href="#priser" class="btn mid-cta-btn-outline">Se våre priser</a>
+                    </div>
+                    <div class="mid-cta-trust">
+                        <span class="mid-trust-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                            Resultater du kan måle
+                        </span>
+                        <span class="mid-trust-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                            Svar innen 24 timer
+                        </span>
+                        <span class="mid-trust-item">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                            Gratis første møte
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="prosjekter" class="projects section-padding section-alt">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Våre <span class="gradient-text">Prosjekter</span></h2>
+                    <p>En smakebit på hva vi har levert av kreativitet og målbare resultater.</p>
+                </div>
+                <div class="grid projects-grid">
+                    <div class="card glass project-card">
+                        <div style="display:flex;align-items:center;justify-content:center;padding:2.5rem 0;background:rgba(99,102,241,0.05);border-radius:16px 16px 0 0;border-bottom:1px solid rgba(99,102,241,0.1);">
+                            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        </div>
+                        <div class="project-info" style="padding: 1.5rem;">
+                            <div class="tag" style="color: var(--primary); font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem;">SEO & Medierådgivning</div>
+                            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Hammerø Bygg AS</h3>
+                            <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.6;"><strong>Utfordring:</strong> Nesten ingen synlighet på Google – kundene fant dem ikke.<br><strong>Løsning:</strong> Målrettet SEO-arbeid kombinert med strategisk medierådgivning for å nå riktig målgruppe.<br><strong>Resultat:</strong> Markant økning i Google-treff og en jevn strøm av nye henvendelser.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card glass project-card">
+                        <div style="display:flex;align-items:center;justify-content:center;padding:2.5rem 0;background:rgba(34,197,94,0.05);border-radius:16px 16px 0 0;border-bottom:1px solid rgba(99,102,241,0.1);">
+                            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                        </div>
+                        <div class="project-info" style="padding: 1.5rem;">
+                            <div class="tag" style="color: #22c55e; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem;">B2B Merkevarebygging & Video Ads</div>
+                            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Studio Blend AS</h3>
+                            <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.6;"><strong>Utfordring:</strong> Utdatert visuell profil tiltrakk feil kundegruppe og førte til prispress.<br><strong>Løsning:</strong> Full overhaling av merkevaren kombinert med engasjerende TikTok-annonser.<br><strong>Resultat:</strong> Studioet bygget solid bransje-autoritet og tiltrakk seg tyngre B2B næringsoppdrag.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card glass project-card">
+                        <div style="display:flex;align-items:center;justify-content:center;padding:2.5rem 0;background:rgba(245,158,11,0.05);border-radius:16px 16px 0 0;border-bottom:1px solid rgba(99,102,241,0.1);">
+                            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                        </div>
+                        <div class="project-info" style="padding: 1.5rem;">
+                            <div class="tag" style="color: #f59e0b; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem;">Google Ads & Leads</div>
+                            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Dekkis AS</h3>
+                            <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.6;"><strong>Utfordring:</strong> Høye annonsekostnader på Google og lav andel verdiskapende konverteringer.<br><strong>Løsning:</strong> Strenge "Exact Match"-kampanjer og sortering av irrelevant søkevolum.<br><strong>Resultat:</strong> En stabil, forutsigbar tilførsel av nye kunde-henvendelser til en lønnsom kostnad (CPA).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kundeanmeldelser -->
+        <section class="customer-reviews section-padding section-alt">
+            <div class="container">
+                <div class="section-heading animate-on-scroll">
+                    <h2>Hva kundene <span class="gradient-text">våre sier</span></h2>
+                    <p>Vi lar resultatene tale for seg selv.</p>
+                </div>
+                <div class="customer-reviews-grid">
+
+                    <div class="cr-card animate-on-scroll">
+                        <div class="cr-stars">★★★★★</div>
+                        <p class="cr-quote">"ScaleMedia doblet trafikken vår på under 3 måneder. Profesjonelt team som leverer det de lover."</p>
+                    </div>
+
+                    <div class="cr-card animate-on-scroll">
+                        <div class="cr-stars">★★★★★</div>
+                        <p class="cr-quote">"Endelig et byrå som faktisk forstår B2B. ROI på annonsene har aldri vært bedre."</p>
+                    </div>
+
+                    <div class="cr-card animate-on-scroll">
+                        <div class="cr-stars">★★★★★</div>
+                        <p class="cr-quote">"Konkret, datadrevet og ærlig rådgivning. Vi fornyer avtalen år etter år."</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="priser" class="pricing section-padding">
+            <div class="container">
+                <div class="section-heading">
+                    <h2><span class="gradient-text">Nettsidepakker</span></h2>
+                    <p>Profesjonelle nettsider levert raskt – til en fast, forutsigbar pris.</p>
+                </div>
+
+                <!-- Pricing Toggle -->
+                <div class="pricing-toggle-wrap">
+                    <div class="pricing-toggle">
+                        <button class="toggle-btn active" id="toggle-engang" onclick="setPricing('engang')">Engang</button>
+                        <button class="toggle-btn" id="toggle-monthly" onclick="setPricing('monthly')">
+                            Månedlig (12 mnd)
+                            <span class="toggle-badge">Fleksibelt</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid pricing-grid">
+                    <div class="card glass pricing-card">
+                        <h3>One Page</h3>
+                        <div class="price-wrap">
+                            <div class="price price-engang">10 990,- <span>engangsbeløp</span></div>
+                            <div class="price price-monthly" style="display:none;">999,- <span>/mnd</span><div class="price-total">Totalt 11 988,- over 12 mnd</div></div>
+                        </div>
+                        <ul class="features">
+                            <li>Moderne one page nettside</li>
+                            <li>Mobiloptimalisert</li>
+                            <li>Kontaktskjema</li>
+                            <li>Grunnleggende SEO</li>
+                            <li>Levert på 3 dager</li>
+                        </ul>
+                        <a href="#kontakt" class="btn btn-outline">Velg One Page</a>
+                    </div>
+                    <div class="card glass pricing-card popular">
+                        <div class="popular-badge">Sterkest Anbefalt</div>
+                        <h3>Business</h3>
+                        <div class="price-wrap">
+                            <div class="price price-engang">15 990,- <span>engangsbeløp</span></div>
+                            <div class="price price-monthly" style="display:none;">1 490,- <span>/mnd</span><div class="price-total">Totalt 17 880,- over 12 mnd</div></div>
+                        </div>
+                        <ul class="features">
+                            <li>Opptil 8 undersider</li>
+                            <li>Mobiloptimalisert</li>
+                            <li>Avansert SEO-oppsett</li>
+                            <li>Google Analytics</li>
+                            <li>Kontaktskjema & chat</li>
+                            <li>Levert på 3 dager</li>
+                        </ul>
+                        <a href="#kontakt" class="btn btn-primary">Velg Business</a>
+                    </div>
+                    <div class="card glass pricing-card">
+                        <h3>Premium</h3>
+                        <div class="price-wrap">
+                            <div class="price price-engang">22 990,- <span>engangsbeløp</span></div>
+                            <div class="price price-monthly" style="display:none;">2 190,- <span>/mnd</span><div class="price-total">Totalt 26 280,- over 12 mnd</div></div>
+                        </div>
+                        <ul class="features">
+                            <li>Ubegrenset undersider</li>
+                            <li>Skreddersydd design</li>
+                            <li>Full SEO-pakke</li>
+                            <li>Booking/bestillingssystem</li>
+                            <li>Prioritert support</li>
+                            <li>Levert på 3 dager</li>
+                        </ul>
+                        <a href="#kontakt" class="btn btn-outline">Velg Premium</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq section-padding">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Ofte stilte <span class="gradient-text">spørsmål</span></h2>
+                    <p>Svar på det bedrifter typisk lurer på om nettsider og markedsføring.</p>
+                </div>
+                <div class="faq-accordion glass animate-on-scroll">
+                    <div class="faq-item">
+                        <button class="faq-question">Hvor lang tid tar det å lage en nettside? <span class="arrow">▼</span></button>
+                        <div class="faq-answer"><p>Takket være vårt moderne AI-verktøy leverer vi ferdige nettsider på <strong>under 3 dager</strong> – uansett størrelse eller kompleksitet. Du slipper å vente i uker eller måneder. Vi jobber tett med deg gjennom hele prosessen for å sikre at resultatet er akkurat slik du vil ha det, levert raskt og uten kompromiss på kvalitet.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Tilbyr dere fullservice markedsføring og rådgivning? <span class="arrow">▼</span></button>
+                        <div class="faq-answer"><p>Ja! Mange bedrifter over hele Norge bruker Scale Media som sin eksterne markedsføringsavdeling (outsourcing av markedsledelse). Vi dekker hele på hele det digitale spekteret: fra oppbygging av ny merkevareidentitet, logodesign og visuell profil &mdash; til dybdegående innholdsproduksjon, drift av sosiale medier, lønnsom annonsering via Google Ads og Meta Ads, dedikert analyse av SEO, og overordnet strategisk medierådgivning basert på reelle data og prestasjonsindikatorer (KPIer).</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Binder jeg meg til langsiktige avtaler? <span class="arrow">▼</span></button>
+                        <div class="faq-answer"><p>Scale Media verdsetter fleksibilitet og ærlighet fremfor låsende årelange kontrakter. Vi skiller i hovedsak mellom prosjektbaserte leveranser og "retainer" (løpende partnerskap). Å få utviklet logodesign, en enkelt kampanje eller en moderne nettside gjennomføres som smidige engangsprosjekter til faste priser. Skal vi derimot bygge organisk autoritet via SEO, drifte faste SoMe-kanaler, eller kontinuerlig A/B-teste betalte annonser for best mulig ROI, anbefaler vi løpende avtaler. Søkemotorenes algoritmer krever tid, testdata og kontinuitet for dominere posisjonene.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Hvordan vet jeg at annonseringen faktisk gir verdi? <span class="arrow">▼</span></button>
+                        <div class="faq-answer"><p>Vår arbeidsmetode er fundamentalt datadrevet. Vi integrerer avansert konverteringssporing via plattformer som Google Tag Manager, GA4 og Facebook/Meta Pixel. På den måten kan vi måle ekstremt presist hvorvidt kampanjen vår resulterte i utfylte kontaktskjemaer, bestillinger, e-poster eller varme leads. Alt dette fremlegges i hyppige, krystallklare ledelsesrapporter hvor null gjetning forekommer, og hvor hovedfokuset ligger på dekkingsbidrag (ROAS) og en sunn bunnlinje.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Bold CTA Banner -->
+        <section class="cta-banner">
+            <div class="container">
+                <div class="cta-banner-inner animate-on-scroll">
+                    <div class="badge" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.25); color: #fff; margin-bottom: 1.5rem;"><span class="pulse-dot" style="background:#fff; box-shadow: 0 0 10px #fff;"></span> La oss snakke</div>
+                    <h2>Klar til å skalere<br>bedriften din?</h2>
+                    <p>Uforpliktende strategimøte – vi ser på potensialet ditt og forteller deg ærlig hva som vil virke.</p>
+                    <a href="#kontakt" class="btn btn-white">Start samtalen <span>→</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="kontakt" class="contact section-padding">
+            <div class="container contact-container glass">
+                <div class="contact-info">
+                    <h2>Book et <span class="gradient-text">strategimøte</span></h2>
+                    <p>Vi vil gjerne høre mer om ditt neste prosjekt! Send oss en henvendelse, så identifiserer vi behovet ditt over en uforpliktende kaffe.</p>
+                    <div class="contact-details">
+                        <a href="mailto:post@scalemedia.no">post@scalemedia.no</a>
+                        <p>Kokstadvegen 41<br>5257 Kokstad</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="31513e19-e95a-4a15-a525-9e93df0d729f">
+                        <input type="hidden" name="subject" value="Ny henvendelse fra scalemedia.no">
+                        <input type="hidden" name="redirect" value="false">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Ditt Navn" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Din E-post" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Fortell kort om prosjektet" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Forespørsel</button>
+                        <p id="form-success" style="display:none; color:#22c55e; text-align:center; margin-top:1rem; font-weight:600;">✓ Takk! Vi kommer tilbake til deg snart.</p>
+                        <p id="form-error" style="display:none; color:#ef4444; text-align:center; margin-top:1rem;">Noe gikk galt. Prøv igjen eller send e-post direkte.</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.8rem;">
+            <div style="display: flex; gap: 1.5rem; color: var(--text-muted); font-size: 0.95rem; flex-wrap: wrap; justify-content: center; align-items: center;">
+                <span style="text-align: center; line-height: 1.4;">Kokstadvegen 41<br>5257 Kokstad</span>
+                <span>E-post: <a href="mailto:post@scalemedia.no" style="color: var(--text-muted);">post@scalemedia.no</a></span>
+                <span>Tlf: <a href="tel:55095090" style="color: var(--text-muted);">55 09 50 90</a></span>
+            </div>
+            <div style="margin-top: 0.5rem; font-size: 0.88rem; display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center;">
+                <a href="avtalevilkar.html" style="color: var(--text-muted); text-decoration: underline;">Avtalevilkår</a>
+                <a href="personvern.html"   style="color: var(--text-muted); text-decoration: underline;">Personvern</a>
+                <a href="#" id="open-cookie-settings" style="color: var(--text-muted); text-decoration: underline;">Cookie-innstillinger</a>
+            </div>
+
+            <!-- Google Partner Badge -->
+            <div class="google-partner-badge">
+                <div class="gp-icon">
+                    <svg width="22" height="22" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                        <path fill="none" d="M0 0h48v48H0z"/>
+                    </svg>
+                </div>
+                <div class="gp-text">
+                    <span class="gp-label">Sertifisert</span>
+                    <span class="gp-name">Google Partner</span>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; margin-top: 0.5rem;">
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/scalemedia.no" target="_blank" rel="noopener" aria-label="Instagram" style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; overflow:hidden; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="ig-grad" cx="30%" cy="107%" r="130%">
+                                <stop offset="0%" stop-color="#fdf497"/>
+                                <stop offset="10%" stop-color="#fdf497"/>
+                                <stop offset="25%" stop-color="#fd5949"/>
+                                <stop offset="50%" stop-color="#d6249f"/>
+                                <stop offset="75%" stop-color="#285AEB"/>
+                            </radialGradient>
+                        </defs>
+                        <rect width="40" height="40" rx="10" fill="url(#ig-grad)"/>
+                        <rect x="11" y="11" width="18" height="18" rx="5" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="4.5" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="26" cy="14" r="1.2" fill="white"/>
+                    </svg>
+                </a>
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/company/111330942" target="_blank" rel="noopener" aria-label="LinkedIn" style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; overflow:hidden; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="#0A66C2"/>
+                        <path d="M13 16.5h3.5V27H13V16.5zm1.75-5.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM18.5 16.5H22v1.4c.5-.9 1.7-1.7 3.2-1.7 3.4 0 4 2.2 4 5.1V27H25.7v-4.9c0-1.2 0-2.7-1.7-2.7-1.7 0-1.9 1.3-1.9 2.6V27H18.5V16.5z" fill="white"/>
+                    </svg>
+                </a>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">© 2026 ScaleMedia AS</p>
+        </div>
+    </footer>
+    <script src="//code.tidio.co/oo66etiwf43lslvyzlkz0ophsia7kqjm.js" async></script>
+    <script src="cookie.js" defer></script>
+</body>
+</html>

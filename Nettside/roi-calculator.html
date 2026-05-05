@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROI-kalkulator — ScaleMedia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js" defer></script>
+
+<style>
+/* ─────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────── */
+:root {
+  --bg:            #f5f4ff;
+  --surface:       rgba(255,255,255,0.88);
+  --surface-solid: #ffffff;
+  --border:        rgba(99,102,241,0.13);
+  --text:          #1e1b4b;
+  --muted:         #6b7280;
+  --primary:       #6366f1;
+  --primary-h:     #4f46e5;
+  --secondary:     #8b5cf6;
+  --success:       #10b981;
+  --success-muted: rgba(16,185,129,0.15);
+  --primary-muted: rgba(99,102,241,0.10);
+  --glow:          0 4px 24px rgba(99,102,241,0.22);
+  --glow-deep:     0 8px 40px rgba(99,102,241,0.35);
+  --shadow:        0 2px 4px rgba(99,102,241,0.06), 0 8px 24px rgba(99,102,241,0.09);
+  --shadow-hover:  0 4px 8px rgba(99,102,241,0.10), 0 20px 48px rgba(99,102,241,0.18);
+  --radius:        16px;
+  --radius-sm:     10px;
+  --radius-pill:   50px;
+  --font:          'Outfit', sans-serif;
+  --ease-smooth:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snap:     cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition:    0.3s var(--ease-smooth);
+}
+
+/* ─────────────────────────────────────────
+   RESET
+───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--bg); }
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─────────────────────────────────────────
+   SECTION WRAPPER
+───────────────────────────────────────── */
+.calc-section {
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle radial glow behind the section */
+.calc-section::before {
+  content: '';
+  position: absolute;
+  top: -120px; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 500px;
+  background: radial-gradient(ellipse at center,
+    rgba(99,102,241,0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.calc-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─────────────────────────────────────────
+   SECTION HEADER
+───────────────────────────────────────── */
+.calc-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  animation: fadeUp 0.7s var(--ease-smooth) both;
+}
+
+.calc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  background: rgba(99,102,241,0.10);
+  border: 1px solid rgba(99,102,241,0.22);
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.pulse-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: pulse 2s ease infinite;
+  flex-shrink: 0;
+}
+
+.calc-header h2 {
+  font-size: clamp(2rem, 5vw, 2.9rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  margin-bottom: 0.9rem;
+}
+
+.calc-header h2 .grad {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.calc-header p {
+  font-size: 1.1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ─────────────────────────────────────────
+   MAIN GRID
+───────────────────────────────────────── */
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ─────────────────────────────────────────
+   GLASS CARD BASE
+───────────────────────────────────────── */
+.calc-card {
+  background: var(--surface);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+/* ─────────────────────────────────────────
+   LEFT PANEL — SLIDER + METRICS
+───────────────────────────────────────── */
+.left-panel {
+  padding: 2.25rem 2rem;
+  animation: fadeUp 0.7s var(--ease-smooth) 0.1s both;
+}
+
+.slider-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1.4rem;
+}
+
+.slider-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.budget-display {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+/* ─────────────────────────────────────────
+   CUSTOM SLIDER
+───────────────────────────────────────── */
+.slider-wrap {
+  position: relative;
+  margin-bottom: 0.6rem;
+}
+
+input[type=range].calc-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 100px;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.slider-track-bg {
+  position: absolute;
+  top: 50%; left: 0; right: 0;
+  transform: translateY(-50%);
+  height: 6px;
+  border-radius: 100px;
+  background: rgba(99,102,241,0.12);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.slider-track-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  box-shadow: 0 0 10px rgba(99,102,241,0.40);
+  transition: width 0.15s var(--ease-smooth);
+}
+
+/* Webkit thumb */
+input[type=range].calc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--primary);
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.15), var(--glow);
+  cursor: grab;
+  transition: transform 0.2s var(--ease-snap),
+              box-shadow 0.2s var(--ease-smooth);
+}
+input[type=range].calc-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 0 6px rgba(99,102,241,0.18), var(--glow-deep);
+}
+input[type=range].calc-slider:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(1.12);
+}
+
+/* Firefox thumb */
+input[type=range].calc-slider::-moz-range-thumb {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--primary);
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.15), var(--glow);
+  cursor: grab;
+  transition: transform 0.2s var(--ease-snap),
+              box-shadow 0.2s var(--ease-smooth);
+}
+input[type=range].calc-slider::-moz-range-thumb:hover {
+  transform: scale(1.18);
+}
+
+/* Firefox track */
+input[type=range].calc-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 100px;
+  background: rgba(99,102,241,0.12);
+}
+
+.slider-range-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.45rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ─────────────────────────────────────────
+   METRICS GRID
+───────────────────────────────────────── */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.metric-card {
+  background: var(--surface-solid);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1.1rem 1rem 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.22s var(--ease-snap),
+              box-shadow 0.22s var(--ease-smooth);
+  cursor: default;
+}
+
+.metric-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2.5px;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-smooth);
+  border-radius: 0 0 2px 2px;
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+.metric-card:hover::after {
+  transform: scaleX(1);
+}
+
+.metric-icon {
+  font-size: 1.3rem;
+  margin-bottom: 0.45rem;
+  display: block;
+}
+
+.metric-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.35rem;
+}
+
+.metric-value {
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.metric-value.accent { color: var(--primary); }
+.metric-value.success { color: var(--success); }
+
+/* ─────────────────────────────────────────
+   RIGHT PANEL — CHART
+───────────────────────────────────────── */
+.right-panel {
+  padding: 2.25rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  animation: fadeUp 0.7s var(--ease-smooth) 0.2s both;
+}
+
+.chart-header {
+  margin-bottom: 1.5rem;
+}
+
+.chart-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.chart-header p {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Custom legend */
+.chart-legend {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-dot.leads  { background: var(--primary); }
+.legend-dot.rev    { background: var(--success); }
+
+.chart-wrap {
+  position: relative;
+  flex: 1;
+  min-height: 240px;
+}
+
+/* ─────────────────────────────────────────
+   INSIGHT FOOTER
+───────────────────────────────────────── */
+.calc-insight {
+  margin-top: 2rem;
+  background: var(--surface-solid);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  animation: fadeUp 0.7s var(--ease-smooth) 0.3s both;
+  box-shadow: var(--shadow);
+}
+
+.insight-text-wrap {
+  flex: 1;
+}
+
+.insight-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--primary);
+  margin-bottom: 0.4rem;
+}
+
+.insight-text {
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+.insight-text strong {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* ─────────────────────────────────────────
+   CTA BUTTON
+───────────────────────────────────────── */
+.calc-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.95rem 2rem;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(99,102,241,0.32);
+  transition: transform 0.22s var(--ease-snap),
+              box-shadow 0.22s var(--ease-smooth);
+  flex-shrink: 0;
+}
+
+.calc-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(99,102,241,0.45);
+}
+
+.calc-cta:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+.cta-arrow {
+  display: inline-block;
+  transition: transform 0.22s var(--ease-snap);
+}
+
+/* ─────────────────────────────────────────
+   ANIMATIONS
+───────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 0 0   rgba(99,102,241,0.4); }
+  50%       { opacity: 0.8; box-shadow: 0 0 0 5px rgba(99,102,241,0); }
+}
+
+/* ─────────────────────────────────────────
+   REDUCED MOTION
+───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .pulse-dot { animation: none; }
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE — 860px
+───────────────────────────────────────── */
+@media (max-width: 860px) {
+  .calc-grid {
+    grid-template-columns: 1fr;
+  }
+  .calc-insight {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+  .calc-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE — 540px
+───────────────────────────────────────── */
+@media (max-width: 540px) {
+  .calc-section { padding: 4rem 0; }
+  .calc-container { padding: 0 1.1rem; }
+  .left-panel, .right-panel { padding: 1.5rem 1.2rem; }
+  .calc-insight { padding: 1.35rem 1.2rem; }
+  .slider-label-row { flex-direction: column; gap: 0.3rem; }
+  .budget-display { font-size: 2rem; }
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE — 420px
+───────────────────────────────────────── */
+@media (max-width: 420px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  .metric-card { padding: 0.9rem; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════
+     ROI CALCULATOR SECTION
+════════════════════════════════════════ -->
+<section id="kalkulator" class="calc-section" aria-labelledby="calc-heading">
+  <div class="calc-container">
+
+    <!-- Header -->
+    <header class="calc-header">
+      <div class="calc-badge" role="presentation">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        Beregn potensialet ditt
+      </div>
+      <h2 id="calc-heading">
+        Regn ut <span class="grad">vekstpotensialet</span> ditt
+      </h2>
+      <p>Dra i glidebryteren og se hva annonsebudsjettet ditt faktisk kan gi deg i leads og omsetning.</p>
+    </header>
+
+    <!-- Two-column grid -->
+    <div class="calc-grid">
+
+      <!-- LEFT: Slider + Metrics -->
+      <div class="calc-card left-panel">
+
+        <div class="slider-label-row">
+          <span class="slider-label">Månedlig annonsebudsjett</span>
+          <span class="budget-display" id="budget-display" aria-live="polite" aria-atomic="true">
+            10 000 NOK
+          </span>
+        </div>
+
+        <div class="slider-wrap">
+          <!-- Visual track background + fill -->
+          <div class="slider-track-bg" aria-hidden="true">
+            <div class="slider-track-fill" id="track-fill"></div>
+          </div>
+
+          <input
+            type="range"
+            class="calc-slider"
+            id="budget-slider"
+            min="5000"
+            max="50000"
+            step="500"
+            value="10000"
+            aria-label="Månedlig annonsebudsjett i norske kroner"
+            aria-valuemin="5000"
+            aria-valuemax="50000"
+            aria-valuenow="10000"
+            aria-valuetext="10 000 kroner"
+          >
+        </div>
+
+        <div class="slider-range-labels" aria-hidden="true">
+          <span>5 000 NOK</span>
+          <span>50 000 NOK</span>
+        </div>
+
+        <!-- Metric cards -->
+        <div class="metrics-grid" role="list">
+
+          <div class="metric-card" role="listitem">
+            <span class="metric-icon" aria-hidden="true">🎯</span>
+            <div class="metric-label">Leads / mnd</div>
+            <div class="metric-value accent" id="metric-leads" aria-label="Estimerte leads per måned">
+              20
+            </div>
+          </div>
+
+          <div class="metric-card" role="listitem">
+            <span class="metric-icon" aria-hidden="true">💰</span>
+            <div class="metric-label">Omsetning / mnd</div>
+            <div class="metric-value success" id="metric-revenue" aria-label="Estimert omsetning per måned">
+              60 000 NOK
+            </div>
+          </div>
+
+          <div class="metric-card" role="listitem">
+            <span class="metric-icon" aria-hidden="true">📈</span>
+            <div class="metric-label">ROI</div>
+            <div class="metric-value" id="metric-roi" aria-label="Estimert avkastning på investering">
+              6.0x
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /left-panel -->
+
+      <!-- RIGHT: Chart -->
+      <div class="calc-card right-panel">
+        <div class="chart-header">
+          <h3>6-måneders prognose</h3>
+          <p>Basert på gjennomsnittlig vekst fra ScaleMedia-kunder</p>
+        </div>
+
+        <div class="chart-legend" aria-hidden="true">
+          <div class="legend-item">
+            <span class="legend-dot leads"></span>
+            Leads
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot rev"></span>
+            Omsetning (NOK)
+          </div>
+        </div>
+
+        <div class="chart-wrap">
+          <canvas id="roi-chart" role="img" aria-label="Linjediagram som viser prognose for leads og omsetning over 6 måneder"></canvas>
+        </div>
+      </div><!-- /right-panel -->
+
+    </div><!-- /calc-grid -->
+
+    <!-- Insight + CTA footer -->
+    <div class="calc-insight">
+      <div class="insight-text-wrap">
+        <div class="insight-eyebrow">⚡ Din prognose</div>
+        <p
+          class="insight-text"
+          id="insight-text"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          Med <strong id="ins-budget">10 000 NOK</strong>/måned kan du generere omtrent
+          <strong id="ins-leads">20 leads</strong> og
+          <strong id="ins-revenue">60 000 NOK</strong> i omsetning — en
+          <strong id="ins-roi">6.0x</strong> avkastning på investeringen din.
+        </p>
+      </div>
+
+      <a href="#kontakt" class="calc-cta" id="calc-cta-btn">
+        Book et gratis strategimøte
+        <span class="cta-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ─── Constants ─── */
+  const RAMP   = [1.00, 1.12, 1.26, 1.42, 1.58, 1.75];
+  const MONTHS = ['Mnd 1','Mnd 2','Mnd 3','Mnd 4','Mnd 5','Mnd 6'];
+  const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ─── DOM refs ─── */
+  const slider       = document.getElementById('budget-slider');
+  const budgetDisp   = document.getElementById('budget-display');
+  const trackFill    = document.getElementById('track-fill');
+  const metricLeads  = document.getElementById('metric-leads');
+  const metricRev    = document.getElementById('metric-revenue');
+  const metricRoi    = document.getElementById('metric-roi');
+  const insBudget    = document.getElementById('ins-budget');
+  const insLeads     = document.getElementById('ins-leads');
+  const insRevenue   = document.getElementById('ins-revenue');
+  const insRoi       = document.getElementById('ins-roi');
+
+  /* ─── Number formatter — Norwegian: space as thousands separator ─── */
+  function fmtNOK(n) {
+    return Math.round(n).toLocaleString('nb-NO').replace(/\u00A0/g, '\u0020');
+  }
+  function fmtROI(n) {
+    return n.toFixed(1) + 'x';
+  }
+
+  /* ─── Calculate from budget ─── */
+  function calc(budget) {
+    const leads   = budget / 500;
+    const revenue = leads * 3000;
+    const roi     = revenue / budget;
+    return { leads, revenue, roi };
+  }
+
+  /* ─── Animated counter ─── */
+  function animateValue(el, from, to, duration, formatter) {
+    if (REDUCED_MOTION) { el.textContent = formatter(to); return; }
+    const start = performance.now();
+    function step(now) {
+      const t  = Math.min((now - start) / duration, 1);
+      const et = 1 - Math.pow(1 - t, 3); // ease-out cubic
+      el.textContent = formatter(from + (to - from) * et);
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ─── Track fill — reflects slider position visually ─── */
+  function updateTrack(val) {
+    const min = +slider.min, max = +slider.max;
+    const pct = ((val - min) / (max - min)) * 100;
+    trackFill.style.width = pct + '%';
+  }
+
+  /* ─── Store previous metric values for animation from-values ─── */
+  let prev = calc(+slider.value);
+
+  /* ─── Chart.js — initialised after defer loads ─── */
+  let chart = null;
+  let chartDebounce = null;
+
+  function buildChartData(budget) {
+    const base = calc(budget);
+    return {
+      leads:   RAMP.map(r => Math.round(base.leads   * r)),
+      revenue: RAMP.map(r => Math.round(base.revenue * r)),
+    };
+  }
+
+  function initChart() {
+    const ctx  = document.getElementById('roi-chart').getContext('2d');
+    const data = buildChartData(+slider.value);
+
+    chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: MONTHS,
+        datasets: [
+          {
+            label: 'Leads',
+            data:  data.leads,
+            yAxisID: 'yLeads',
+            borderColor:     '#6366f1',
+            backgroundColor: 'rgba(99,102,241,0.10)',
+            borderWidth: 2.5,
+            pointBackgroundColor: '#6366f1',
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            tension: 0.4,
+            fill: true,
+          },
+          {
+            label: 'Omsetning',
+            data:  data.revenue,
+            yAxisID: 'yRev',
+            borderColor:     '#10b981',
+            backgroundColor: 'rgba(16,185,129,0.07)',
+            borderWidth: 2.5,
+            pointBackgroundColor: '#10b981',
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            tension: 0.4,
+            fill: true,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        animation: {
+          duration: REDUCED_MOTION ? 0 : 650,
+          easing: 'easeOutCubic',
+        },
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#ffffff',
+            borderColor: 'rgba(99,102,241,0.18)',
+            borderWidth: 1,
+            titleColor: '#1e1b4b',
+            bodyColor: '#6b7280',
+            padding: 12,
+            callbacks: {
+              label: ctx => {
+                if (ctx.dataset.label === 'Omsetning') {
+                  return ' Omsetning: ' + fmtNOK(ctx.raw) + ' NOK';
+                }
+                return ' Leads: ' + ctx.raw;
+              },
+            },
+          },
+        },
+        scales: {
+          x: {
+            grid:  { color: 'rgba(99,102,241,0.07)' },
+            ticks: { color: '#6b7280', font: { family: "'Outfit', sans-serif", size: 12 } },
+          },
+          yLeads: {
+            type: 'linear',
+            position: 'left',
+            grid:  { color: 'rgba(99,102,241,0.07)' },
+            ticks: {
+              color: '#6366f1',
+              font:  { family: "'Outfit', sans-serif", size: 11 },
+              callback: v => v,
+            },
+          },
+          yRev: {
+            type: 'linear',
+            position: 'right',
+            grid: { drawOnChartArea: false },
+            ticks: {
+              color: '#10b981',
+              font:  { family: "'Outfit', sans-serif", size: 11 },
+              callback: v => fmtNOK(v),
+            },
+          },
+        },
+      },
+    });
+  }
+
+  function updateChart(budget) {
+    if (!chart) return;
+    if (chartDebounce) clearTimeout(chartDebounce);
+    chartDebounce = setTimeout(() => {
+      const data = buildChartData(budget);
+      chart.data.datasets[0].data = data.leads;
+      chart.data.datasets[1].data = data.revenue;
+      chart.update(REDUCED_MOTION ? 'none' : undefined);
+    }, 80);
+  }
+
+  /* ─── Main update function ─── */
+  function update(animate) {
+    const budget = +slider.value;
+    const cur    = calc(budget);
+
+    /* Slider UI */
+    updateTrack(budget);
+    slider.setAttribute('aria-valuenow',  budget);
+    slider.setAttribute('aria-valuetext', fmtNOK(budget) + ' kroner');
+
+    /* Budget display */
+    budgetDisp.textContent = fmtNOK(budget) + ' NOK';
+
+    /* Metric counters */
+    if (animate) {
+      animateValue(metricLeads, prev.leads,   cur.leads,   400, v => Math.round(v).toString());
+      animateValue(metricRev,   prev.revenue, cur.revenue, 400, v => fmtNOK(v) + ' NOK');
+      animateValue(metricRoi,   prev.roi,     cur.roi,     400, fmtROI);
+    } else {
+      metricLeads.textContent = Math.round(cur.leads).toString();
+      metricRev.textContent   = fmtNOK(cur.revenue) + ' NOK';
+      metricRoi.textContent   = fmtROI(cur.roi);
+    }
+
+    /* Insight text */
+    insBudget.textContent  = fmtNOK(budget) + ' NOK';
+    insLeads.textContent   = Math.round(cur.leads) + ' leads';
+    insRevenue.textContent = fmtNOK(cur.revenue) + ' NOK';
+    insRoi.textContent     = fmtROI(cur.roi);
+
+    /* Chart */
+    updateChart(budget);
+
+    prev = cur;
+  }
+
+  /* ─── Event listeners ─── */
+  slider.addEventListener('input',  () => update(true));
+  slider.addEventListener('change', () => update(true));
+
+  /* ─── Boot: initial render (no animation) ─── */
+  update(false);
+
+  /* ─── Init Chart.js after defer script loads ─── */
+  if (window.Chart) {
+    initChart();
+  } else {
+    window.addEventListener('load', () => {
+      if (window.Chart) initChart();
+    });
+  }
+
+}());
+</script>
+
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personvern & Cookies | ScaleMedia</title>
+    <meta name="description" content="Les om hvordan ScaleMedia håndterer personvern, informasjonskapsler og Google Analytics.">
+    <link rel="canonical" href="https://scalemedia.no/personvern.html">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Google Consent Mode V2 – standardverdier satt til "denied" FØR gtag lastes -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'default', {
+            'ad_storage':         'denied',
+            'ad_user_data':       'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage':  'denied',
+            'wait_for_update':    500
+        });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PBRKN3JVGW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PBRKN3JVGW');
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+
+    <style>
+        .privacy-page {
+            padding: 7rem 0 5rem;
+        }
+        .privacy-page .prose {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .privacy-page h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 0.6rem;
+        }
+        .privacy-page .updated {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+        .privacy-page h2 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-color);
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .privacy-page p,
+        .privacy-page li {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+        }
+        .privacy-page ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 1rem;
+        }
+        .privacy-page ul li {
+            padding: 0.3rem 0 0.3rem 1.4rem;
+            position: relative;
+        }
+        .privacy-page ul li::before {
+            content: '–';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .privacy-page a { color: var(--primary); text-decoration: underline; }
+        .privacy-page .cookie-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 1.5rem;
+            font-size: 0.9rem;
+        }
+        .privacy-page .cookie-table th {
+            text-align: left;
+            padding: 0.65rem 1rem;
+            background: rgba(99, 102, 241, 0.06);
+            border-bottom: 2px solid var(--glass-border);
+            font-weight: 700;
+            color: var(--text-color);
+        }
+        .privacy-page .cookie-table td {
+            padding: 0.65rem 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            vertical-align: top;
+        }
+        .privacy-page .cookie-table tr:last-child td { border-bottom: none; }
+        .privacy-page .badge-always {
+            display: inline-block;
+            padding: 2px 9px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.22);
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #16a34a;
+        }
+        .privacy-page .badge-optional {
+            display: inline-block;
+            padding: 2px 9px;
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .privacy-change-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 0.5rem;
+            padding: 0.65rem 1.4rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-main);
+            transition: all 0.2s ease;
+        }
+        .privacy-change-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99,102,241,0.4); }
+        @media (max-width: 768px) {
+            .privacy-page { padding: 5.5rem 0 3rem; }
+            .privacy-page .cookie-table { display: block; overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particle-canvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+    <div class="global-background">
+        <div class="interactive-glow"></div>
+        <div class="premium-grid"></div>
+        <div class="particles-container">
+            <div class="particle p1"></div><div class="particle p2"></div>
+            <div class="particle p3"></div><div class="particle p4"></div>
+            <div class="particle p5"></div>
+        </div>
+    </div>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right:12px;">
+                    <path d="M18 2 L32 10 L32 26 L18 34 L4 26 L4 10 Z" fill="rgba(99,102,241,0.15)" stroke="var(--primary)" stroke-width="2"/>
+                    <path d="M12 24 L12 18 L18 12 L24 18 L24 24" fill="none" stroke="var(--secondary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M18 12 L18 24" fill="none" stroke="var(--secondary)" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="18" cy="8" r="2" fill="var(--primary)"/>
+                </svg>
+                Scale<span>Media</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Hjem</a></li>
+                    <li><a href="om-oss.html">Om oss</a></li>
+                    <li><a href="tjenester.html">Tjenester</a></li>
+                    <li><a href="index.html#prosjekter">Prosjekter</a></li>
+                    <li><a href="index.html#priser">Priser</a></li>
+                </ul>
+            </nav>
+            <div class="nav-cta">
+                <a href="index.html#kontakt" class="btn btn-primary">Kontakt Oss</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Meny">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="privacy-page">
+            <div class="container">
+                <div class="prose">
+
+                    <h1>Personvern &amp; <span class="gradient-text">Informasjonskapsler</span></h1>
+                    <p class="updated">Sist oppdatert: mai 2026 &nbsp;·&nbsp; Versjon 1.0</p>
+
+                    <p>ScaleMedia AS er opptatt av å beskytte personvernet ditt. Denne siden forklarer hvilke opplysninger vi samler inn, hvorfor vi gjør det, og hvilke rettigheter du har.</p>
+
+                    <h2>1. Behandlingsansvarlig</h2>
+                    <p>
+                        <strong>ScaleMedia AS</strong><br>
+                        Kokstadvegen 41, 5257 Kokstad<br>
+                        E-post: <a href="mailto:post@scalemedia.no">post@scalemedia.no</a><br>
+                        Tlf: <a href="tel:55095090">55 09 50 90</a>
+                    </p>
+
+                    <h2>2. Informasjonskapsler (cookies) vi bruker</h2>
+                    <p>Vi skiller mellom to kategorier:</p>
+
+                    <table class="cookie-table">
+                        <thead>
+                            <tr>
+                                <th>Kategori</th>
+                                <th>Cookie / tjeneste</th>
+                                <th>Formål</th>
+                                <th>Varighet</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Nødvendige</strong></td>
+                                <td>Sesjonskapsler</td>
+                                <td>Sikrer at nettsiden fungerer korrekt og sikkert</td>
+                                <td>Sesjon</td>
+                                <td><span class="badge-always">Alltid aktiv</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nødvendige</strong></td>
+                                <td>cookie_consent (localStorage)</td>
+                                <td>Lagrer ditt cookie-samtykke i 12 måneder</td>
+                                <td>12 måneder</td>
+                                <td><span class="badge-always">Alltid aktiv</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analyse</strong></td>
+                                <td>Google Analytics 4 (G-PBRKN3JVGW)</td>
+                                <td>Besøksstatistikk – sidevisninger, trafikkilder, atferd. Ingen personlig identifiserbar informasjon lagres.</td>
+                                <td>26 måneder</td>
+                                <td><span class="badge-optional">Valgfri</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Chat</strong></td>
+                                <td>Tidio Live Chat</td>
+                                <td>Kundechat-funksjonalitet. Se <a href="https://www.tidio.com/privacy-policy/" target="_blank" rel="noopener">Tidio sin personvernpolicy</a>.</td>
+                                <td>Varierer</td>
+                                <td><span class="badge-optional">Valgfri</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2>3. Google Analytics og Consent Mode V2</h2>
+                    <p>Vi bruker <strong>Google Analytics 4</strong> for å forstå hvordan besøkende bruker nettsiden vår – for eksempel hvilke sider som er mest populære og hvor trafikken kommer fra. Analysen hjelper oss å forbedre innhold og brukeropplevelse.</p>
+                    <p>Vi har implementert <strong>Google Consent Mode V2</strong>, som innebærer:</p>
+                    <ul>
+                        <li>Google-taggen lastes på alle sider, men med alle lagringsparametere satt til <em>denied</em> som standard.</li>
+                        <li>Ingen analysecookies settes eller data sendes til Google Analytics <strong>før du har gitt samtykke</strong>.</li>
+                        <li>Godtar du analyse-cookies, oppdateres samtykket til <em>granted</em> og Google Analytics aktiveres.</li>
+                        <li>Annonserelatert datalagring er alltid <em>denied</em> – vi bruker ikke Google Ads retargeting.</li>
+                    </ul>
+                    <p>Les mer: <a href="https://support.google.com/analytics/answer/9019185" target="_blank" rel="noopener">Googles personvernpolicy</a></p>
+
+                    <h2>4. Dine rettigheter (GDPR)</h2>
+                    <p>I henhold til personvernforordningen (GDPR) har du rett til å:</p>
+                    <ul>
+                        <li>Få innsyn i hvilke personopplysninger vi behandler om deg</li>
+                        <li>Kreve retting av uriktige opplysninger</li>
+                        <li>Kreve sletting («retten til å bli glemt»)</li>
+                        <li>Protestere mot behandling av opplysninger</li>
+                        <li>Klage til <a href="https://www.datatilsynet.no" target="_blank" rel="noopener">Datatilsynet</a></li>
+                    </ul>
+                    <p>Ta kontakt via <a href="mailto:post@scalemedia.no">post@scalemedia.no</a> for å utøve disse rettighetene.</p>
+
+                    <h2>5. Endre eller trekke samtykket ditt</h2>
+                    <p>Du kan når som helst endre eller trekke tilbake samtykket ditt. Klikk på knappen nedenfor for å åpne cookie-innstillingene:</p>
+                    <button class="privacy-change-btn" id="open-cookie-settings">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                        Endre cookie-innstillinger
+                    </button>
+                    <p style="margin-top:1rem;">Du kan også trekke samtykket ved å slette nettleserens <em>localStorage</em> for scalemedia.no, eller bruke nettleserens egne innstillinger for informasjonskapsler.</p>
+
+                    <h2>6. Tredjeparter og dataoverføring</h2>
+                    <p>Vi benytter følgende tredjeparter som kan motta data:</p>
+                    <ul>
+                        <li><strong>Google LLC</strong> (Analytics) – data kan overføres til USA. Google er sertifisert etter EU-U.S. Data Privacy Framework.</li>
+                        <li><strong>Tidio</strong> (live chat) – se <a href="https://www.tidio.com/privacy-policy/" target="_blank" rel="noopener">Tidios personvernpolicy</a>.</li>
+                        <li><strong>Web3Forms</strong> (kontaktskjema) – formdata behandles av Web3Forms for å sende e-post. Se <a href="https://web3forms.com/privacy" target="_blank" rel="noopener">Web3Forms personvernpolicy</a>.</li>
+                    </ul>
+                    <p>Vi selger aldri personopplysninger til tredjeparter.</p>
+
+                    <h2>7. Kontakt</h2>
+                    <p>Har du spørsmål om personvern eller ønsker å utøve rettighetene dine? Kontakt oss:</p>
+                    <p>
+                        E-post: <a href="mailto:post@scalemedia.no">post@scalemedia.no</a><br>
+                        Adresse: Kokstadvegen 41, 5257 Kokstad<br>
+                        Tlf: <a href="tel:55095090">55 09 50 90</a>
+                    </p>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container" style="display:flex;flex-direction:column;align-items:center;gap:0.8rem;">
+            <div style="display:flex;gap:1.5rem;color:var(--text-muted);font-size:0.95rem;flex-wrap:wrap;justify-content:center;align-items:center;">
+                <span style="text-align:center;line-height:1.4;">Kokstadvegen 41<br>5257 Kokstad</span>
+                <span>E-post: <a href="mailto:post@scalemedia.no" style="color:var(--text-muted);">post@scalemedia.no</a></span>
+                <span>Tlf: <a href="tel:55095090" style="color:var(--text-muted);">55 09 50 90</a></span>
+            </div>
+            <div style="margin-top:0.5rem;font-size:0.88rem;display:flex;gap:1.25rem;flex-wrap:wrap;justify-content:center;">
+                <a href="avtalevilkar.html"  style="color:var(--text-muted);text-decoration:underline;">Avtalevilkår</a>
+                <a href="personvern.html"    style="color:var(--primary);text-decoration:underline;font-weight:600;">Personvern</a>
+                <a href="#" id="open-cookie-settings" style="color:var(--text-muted);text-decoration:underline;">Cookie-innstillinger</a>
+            </div>
+            <p style="font-size:0.85rem;color:var(--text-muted);">© 2026 ScaleMedia AS</p>
+        </div>
+    </footer>
+
+    <script src="cookie.js" defer></script>
+</body>
+</html>
