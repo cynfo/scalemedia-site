@@ -29,6 +29,28 @@
     
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Google Consent Mode V2 – standardverdier satt til "denied" FØR gtag lastes -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'default', {
+            'ad_storage':          'denied',
+            'ad_user_data':        'denied',
+            'ad_personalization':  'denied',
+            'analytics_storage':   'denied',
+            'wait_for_update':     500
+        });
+    </script>
+    <!-- Google tag (gtag.js) – lastes async etter at samtykke-standardene er satt -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PBRKN3JVGW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PBRKN3JVGW');
+    </script>
+
     <script src="script.js" defer></script>
     
     <!-- Schema.org for Local SEO -->
@@ -851,8 +873,10 @@
                 <span>E-post: <a href="mailto:post@scalemedia.no" style="color: var(--text-muted);">post@scalemedia.no</a></span>
                 <span>Tlf: <a href="tel:55095090" style="color: var(--text-muted);">55 09 50 90</a></span>
             </div>
-            <div style="margin-top: 0.5rem; font-size: 0.95rem;">
-                <a href="avtalevilkar.html" style="color: var(--text-muted); text-decoration: underline;">Se våre avtalevilkår</a>
+            <div style="margin-top: 0.5rem; font-size: 0.88rem; display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center;">
+                <a href="avtalevilkar.html" style="color: var(--text-muted); text-decoration: underline;">Avtalevilkår</a>
+                <a href="personvern.html"   style="color: var(--text-muted); text-decoration: underline;">Personvern</a>
+                <a href="#" id="open-cookie-settings" style="color: var(--text-muted); text-decoration: underline;">Cookie-innstillinger</a>
             </div>
 
             <!-- Google Partner Badge -->
@@ -903,5 +927,6 @@
         </div>
     </footer>
     <script src="//code.tidio.co/oo66etiwf43lslvyzlkz0ophsia7kqjm.js" async></script>
+    <script src="cookie.js" defer></script>
 </body>
 </html>
