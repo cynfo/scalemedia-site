@@ -121,7 +121,7 @@
     ];
 
     let wordIndex = 0;
-    let charIndex = 0;
+    let charIndex = words[0].length; // Span viser allerede words[0] fra HTML
     let deleting = false;
     const TYPE_SPEED = 60;
     const DELETE_SPEED = 35;
@@ -153,7 +153,8 @@
         }
     }
 
-    setTimeout(tick, 600);
+    // Start i "ferdig med å skrive første ord"-tilstand → pause → slett → sykl normalt
+    setTimeout(function () { deleting = true; setTimeout(tick, PAUSE_END); }, 600);
 })();
 
 // ── Hero Stats Counter ────────────────────────────────────────
