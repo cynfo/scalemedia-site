@@ -116,7 +116,7 @@
     const words = [
         'nettsider som selger',
         'Google Ads som konverterer',
-        'sosiale medier som engasjerer',
+        'TikTok Ads som engasjerer',
         'SEO som dominerer'
     ];
 

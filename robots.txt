@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /personvern.html
+Disallow: /avtalevilkar.html
 
 Sitemap: https://scalemedia.no/sitemap.xml

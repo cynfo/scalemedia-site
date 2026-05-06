@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScaleMedia | Mediebyrå i Norge</title>
-    <meta name="description" content="ScaleMedia er Norges raskeste digitalbyrå. Vi leverer SEO, Google Ads, nettsider og sosiale medier – skreddersydd for å gi din bedrift en jevn strøm av nye betalende kunder.">
-    <meta name="keywords" content="markedsføring, webutvikling, SEO, digital byrå, ScaleMedia, Norge, annonsering, konvertering">
+    <title>Markedsføringsbyrå & Digitalbyrå i Norge | ScaleMedia</title>
+    <meta name="description" content="ScaleMedia er Norges digitalbyrå for SEO, Google Ads og nettsider. Vi skaper en jevn strøm av nye betalende kunder for bedrifter i hele Norge. Kontakt oss.">
+    <meta name="keywords" content="markedsføringsbyrå Norge, digitalbyrå, SEO, Google Ads, nettsider, ScaleMedia, markedsføring bedrift">
     
     <!-- Canonical URL -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -17,17 +17,19 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://scalemedia.no/">
-    <meta property="og:title" content="ScaleMedia | Mediebyrå i Norge">
-    <meta property="og:description" content="Vi skaper strategiske nettsider, engasjerende design og resultatorientert markedsføring.">
+    <meta property="og:title" content="Markedsføringsbyrå & Digitalbyrå i Norge | ScaleMedia">
+    <meta property="og:description" content="ScaleMedia leverer SEO, Google Ads, nettsider og sosiale medier for norske bedrifter. Få en jevn strøm av nye betalende kunder. Kontakt oss i dag.">
     <meta property="og:image" content="https://scalemedia.no/og-image.jpg">
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ScaleMedia | Mediebyrå i Norge">
-    <meta name="twitter:description" content="Vi skaper strategiske nettsider, engasjerende design og resultatorientert markedsføring.">
+    <meta name="twitter:title" content="Markedsføringsbyrå & Digitalbyrå i Norge | ScaleMedia">
+    <meta name="twitter:description" content="ScaleMedia leverer SEO, Google Ads, nettsider og sosiale medier for norske bedrifter. Få en jevn strøm av nye betalende kunder. Kontakt oss i dag.">
     <meta name="twitter:image" content="https://scalemedia.no/og-image.jpg">
     
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <!-- Google Consent Mode V2 – standardverdier satt til "denied" FØR gtag lastes -->
@@ -53,22 +55,114 @@
 
     <script src="script.js" defer></script>
     
-    <!-- Schema.org for Local SEO -->
+    <!-- Schema.org – LocalBusiness (utvidet) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "MarketingAgency",
+      "@type": ["MarketingAgency", "LocalBusiness"],
+      "@id": "https://scalemedia.no/#organization",
       "name": "Scale Media AS",
       "url": "https://scalemedia.no",
+      "logo": "https://scalemedia.no/og-image.jpg",
+      "image": "https://scalemedia.no/og-image.jpg",
       "email": "post@scalemedia.no",
       "telephone": "+4755095090",
+      "priceRange": "$$",
+      "description": "ScaleMedia er et digitalbyrå i Bergen som leverer SEO, Google Ads, nettsider og sosiale medier for bedrifter i hele Norge.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Kokstadvegen 41",
         "postalCode": "5257",
         "addressLocality": "Kokstad",
+        "addressRegion": "Vestland",
         "addressCountry": "NO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 60.2929,
+        "longitude": 5.2263
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "09:00",
+          "closes": "17:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/scalemedia.no",
+        "https://www.linkedin.com/company/111330942",
+        "https://no.trustpilot.com/review/scalemedia.no"
+      ],
+      "areaServed": { "@type": "Country", "name": "Norge" },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "3",
+        "bestRating": "5",
+        "worstRating": "1"
       }
+    }
+    </script>
+
+    <!-- Schema.org – WebSite + SearchAction -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "ScaleMedia",
+      "url": "https://scalemedia.no",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://scalemedia.no/?s={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Schema.org – FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Hvor lang tid tar det å lage en nettside?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Takket være vårt moderne AI-verktøy leverer vi ferdige nettsider på under 3 dager – uansett størrelse eller kompleksitet. Vi jobber tett med deg gjennom hele prosessen for å sikre at resultatet er akkurat slik du vil ha det, levert raskt og uten kompromiss på kvalitet."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Tilbyr dere fullservice markedsføring og rådgivning?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja! Mange bedrifter over hele Norge bruker Scale Media som sin eksterne markedsføringsavdeling. Vi dekker hele det digitale spekteret: fra merkevareidentitet, logodesign og visuell profil – til innholdsproduksjon, drift av sosiale medier, Google Ads, Meta Ads, SEO og strategisk medierådgivning basert på reelle data og KPIer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Binder jeg meg til langsiktige avtaler?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Scale Media verdsetter fleksibilitet fremfor låsende kontrakter. Prosjekter som nettside, logo og enkle kampanjer gjennomføres som engangsoppdrag til faste priser. Løpende tjenester som SEO, sosiale medier og Google Ads kjøres som løpende partnerskap da algoritmene krever tid og kontinuitet for å gi resultater."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hvordan vet jeg at annonseringen faktisk gir verdi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vår arbeidsmetode er fundamentalt datadrevet. Vi integrerer konverteringssporing via Google Tag Manager, GA4 og Meta Pixel slik at vi kan måle nøyaktig om kampanjen resulterte i kontaktskjemaer, bestillinger eller leads. Alt fremlegges i klare rapporter med fokus på ROAS og bunnlinje."
+          }
+        }
+      ]
     }
     </script>
 
@@ -134,7 +228,7 @@
                 </div>
 
                 <h1 class="hero-title">
-                    Ditt byrå for<br>
+                    Markedsføringsbyrå for<br>
                     <span class="typewriter-text" id="typewriter-text"></span><span class="typewriter-cursor">|</span>
                 </h1>
 
@@ -495,7 +589,7 @@
                         </div>
                         <h3>Design & Innhold</h3>
                         <p>Visuell identitet, grafisk design, og illustrasjoner som fanger oppmerksomhet.</p>
-                        <span class="card-arrow">Les mer →</span>
+                        <span class="card-arrow">Mer om grafisk design →</span>
                     </a>
                     <a href="nettsider.html" class="card glass" style="display: block;">
                         <div class="icon">
@@ -503,7 +597,7 @@
                         </div>
                         <h3>Nettside-utvikling</h3>
                         <p>Strategiske og responsive plattformer, WordPress, og sylskarpt UX/UI-design.</p>
-                        <span class="card-arrow">Les mer →</span>
+                        <span class="card-arrow">Mer om nettsider →</span>
                     </a>
                     <a href="sokemotoroptimalisering.html" class="card glass" style="display: block;">
                         <div class="icon">
@@ -511,7 +605,7 @@
                         </div>
                         <h3>Søkemotoroptimalisering</h3>
                         <p>Teknisk SEO og innholdsoptimalisering slik at du dominerer søkefeltet organisk.</p>
-                        <span class="card-arrow">Les mer →</span>
+                        <span class="card-arrow">Mer om SEO →</span>
                     </a>
                     <a href="google-ads.html" class="card glass" style="display: block;">
                         <div class="icon">
@@ -519,7 +613,7 @@
                         </div>
                         <h3>Digital Markedsføring</h3>
                         <p>Målrettede kampanjer i Google Ads, Meta Ads og LinkedIn Ads som gir deg sterk ROI.</p>
-                        <span class="card-arrow">Les mer →</span>
+                        <span class="card-arrow">Mer om Google Ads →</span>
                     </a>
                     <a href="sosiale-medier.html" class="card glass" style="display: block;">
                         <div class="icon">
@@ -527,7 +621,7 @@
                         </div>
                         <h3>Sosiale Medier</h3>
                         <p>Engasjerende innholdsstrategier og community management på TikTok og Instagram.</p>
-                        <span class="card-arrow">Les mer →</span>
+                        <span class="card-arrow">Mer om sosiale medier →</span>
                     </a>
                     <a href="medieradgivning.html" class="card glass" style="display: block;">
                         <div class="icon">
@@ -535,7 +629,7 @@
                         </div>
                         <h3>Medierådgivning</h3>
                         <p>Personlig strategisk oppfølgning og datadreven kanalutvelgelse i et uoversiktig landskap.</p>
-                        <span class="card-arrow">Les mer →</span>
+                        <span class="card-arrow">Mer om medierådgivning →</span>
                     </a>
                 </div>
                 <div style="text-align: center; margin-top: 3rem;" class="animate-on-scroll">
@@ -570,7 +664,7 @@
             <div class="container">
                 <div class="section-heading animate-on-scroll">
                     <a href="https://no.trustpilot.com/review/scalemedia.no" target="_blank" rel="noopener" class="tp-logo-link">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Trustpilot_Logo_%282022%29.svg" alt="Trustpilot" class="tp-logo-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Trustpilot_Logo_%282022%29.svg" alt="Trustpilot" class="tp-logo-img" loading="lazy" width="140" height="32">
                     </a>
                     <h2>Hva kunder skriver <span class="gradient-text">om oss</span></h2>
                 </div>
