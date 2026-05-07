@@ -1,0 +1,23 @@
+{
+  "name": "ScaleMedia",
+  "short_name": "ScaleMedia",
+  "description": "Markedsføringsbyrå & Digitalbyrå i Norge",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#6366f1",
+  "background_color": "#f5f4ff",
+  "icons": [
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
