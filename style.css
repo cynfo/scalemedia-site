@@ -2115,6 +2115,25 @@ header, main, footer {
     /* Fjern filtrer-blur blobs helt på mobil – sparer GPU */
     .hero-blob { display: none !important; }
 
+    /* animate-on-scroll: ingen overgang på mobil — elementer vises umiddelbart.
+       Overgang + counter-animasjon samtidig = jank */
+    .animate-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    .animate-on-scroll.visible {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* gradient-text på tellere: gradient-clip krever repaint ved hvert frame.
+       Bruk plain farge under animasjon — gjenopprettes etter via JS */
+    .stat-number.counting { -webkit-text-fill-color: var(--primary) !important; }
+
+    /* Ingen scroll-snap-effekter som kan krasje med native scroll */
+    * { scroll-snap-align: none !important; }
+
     /* Begrens transition-properties for scroll-ytelse */
     * { transition-property: opacity, transform !important; }
     /* Gjenopprett nødvendige transitions for interaktive elementer */

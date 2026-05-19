@@ -472,16 +472,19 @@ function setPricing(type) {
 
     const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile  = window.matchMedia('(max-width: 768px)').matches;
-    const dur       = isMobile ? 700 : 1400;
+    const dur       = isMobile ? 400 : 1400;
+
+    function finish(el, pre, target, suf) {
+        el.classList.remove('counting');
+        el.textContent = pre + target + suf;
+    }
 
     if (isReduced) {
-        counters.forEach(el => {
-            el.textContent = (el.dataset.prefix || '') + parseInt(el.dataset.counter, 10) + (el.dataset.suffix || '');
-        });
+        counters.forEach(el => finish(el, el.dataset.prefix || '', parseInt(el.dataset.counter, 10), el.dataset.suffix || ''));
         return;
     }
 
-    // Én felles rAF-løkke for alle tellere
+    // Én felles rAF-løkke — på mobil fjernes gradient-clip midlertidig (koster repaint per frame)
     const active = [];
     let rafId = null;
 
@@ -491,20 +494,31 @@ function setPricing(type) {
             if (c.done) continue;
             const p = Math.min((now - c.start) / c.dur, 1);
             c.el.textContent = c.pre + Math.round((1 - Math.pow(1 - p, 3)) * c.target) + c.suf;
-            if (p < 1) { any = true; } else { c.done = true; }
+            if (p < 1) { any = true; }
+            else { c.done = true; finish(c.el, c.pre, c.target, c.suf); }
         }
         if (any) { rafId = requestAnimationFrame(tick); } else { rafId = null; }
     }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                active.push({ el: entry.target, target: parseInt(entry.target.dataset.counter, 10), pre: entry.target.dataset.prefix || '', suf: entry.target.dataset.suffix || '', dur, start: performance.now(), done: false });
-                observer.unobserve(entry.target);
-                if (!rafId) rafId = requestAnimationFrame(tick);
-            }
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            observer.unobserve(el);
+            // På mobil: fjern gradient-clip under animasjon (plain farge = ingen repaint av gradient)
+            if (isMobile) el.classList.add('counting');
+            active.push({
+                el,
+                target: parseInt(el.dataset.counter, 10),
+                pre:    el.dataset.prefix || '',
+                suf:    el.dataset.suffix || '',
+                dur,
+                start:  performance.now(),
+                done:   false
+            });
+            if (!rafId) rafId = requestAnimationFrame(tick);
         });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.3 });
 
     counters.forEach(el => observer.observe(el));
 })();
