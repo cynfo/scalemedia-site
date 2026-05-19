@@ -1,0 +1,15 @@
+{
+  "name": "scalemedia-seo-analyser",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "nodemailer": "^8.0.7"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  }
+}

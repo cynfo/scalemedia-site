@@ -28,6 +28,7 @@ img, video, iframe, svg {
 
 html {
     background-color: var(--bg-color);
+    scroll-padding-top: 90px;
 }
 
 body {

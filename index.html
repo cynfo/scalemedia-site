@@ -254,6 +254,7 @@
                     <li><a href="tjenester.html">Tjenester</a></li>
                     <li><a href="#prosjekter">Prosjekter</a></li>
                     <li><a href="#priser">Priser</a></li>
+                    <li><a href="gratis-seo-analyse.html" style="color:var(--primary);font-weight:700;">Gratis SEO-analyse</a></li>
                 </ul>
             </nav>
             <div class="nav-cta">
@@ -340,6 +341,117 @@
                         <div class="stat-label">Datadrevet tilnærming</div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Gratis SEO-analyse teaser -->
+        <style>
+        @media (max-width: 600px) {
+          .seo-teaser-btn { padding: 0.8rem 1.2rem !important; font-size: 0.9rem !important; }
+          .seo-teaser-btn svg { display: none; }
+          .seo-teaser-divider { display: none !important; }
+          .seo-teaser-stats { gap: 1.5rem !important; }
+          .seo-teaser-stat { min-width: 70px; }
+        }
+        @media (max-width: 400px) {
+          #hero-seo-input { font-size: 0.92rem !important; padding: 0.85rem 1rem !important; }
+        }
+        </style>
+        <section style="padding:5rem 0;position:relative;overflow:hidden;background:linear-gradient(135deg,#1e1b4b 0%,#312e81 50%,#1e1b4b 100%);">
+
+            <!-- Bakgrunnsblobs -->
+            <div style="position:absolute;top:-80px;right:-60px;width:400px;height:400px;background:#7B5EA7;border-radius:50%;filter:blur(100px);opacity:0.18;pointer-events:none;"></div>
+            <div style="position:absolute;bottom:-80px;left:-60px;width:350px;height:350px;background:#4A90D9;border-radius:50%;filter:blur(90px);opacity:0.14;pointer-events:none;"></div>
+
+            <div class="container" style="position:relative;z-index:2;">
+
+                <!-- Topp-badge -->
+                <div style="text-align:center;margin-bottom:2rem;">
+                    <span style="display:inline-flex;align-items:center;gap:8px;padding:6px 18px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:50px;font-size:0.85rem;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:0.03em;">
+                        <span style="width:7px;height:7px;border-radius:50%;background:#a5f3fc;display:inline-block;box-shadow:0 0 8px #a5f3fc;"></span>
+                        GRATIS SEO-VERKTØY
+                    </span>
+                </div>
+
+                <!-- Overskrift -->
+                <h2 style="text-align:center;color:#fff;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;letter-spacing:-0.04em;line-height:1.1;margin-bottom:1rem;">
+                    Finn ut hva Google<br>
+                    <span style="background:linear-gradient(90deg,#a5f3fc,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">egentlig synes om siden din</span>
+                </h2>
+                <p style="text-align:center;color:rgba(255,255,255,0.65);font-size:1.05rem;max-width:500px;margin:0 auto 2.5rem;line-height:1.65;">
+                    Øyeblikkelig analyse av 7 SEO-kategorier – ingen registrering, ingen kredittkort. Resultater på under 30 sekunder.
+                </p>
+
+                <!-- URL-form -->
+                <form id="hero-seo-form" style="max-width:600px;margin:0 auto 2rem;" onsubmit="heroSeoSubmit(event)">
+                    <div style="display:flex;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.18);border-radius:50px;overflow:hidden;backdrop-filter:blur(8px);transition:border-color 0.2s,box-shadow 0.2s;" id="hero-seo-wrap">
+                        <input
+                            type="text"
+                            id="hero-seo-input"
+                            placeholder="din-nettside.no"
+                            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                            style="flex:1;border:none;outline:none;background:transparent;padding:1rem 1.5rem;font-family:Outfit,sans-serif;font-size:1.05rem;color:#fff;min-width:0;"
+                        >
+                        <button type="submit" style="border:none;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:0.85rem 1.8rem;font-family:Outfit,sans-serif;font-size:1rem;font-weight:700;cursor:pointer;border-radius:0 50px 50px 0;white-space:nowrap;display:flex;align-items:center;gap:8px;flex-shrink:0;transition:opacity 0.2s;" class="seo-teaser-btn" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                            Analyser gratis
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        </button>
+                    </div>
+                    <p style="text-align:center;color:rgba(255,255,255,0.4);font-size:0.8rem;margin-top:0.65rem;">Godtar bedrift.no · www.bedrift.no · https://bedrift.no</p>
+                </form>
+                <script>
+                function heroSeoSubmit(e) {
+                    e.preventDefault();
+                    var val = document.getElementById('hero-seo-input').value.trim();
+                    if (!val) return;
+                    window.location.href = 'gratis-seo-analyse.html?url=' + encodeURIComponent(val);
+                }
+                // Glow-effekt på fokus
+                var inp = document.getElementById('hero-seo-input');
+                var wrap = document.getElementById('hero-seo-wrap');
+                if (inp && wrap) {
+                    inp.addEventListener('focus',  function(){ wrap.style.borderColor='rgba(165,243,252,0.5)'; wrap.style.boxShadow='0 0 0 4px rgba(165,243,252,0.1)'; });
+                    inp.addEventListener('blur',   function(){ wrap.style.borderColor='rgba(255,255,255,0.18)'; wrap.style.boxShadow='none'; });
+                }
+                </script>
+
+                <!-- Kategoribadges -->
+                <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;margin-bottom:2.5rem;">
+                    <span style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;font-size:0.8rem;color:rgba(255,255,255,0.7);">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Teknisk SEO</span>
+                    <span style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;font-size:0.8rem;color:rgba(255,255,255,0.7);">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> On-page SEO</span>
+                    <span style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;font-size:0.8rem;color:rgba(255,255,255,0.7);">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Ytelse</span>
+                    <span style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;font-size:0.8rem;color:rgba(255,255,255,0.7);">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Lokal SEO</span>
+                    <span style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;font-size:0.8rem;color:rgba(255,255,255,0.7);">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Open Graph</span>
+                    <span style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;font-size:0.8rem;color:rgba(255,255,255,0.7);">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Strukturerte data</span>
+                    <span style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;font-size:0.8rem;color:rgba(255,255,255,0.7);">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Innholdskvalitet</span>
+                </div>
+
+                <!-- Tillitssignaler -->
+                <div class="seo-teaser-stats" style="display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;">
+                    <div class="seo-teaser-stat" style="text-align:center;"><div style="font-size:1.8rem;font-weight:900;color:#fff;letter-spacing:-0.03em;">100%</div>
+                        <div style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:2px;">Gratis alltid</div>
+                    </div>
+                    <div class="seo-teaser-divider" style="width:1px;background:rgba(255,255,255,0.1);"></div>
+                    <div class="seo-teaser-stat" style="text-align:center;"><div style="font-size:1.8rem;font-weight:900;color:#fff;letter-spacing:-0.03em;">7</div>
+                        <div style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:2px;">Analysekategorier</div>
+                    </div>
+                    <div class="seo-teaser-divider" style="width:1px;background:rgba(255,255,255,0.1);"></div>
+                    <div class="seo-teaser-stat" style="text-align:center;"><div style="font-size:1.8rem;font-weight:900;color:#fff;letter-spacing:-0.03em;">~30s</div>
+                        <div style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:2px;">Resultat på sekunder</div>
+                    </div>
+                    <div class="seo-teaser-divider" style="width:1px;background:rgba(255,255,255,0.1);"></div>
+                    <div class="seo-teaser-stat" style="text-align:center;"><div style="font-size:1.8rem;font-weight:900;color:#fff;letter-spacing:-0.03em;">45+</div>
+                        <div style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:2px;">Enkeltsjekker</div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -483,146 +595,7 @@
           </div>
         </section>
 
-        <script>
-        (function () {
-          'use strict';
-
-          var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-          /* ── DOM refs ── */
-          var slider        = document.getElementById('budget-slider');
-          var budgetDisp    = document.getElementById('budget-display');
-          var trackFill     = document.getElementById('track-fill');
-          var mLeads        = document.getElementById('metric-leads');
-          var mRev          = document.getElementById('metric-revenue');
-          var mRoi          = document.getElementById('metric-roi');
-          var leadsBigCount = document.getElementById('leads-big-count');
-          var leadsGrid     = document.getElementById('leads-grid');
-          var insightQuote  = document.getElementById('leads-insight-quote');
-          var insBudget     = document.getElementById('ins-budget');
-          var insLeads      = document.getElementById('ins-leads');
-          var insRevenue    = document.getElementById('ins-revenue');
-          var insRoi        = document.getElementById('ins-roi');
-
-          /* ── Formatters ── */
-          function fmtNOK(n) {
-            return Math.round(n).toLocaleString('nb-NO').replace(/\u00A0/g, '\u0020');
-          }
-          function fmtROI(n) { return n.toFixed(1) + 'x'; }
-
-          /* ── Model ── */
-          function calc(b) {
-            var leads   = b / 500;
-            var revenue = leads * 3000;
-            return { leads: leads, revenue: revenue, roi: revenue / b };
-          }
-
-          /* ── Animated counter ── */
-          function animateVal(el, from, to, duration, fmt) {
-            if (REDUCED) { el.textContent = fmt(to); return; }
-            var start = performance.now();
-            function step(now) {
-              var t  = Math.min((now - start) / duration, 1);
-              var et = 1 - Math.pow(1 - t, 3);
-              el.textContent = fmt(from + (to - from) * et);
-              if (t < 1) requestAnimationFrame(step);
-            }
-            requestAnimationFrame(step);
-          }
-
-          /* ── Slider track + tooltip ── */
-          function updateTrack(val) {
-            var pct = (val - 5000) / 45000;
-            trackFill.style.width = (pct * 100) + '%';
-          }
-
-          /* ── Leads grid: build once ── */
-          var dotEls = null;
-
-          function buildGrid() {
-            var frag = document.createDocumentFragment();
-            for (var i = 0; i < 100; i++) {
-              var dot = document.createElement('div');
-              dot.className = 'lead-dot';
-              dot.setAttribute('aria-hidden', 'true');
-              if (!REDUCED) {
-                dot.style.transitionDelay = Math.min(i * 8, 400) + 'ms';
-              }
-              frag.appendChild(dot);
-            }
-            leadsGrid.appendChild(frag);
-            dotEls = leadsGrid.querySelectorAll('.lead-dot');
-          }
-
-          /* ── Leads grid: update colours only ── */
-          function updateGrid(leads) {
-            var active = Math.min(Math.round(leads), 100);
-            leadsGrid.setAttribute(
-              'aria-label',
-              active + ' av 100 mulige leads visualisert som rutenett'
-            );
-            for (var i = 0; i < 100; i++) {
-              if (i < active) {
-                dotEls[i].classList.add('active');
-              } else {
-                dotEls[i].classList.remove('active');
-              }
-            }
-          }
-
-          /* ── Insight quote ── */
-          function updateInsightQuote(leads) {
-            var n = Math.round(leads);
-            insightQuote.innerHTML =
-              'Med <strong>' + n + '</strong> leads i måneden f\u00E5r annonsene dine ' +
-              'nok signal til at algoritmen optimaliserer skikkelig. De fleste bedrifter ' +
-              'kj\u00F8rer en br\u00F8kdel av dette\u00A0\u2014 og derfor stopper veksten opp.';
-          }
-
-          /* ── Main update ── */
-          var prev = calc(+slider.value);
-
-          function update(animate) {
-            var budget = +slider.value;
-            var cur    = calc(budget);
-
-            updateTrack(budget);
-            slider.setAttribute('aria-valuenow',  budget);
-            slider.setAttribute('aria-valuetext', fmtNOK(budget) + ' kroner');
-            budgetDisp.textContent = fmtNOK(budget) + ' NOK';
-
-            if (animate) {
-              animateVal(mLeads,        prev.leads,   cur.leads,   400, function(v){ return Math.round(v).toString(); });
-              animateVal(mRev,          prev.revenue, cur.revenue, 400, function(v){ return fmtNOK(v) + ' NOK'; });
-              animateVal(mRoi,          prev.roi,     cur.roi,     400, fmtROI);
-              animateVal(leadsBigCount, prev.leads,   cur.leads,   400, function(v){ return Math.round(v).toString(); });
-            } else {
-              mLeads.textContent        = Math.round(cur.leads).toString();
-              mRev.textContent          = fmtNOK(cur.revenue) + ' NOK';
-              mRoi.textContent          = fmtROI(cur.roi);
-              leadsBigCount.textContent = Math.round(cur.leads).toString();
-            }
-
-            updateGrid(cur.leads);
-            updateInsightQuote(cur.leads);
-
-            insBudget.textContent  = fmtNOK(budget) + ' NOK';
-            insLeads.textContent   = Math.round(cur.leads) + ' leads';
-            insRevenue.textContent = fmtNOK(cur.revenue) + ' NOK';
-            insRoi.textContent     = fmtROI(cur.roi);
-
-            prev = cur;
-          }
-
-          /* ── Boot ── */
-          buildGrid();
-          update(false);
-
-          slider.addEventListener('input',  function(){ update(true); });
-          slider.addEventListener('change', function(){ update(true); });
-
-        }());
-        </script>
+        <script src="roi-calc.js" defer></script>
 
         <section id="tjenester" class="services section-padding section-alt">
             <div class="container">
@@ -807,6 +780,7 @@
                   <article class="case-card glass">
                     <div class="case-card__image">
                       <picture>
+                        <source srcset="images/case-accentor.webp" type="image/webp">
                         <img src="images/case-accentor.jpg" 
                              alt="Skjermbilde av accentor.no — nettside levert av ScaleMedia"
                              loading="lazy" width="1440" height="900">
@@ -834,6 +808,7 @@
                   <article class="case-card glass">
                     <div class="case-card__image">
                       <picture>
+                        <source srcset="images/case-mona.webp" type="image/webp">
                         <img src="images/case-mona.png" 
                              alt="Skjermbilde av monasfotterapi.no — nettside levert av ScaleMedia"
                              loading="lazy" width="1440" height="900">
@@ -861,6 +836,7 @@
                   <article class="case-card glass">
                     <div class="case-card__image">
                       <picture>
+                        <source srcset="images/case-rorleggervakten.webp" type="image/webp">
                         <img src="images/case-rorleggervakten.png" 
                              alt="Skjermbilde av Google Ads-kampanje for CH Rørleggervakten"
                              loading="lazy" width="1440" height="900">
@@ -1135,32 +1111,6 @@
             </div>
         </div>
     </div>
-    <script>
-    (function () {
-        var KEY = 'cookie_consent';
-        var el  = document.getElementById('sm-cookie');
-        try { if (!localStorage.getItem(KEY)) el.style.display = 'block'; }
-        catch (e) { el.style.display = 'block'; }
-
-        window.smAccept = function () {
-            try { localStorage.setItem(KEY, JSON.stringify({ analytics: true,  ts: Date.now() })); } catch (e) {}
-            if (typeof gtag === 'function') gtag('consent', 'update', { analytics_storage: 'granted' });
-            el.style.display = 'none';
-        };
-        window.smReject = function () {
-            try { localStorage.setItem(KEY, JSON.stringify({ analytics: false, ts: Date.now() })); } catch (e) {}
-            el.style.display = 'none';
-        };
-
-        /* Footer-lenken "Cookie-innstillinger" */
-        document.addEventListener('click', function (e) {
-            if (e.target && e.target.id === 'open-cookie-settings') {
-                e.preventDefault();
-                try { localStorage.removeItem(KEY); } catch (e) {}
-                el.style.display = 'block';
-            }
-        });
-    }());
-    </script>
+    <script src="sm-cookie.js"></script>
 </body>
 </html>
