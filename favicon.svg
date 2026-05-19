@@ -1,21 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 116">
-  <!-- Outer hexagon – lys lilla border -->
-  <polygon points="50,2 97,28 97,86 50,112 3,86 3,28" fill="#7C6FF7"/>
-  <!-- Inner hexagon – mørk navy -->
-  <polygon points="50,11 89,34 89,82 50,105 11,82 11,34" fill="#1C1840"/>
+  <!-- Ytre heksagon – lys lilla-blå border -->
+  <polygon points="50,2 97,28 97,88 50,114 3,88 3,28" fill="#5858DC"/>
+  <!-- Indre heksagon – mørk navy -->
+  <polygon points="50,11 88,34 88,83 50,106 12,83 12,34" fill="#1C1840"/>
 
   <!-- Hode -->
-  <circle cx="50" cy="38" r="9" fill="#9D8DF5"/>
+  <circle cx="50" cy="33" r="9.5" fill="#7B70EE"/>
 
-  <!-- Kropp: skulder → armer ned-utover + midtlinje ned -->
-  <!-- Venstre arm -->
-  <line x1="50" y1="50" x2="27" y2="68" stroke="#9D8DF5" stroke-width="7.5" stroke-linecap="round"/>
-  <!-- Høyre arm -->
-  <line x1="50" y1="50" x2="73" y2="68" stroke="#9D8DF5" stroke-width="7.5" stroke-linecap="round"/>
-  <!-- Kropp ned til hofte -->
-  <line x1="50" y1="50" x2="50" y2="70" stroke="#9D8DF5" stroke-width="7.5" stroke-linecap="round"/>
-  <!-- Venstre bein -->
-  <line x1="50" y1="70" x2="36" y2="91" stroke="#9D8DF5" stroke-width="7.5" stroke-linecap="round"/>
-  <!-- Høyre bein -->
-  <line x1="50" y1="70" x2="64" y2="91" stroke="#9D8DF5" stroke-width="7.5" stroke-linecap="round"/>
+  <!-- Venstre arm: fra skulder oppover-utover (~ 25° over horisontal) -->
+  <line x1="49" y1="48" x2="23" y2="38" stroke="#7B70EE" stroke-width="13" stroke-linecap="round"/>
+  <!-- Høyre arm: speilet -->
+  <line x1="51" y1="48" x2="77" y2="38" stroke="#7B70EE" stroke-width="13" stroke-linecap="round"/>
+
+  <!-- Torso ned til hofte -->
+  <line x1="50" y1="48" x2="50" y2="67" stroke="#7B70EE" stroke-width="13" stroke-linecap="round"/>
+
+  <!-- Venstre bein: hofte ned og utover -->
+  <line x1="50" y1="67" x2="31" y2="92" stroke="#7B70EE" stroke-width="13" stroke-linecap="round"/>
+  <!-- Høyre bein: speilet -->
+  <line x1="50" y1="67" x2="69" y2="92" stroke="#7B70EE" stroke-width="13" stroke-linecap="round"/>
 </svg>
