@@ -162,15 +162,29 @@
     const stats = document.querySelectorAll('.hero-stat-number');
     if (!stats.length) return;
 
-    const isMobile  = window.matchMedia('(max-width: 768px)').matches;
     const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile  = window.matchMedia('(max-width: 768px)').matches;
+    const dur       = isMobile ? 700 : 1400;
 
-    if (isMobile || isReduced) {
+    if (isReduced) {
         stats.forEach(el => {
-            const t = parseInt(el.dataset.target, 10);
-            el.textContent = (el.dataset.prefix || '') + t + (el.dataset.suffix || '');
+            el.textContent = (el.dataset.prefix || '') + parseInt(el.dataset.target, 10) + (el.dataset.suffix || '');
         });
         return;
+    }
+
+    const pending = [];
+    let rafId = null;
+
+    function tick(now) {
+        let any = false;
+        for (const c of pending) {
+            if (c.done) continue;
+            const p = Math.min((now - c.start) / c.dur, 1);
+            c.el.textContent = c.pre + Math.round((1 - Math.pow(1 - p, 3)) * c.target) + c.suf;
+            if (p < 1) { any = true; } else { c.done = true; }
+        }
+        if (any) rafId = requestAnimationFrame(tick);
     }
 
     const observer = new IntersectionObserver((entries) => {
@@ -178,19 +192,10 @@
             if (!entry.isIntersecting) return;
             observer.unobserve(entry.target);
             const el = entry.target;
-            const target = parseInt(el.dataset.target, 10);
-            const prefix = el.dataset.prefix || '';
-            const suffix = el.dataset.suffix || '';
-            const duration = 1400;
-            const start = performance.now();
-            function update(now) {
-                const p = Math.min((now - start) / duration, 1);
-                el.textContent = prefix + Math.round((1 - Math.pow(1 - p, 3)) * target) + suffix;
-                if (p < 1) requestAnimationFrame(update);
-            }
-            requestAnimationFrame(update);
+            pending.push({ el, target: parseInt(el.dataset.target, 10), pre: el.dataset.prefix || '', suf: el.dataset.suffix || '', dur, start: performance.now(), done: false });
+            if (!rafId) rafId = requestAnimationFrame(tick);
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.4 });
 
     stats.forEach(el => observer.observe(el));
 })();
@@ -464,54 +469,38 @@ function setPricing(type) {
     const counters = document.querySelectorAll('[data-counter]');
     if (!counters.length) return;
 
-    const isMobile  = window.matchMedia('(max-width: 768px)').matches;
     const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile  = window.matchMedia('(max-width: 768px)').matches;
+    const dur       = isMobile ? 700 : 1400;
 
-    // Vis sluttverdi med en gang på mobil – counter-animasjon er en stor kilde til jank
-    function showFinal(el) {
-        const target = parseInt(el.dataset.counter, 10);
-        el.textContent = (el.dataset.prefix || '') + target + (el.dataset.suffix || '');
-    }
-
-    if (isMobile || isReduced) {
-        counters.forEach(showFinal);
+    if (isReduced) {
+        counters.forEach(el => {
+            el.textContent = (el.dataset.prefix || '') + parseInt(el.dataset.counter, 10) + (el.dataset.suffix || '');
+        });
         return;
     }
 
-    const easeOut = t => 1 - Math.pow(1 - t, 3);
-
-    // Én felles rAF-løkke for ALLE tellere — ikke én per teller
+    // Én felles rAF-løkke for alle tellere
     const active = [];
+    let rafId = null;
 
     function tick(now) {
-        let stillRunning = false;
+        let any = false;
         for (const c of active) {
             if (c.done) continue;
-            const progress = Math.min((now - c.start) / c.duration, 1);
-            c.el.textContent = c.prefix + Math.round(easeOut(progress) * c.target) + c.suffix;
-            if (progress < 1) { stillRunning = true; } else { c.done = true; }
+            const p = Math.min((now - c.start) / c.dur, 1);
+            c.el.textContent = c.pre + Math.round((1 - Math.pow(1 - p, 3)) * c.target) + c.suf;
+            if (p < 1) { any = true; } else { c.done = true; }
         }
-        if (stillRunning) requestAnimationFrame(tick);
-    }
-
-    function startCounter(el) {
-        active.push({
-            el,
-            target:   parseInt(el.dataset.counter, 10),
-            prefix:   el.dataset.prefix || '',
-            suffix:   el.dataset.suffix || '',
-            duration: 1400,
-            start:    performance.now(),
-            done:     false
-        });
-        if (active.filter(c => !c.done).length === 1) requestAnimationFrame(tick);
+        if (any) { rafId = requestAnimationFrame(tick); } else { rafId = null; }
     }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                startCounter(entry.target);
+                active.push({ el: entry.target, target: parseInt(entry.target.dataset.counter, 10), pre: entry.target.dataset.prefix || '', suf: entry.target.dataset.suffix || '', dur, start: performance.now(), done: false });
                 observer.unobserve(entry.target);
+                if (!rafId) rafId = requestAnimationFrame(tick);
             }
         });
     }, { threshold: 0.4 });

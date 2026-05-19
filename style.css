@@ -1123,6 +1123,7 @@ header, main, footer {
     font-weight: 900;
     letter-spacing: -0.04em;
     line-height: 1;
+    will-change: contents;
     margin-bottom: 0.4rem;
 }
 .stat-label {
