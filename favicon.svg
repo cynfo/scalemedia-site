@@ -1,22 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 116">
-  <!-- Ytre heksagon – lys lilla-blå border -->
-  <polygon points="50,2 97,28 97,88 50,114 3,88 3,28" fill="#5858DC"/>
+  <!-- Ytre heksagon – lys lilla border -->
+  <polygon points="50,2 97,28 97,88 50,114 3,88 3,28" fill="#5B5ADF"/>
   <!-- Indre heksagon – mørk navy -->
   <polygon points="50,11 88,34 88,83 50,106 12,83 12,34" fill="#1C1840"/>
 
-  <!-- Hode -->
-  <circle cx="50" cy="33" r="9.5" fill="#7B70EE"/>
+  <!-- Prikk / hode over M -->
+  <circle cx="50" cy="31" r="8.5" fill="#8070EE"/>
 
-  <!-- Venstre arm: fra skulder oppover-utover (~ 25° over horisontal) -->
-  <line x1="49" y1="48" x2="23" y2="38" stroke="#7B70EE" stroke-width="13" stroke-linecap="round"/>
-  <!-- Høyre arm: speilet -->
-  <line x1="51" y1="48" x2="77" y2="38" stroke="#7B70EE" stroke-width="13" stroke-linecap="round"/>
-
-  <!-- Torso ned til hofte -->
-  <line x1="50" y1="48" x2="50" y2="67" stroke="#7B70EE" stroke-width="13" stroke-linecap="round"/>
-
-  <!-- Venstre bein: hofte ned og utover -->
-  <line x1="50" y1="67" x2="31" y2="92" stroke="#7B70EE" stroke-width="13" stroke-linecap="round"/>
-  <!-- Høyre bein: speilet -->
-  <line x1="50" y1="67" x2="69" y2="92" stroke="#7B70EE" stroke-width="13" stroke-linecap="round"/>
+  <!-- M-form: ytre stolper rett ned, indre diagonaler møtes i midten -->
+  <polyline
+    points="23,89 23,45 50,63 77,45 77,89"
+    fill="none"
+    stroke="#8070EE"
+    stroke-width="13"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
 </svg>
