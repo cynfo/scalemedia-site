@@ -2045,6 +2045,18 @@ header, main, footer {
     .particles-container { display: none !important; }
     .premium-grid { display: none !important; }
 
+    /* Stopp infinite-animasjoner som stjeler GPU-tråden på mobil */
+    .typewriter-text {
+        animation: none !important;
+        background: linear-gradient(to right, var(--primary), var(--secondary)) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+    }
+    .typewriter-cursor { display: none !important; }
+    .pulse-dot { animation: none !important; opacity: 1 !important; }
+    @keyframes pulseDot { 0%,100% { opacity: 1; } }
+    .global-background { display: none !important; }
+
     /* Fjern backdrop-filter fra alle glass-kort */
     .glass,
     .glass-hero-card,

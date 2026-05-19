@@ -162,26 +162,32 @@
     const stats = document.querySelectorAll('.hero-stat-number');
     if (!stats.length) return;
 
+    const isMobile  = window.matchMedia('(max-width: 768px)').matches;
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (isMobile || isReduced) {
+        stats.forEach(el => {
+            const t = parseInt(el.dataset.target, 10);
+            el.textContent = (el.dataset.prefix || '') + t + (el.dataset.suffix || '');
+        });
+        return;
+    }
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
             observer.unobserve(entry.target);
-
             const el = entry.target;
             const target = parseInt(el.dataset.target, 10);
             const prefix = el.dataset.prefix || '';
             const suffix = el.dataset.suffix || '';
             const duration = 1400;
             const start = performance.now();
-
             function update(now) {
-                const progress = Math.min((now - start) / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
-                const value = Math.round(eased * target);
-                el.textContent = prefix + value + suffix;
-                if (progress < 1) requestAnimationFrame(update);
+                const p = Math.min((now - start) / duration, 1);
+                el.textContent = prefix + Math.round((1 - Math.pow(1 - p, 3)) * target) + suffix;
+                if (p < 1) requestAnimationFrame(update);
             }
-
             requestAnimationFrame(update);
         });
     }, { threshold: 0.5 });
@@ -458,34 +464,57 @@ function setPricing(type) {
     const counters = document.querySelectorAll('[data-counter]');
     if (!counters.length) return;
 
-    const easeOut = t => 1 - Math.pow(1 - t, 3); // cubic ease-out
+    const isMobile  = window.matchMedia('(max-width: 768px)').matches;
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function animateCounter(el) {
-        const target   = parseInt(el.dataset.counter, 10);
-        const prefix   = el.dataset.prefix  || '';
-        const suffix   = el.dataset.suffix  || '';
-        const duration = 2000; // ms
-        const start    = performance.now();
+    // Vis sluttverdi med en gang på mobil – counter-animasjon er en stor kilde til jank
+    function showFinal(el) {
+        const target = parseInt(el.dataset.counter, 10);
+        el.textContent = (el.dataset.prefix || '') + target + (el.dataset.suffix || '');
+    }
 
-        function step(now) {
-            const elapsed  = now - start;
-            const progress = Math.min(elapsed / duration, 1);
-            const value    = Math.round(easeOut(progress) * target);
-            el.textContent = prefix + value + suffix;
-            if (progress < 1) requestAnimationFrame(step);
+    if (isMobile || isReduced) {
+        counters.forEach(showFinal);
+        return;
+    }
+
+    const easeOut = t => 1 - Math.pow(1 - t, 3);
+
+    // Én felles rAF-løkke for ALLE tellere — ikke én per teller
+    const active = [];
+
+    function tick(now) {
+        let stillRunning = false;
+        for (const c of active) {
+            if (c.done) continue;
+            const progress = Math.min((now - c.start) / c.duration, 1);
+            c.el.textContent = c.prefix + Math.round(easeOut(progress) * c.target) + c.suffix;
+            if (progress < 1) { stillRunning = true; } else { c.done = true; }
         }
+        if (stillRunning) requestAnimationFrame(tick);
+    }
 
-        requestAnimationFrame(step);
+    function startCounter(el) {
+        active.push({
+            el,
+            target:   parseInt(el.dataset.counter, 10),
+            prefix:   el.dataset.prefix || '',
+            suffix:   el.dataset.suffix || '',
+            duration: 1400,
+            start:    performance.now(),
+            done:     false
+        });
+        if (active.filter(c => !c.done).length === 1) requestAnimationFrame(tick);
     }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                animateCounter(entry.target);
-                observer.unobserve(entry.target); // run once
+                startCounter(entry.target);
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.4 });
 
     counters.forEach(el => observer.observe(el));
 })();
