@@ -1,7 +1,8 @@
 (function () {
   'use strict';
 
-  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+             || window.matchMedia('(max-width: 768px)').matches;
 
   var slider        = document.getElementById('budget-slider');
   if (!slider) return;

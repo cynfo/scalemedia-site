@@ -404,33 +404,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // Number Counter Animation for 'Kundeinteraksjoner'
     const counterElement = document.getElementById('counter-number');
     if (counterElement) {
-        const targetNumber = 1204;
-        const duration = 4500; // 4.5 seconds (slower)
-        let startTime = null;
+        const TARGET   = 1204;
+        const isMob    = window.matchMedia('(max-width: 768px)').matches;
+        const isRed    = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const DURATION = isMob ? 900 : 2200;
 
-        function updateCounter(currentTime) {
-            if (!startTime) startTime = currentTime;
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            
-            // Ease-out function for a smooth finish
-            const easeOutProgress = 1 - Math.pow(1 - progress, 4);
-            const currentNumber = Math.floor(easeOutProgress * targetNumber);
-            
-            // Format number with comma (1,200)
-            counterElement.textContent = currentNumber.toLocaleString('en-US');
-
-            if (progress < 1) {
-                requestAnimationFrame(updateCounter);
-            } else {
-                counterElement.textContent = targetNumber.toLocaleString('en-US');
-            }
+        // Format: 1204 → "1,204"
+        function fmt(n) {
+            return n >= 1000 ? Math.floor(n / 1000) + ',' + String(Math.floor(n) % 1000).padStart(3,'0') : String(Math.floor(n));
         }
-        
-        // Short delay to wait for the floating animation to appear
-        setTimeout(() => {
-            requestAnimationFrame(updateCounter);
-        }, 1000);
+
+        if (isRed) {
+            counterElement.textContent = fmt(TARGET);
+        } else {
+            // Kun start når elementet er synlig — ikke etter fast timeout
+            const cObs = new IntersectionObserver((entries) => {
+                if (!entries[0].isIntersecting) return;
+                cObs.disconnect();
+                const start = performance.now();
+                function step(now) {
+                    const p = Math.min((now - start) / DURATION, 1);
+                    counterElement.textContent = fmt((1 - Math.pow(1 - p, 4)) * TARGET);
+                    if (p < 1) requestAnimationFrame(step);
+                    else counterElement.textContent = fmt(TARGET);
+                }
+                requestAnimationFrame(step);
+            }, { threshold: 0.5 });
+            cObs.observe(counterElement);
+        }
     }
 });
 
