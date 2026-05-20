@@ -41,15 +41,6 @@
     let paused = false;
     let scrollTimer = null;
 
-    // Pause canvas while scrolling on mobile to free up GPU
-    if (isMobile) {
-        window.addEventListener('scroll', () => {
-            paused = true;
-            clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => { paused = false; draw(); }, 150);
-        }, { passive: true });
-    }
-
     function draw() {
         if (paused) return;
 
@@ -112,6 +103,9 @@
 (function () {
     const el = document.getElementById('typewriter-text');
     if (!el) return;
+
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile) return;
 
     const words = [
         'nettsider som selger',
@@ -339,8 +333,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const saObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('sa-visible');
-                    saObserver.unobserve(entry.target);
+                    const target = entry.target;
+                    target.style.willChange = 'transform, opacity';
+                    target.classList.add('sa-visible');
+                    
+                    target.addEventListener('transitionend', function handler() {
+                        target.style.willChange = '';
+                        target.removeEventListener('transitionend', handler);
+                    });
+                    
+                    saObserver.unobserve(target);
                 }
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
@@ -353,8 +355,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const legacyObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    legacyObserver.unobserve(entry.target);
+                    const target = entry.target;
+                    target.style.willChange = 'transform, opacity';
+                    target.classList.add('visible');
+                    
+                    target.addEventListener('transitionend', function handler() {
+                        target.style.willChange = '';
+                        target.removeEventListener('transitionend', handler);
+                    });
+                    
+                    legacyObserver.unobserve(target);
                 }
             });
         }, { threshold: 0.1 });
@@ -414,7 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return n >= 1000 ? Math.floor(n / 1000) + ',' + String(Math.floor(n) % 1000).padStart(3,'0') : String(Math.floor(n));
         }
 
-        if (isRed) {
+        if (isRed || isMob) {
             counterElement.textContent = fmt(TARGET);
         } else {
             // Kun start når elementet er synlig — ikke etter fast timeout
@@ -479,7 +489,7 @@ function setPricing(type) {
         el.textContent = pre + target + suf;
     }
 
-    if (isReduced) {
+    if (isReduced || isMobile) {
         counters.forEach(el => finish(el, el.dataset.prefix || '', parseInt(el.dataset.counter, 10), el.dataset.suffix || ''));
         return;
     }

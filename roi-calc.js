@@ -49,6 +49,7 @@
   }
 
   var dotEls = null;
+  var lastActive = -1;
 
   function buildGrid() {
     var frag = document.createDocumentFragment();
@@ -67,11 +68,24 @@
 
   function updateGrid(leads) {
     var active = Math.min(Math.round(leads), 100);
+    if (active === lastActive) return;
+
     leadsGrid.setAttribute('aria-label', active + ' av 100 mulige leads visualisert som rutenett');
-    for (var i = 0; i < 100; i++) {
-      if (i < active) { dotEls[i].classList.add('active'); }
-      else            { dotEls[i].classList.remove('active'); }
+    
+    if (lastActive === -1) {
+      for (var i = 0; i < 100; i++) {
+        if (i < active) { dotEls[i].classList.add('active'); }
+        else            { dotEls[i].classList.remove('active'); }
+      }
+    } else {
+      var start = Math.min(lastActive, active);
+      var end = Math.max(lastActive, active);
+      for (var i = start; i < end; i++) {
+        if (i < active) { dotEls[i].classList.add('active'); }
+        else            { dotEls[i].classList.remove('active'); }
+      }
     }
+    lastActive = active;
   }
 
   function updateInsightQuote(leads) {
@@ -119,7 +133,18 @@
   buildGrid();
   update(false);
 
-  slider.addEventListener('input',  function(){ update(true); });
-  slider.addEventListener('change', function(){ update(true); });
+  var updateScheduled = false;
+  function requestUpdate() {
+    if (!updateScheduled) {
+      updateScheduled = true;
+      requestAnimationFrame(function () {
+        updateScheduled = false;
+        update(false);
+      });
+    }
+  }
+
+  slider.addEventListener('input',  requestUpdate);
+  slider.addEventListener('change', requestUpdate);
 
 }());

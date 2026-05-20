@@ -2142,6 +2142,22 @@ header, main, footer {
                     color 0.15s ease, border-color 0.15s ease,
                     transform 0.15s ease !important;
     }
+
+    /* Disable inline backdrop blur on URL input wrapper */
+    #hero-seo-wrap {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    /* Disable track fill width transition to prevent layout reflows */
+    .slider-track-fill {
+        transition: none !important;
+    }
+
+    /* Clamp heavy box shadows on interactive elements */
+    .btn, .btn-primary, .premium-btn, .calc-cta, .hero-cta-primary, .mid-cta-btn-primary {
+        box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15) !important;
+    }
 }
 
 /* ─────────────────────────────────────────
@@ -2594,11 +2610,19 @@ input[type=range].calc-slider::-moz-range-track {
   .metric-card { padding: 0.9rem; }
 }
 @media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
   .calc-slider::-webkit-slider-thumb,
-  .calc-slider::-moz-range-thumb,
-  .slider-track-fill,
-  .metric-card,
-  .calc-cta { transition-duration: 0.01ms !important; }
+  .calc-slider::-moz-range-thumb {
+    transition-duration: 0s !important;
+  }
 }
 
 /* ── Trust line directly under hero CTA ── */
