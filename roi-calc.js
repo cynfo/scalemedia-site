@@ -43,10 +43,7 @@
     requestAnimationFrame(step);
   }
 
-  function updateTrack(val) {
-    var pct = (val - 5000) / 45000;
-    trackFill.style.width = (pct * 100) + '%';
-  }
+
 
   var dotEls = null;
   var lastActive = -1;
@@ -99,13 +96,24 @@
   var prev = calc(+slider.value);
 
   function update(animate) {
+    // 1. Calculations & Readings (No layout reads)
     var budget = +slider.value;
     var cur    = calc(budget);
+    
+    var formattedBudget = fmtNOK(budget) + ' NOK';
+    var ariaText = fmtNOK(budget) + ' kroner';
+    var trackPct = (budget - 5000) / 45000;
+    
+    var leadsVal = Math.round(cur.leads);
+    var formattedLeads = leadsVal.toString();
+    var formattedRev = fmtNOK(cur.revenue) + ' NOK';
+    var formattedRoi = fmtROI(cur.roi);
 
-    updateTrack(budget);
+    // 2. DOM Writes (Batched)
+    trackFill.style.width = (trackPct * 100) + '%';
     slider.setAttribute('aria-valuenow',  budget);
-    slider.setAttribute('aria-valuetext', fmtNOK(budget) + ' kroner');
-    budgetDisp.textContent = fmtNOK(budget) + ' NOK';
+    slider.setAttribute('aria-valuetext', ariaText);
+    budgetDisp.textContent = formattedBudget;
 
     if (animate) {
       animateVal(mLeads,        prev.leads,   cur.leads,   400, function(v){ return Math.round(v).toString(); });
@@ -113,19 +121,19 @@
       animateVal(mRoi,          prev.roi,     cur.roi,     400, fmtROI);
       animateVal(leadsBigCount, prev.leads,   cur.leads,   400, function(v){ return Math.round(v).toString(); });
     } else {
-      mLeads.textContent        = Math.round(cur.leads).toString();
-      mRev.textContent          = fmtNOK(cur.revenue) + ' NOK';
-      mRoi.textContent          = fmtROI(cur.roi);
-      leadsBigCount.textContent = Math.round(cur.leads).toString();
+      mLeads.textContent        = formattedLeads;
+      mRev.textContent          = formattedRev;
+      mRoi.textContent          = formattedRoi;
+      leadsBigCount.textContent = formattedLeads;
     }
 
     updateGrid(cur.leads);
     updateInsightQuote(cur.leads);
 
-    insBudget.textContent  = fmtNOK(budget) + ' NOK';
-    insLeads.textContent   = Math.round(cur.leads) + ' leads';
-    insRevenue.textContent = fmtNOK(cur.revenue) + ' NOK';
-    insRoi.textContent     = fmtROI(cur.roi);
+    insBudget.textContent  = formattedBudget;
+    insLeads.textContent   = leadsVal + ' leads';
+    insRevenue.textContent = formattedRev;
+    insRoi.textContent     = formattedRoi;
 
     prev = cur;
   }
@@ -133,18 +141,22 @@
   buildGrid();
   update(false);
 
-  var updateScheduled = false;
-  function requestUpdate() {
-    if (!updateScheduled) {
-      updateScheduled = true;
-      requestAnimationFrame(function () {
-        updateScheduled = false;
-        update(false);
-      });
-    }
-  }
+  var rafId = null;
+  slider.addEventListener('input', function () {
+    if (rafId) return;
+    rafId = requestAnimationFrame(function () {
+      update(false);
+      rafId = null;
+    });
+  }, { passive: true });
 
-  slider.addEventListener('input',  requestUpdate);
-  slider.addEventListener('change', requestUpdate);
+  slider.addEventListener('change', function () {
+    if (rafId) return;
+    rafId = requestAnimationFrame(function () {
+      update(false);
+      rafId = null;
+    });
+  }, { passive: true });
 
 }());
+

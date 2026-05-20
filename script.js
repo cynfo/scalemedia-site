@@ -482,7 +482,7 @@ function setPricing(type) {
 
     const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile  = window.matchMedia('(max-width: 768px)').matches;
-    const dur       = isMobile ? 400 : 1400;
+    const dur       = 1200;
 
     function finish(el, pre, target, suf) {
         el.classList.remove('counting');
@@ -503,7 +503,7 @@ function setPricing(type) {
         for (const c of active) {
             if (c.done) continue;
             const p = Math.min((now - c.start) / c.dur, 1);
-            c.el.textContent = c.pre + Math.round((1 - Math.pow(1 - p, 3)) * c.target) + c.suf;
+            c.el.textContent = c.pre + Math.round((p * (2 - p)) * c.target) + c.suf;
             if (p < 1) { any = true; }
             else { c.done = true; finish(c.el, c.pre, c.target, c.suf); }
         }

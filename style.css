@@ -1125,6 +1125,7 @@ header, main, footer {
     line-height: 1;
     will-change: contents;
     margin-bottom: 0.4rem;
+    font-variant-numeric: tabular-nums;
 }
 .stat-label {
     font-size: 0.9rem;
@@ -2504,11 +2505,14 @@ input[type=range].calc-slider::-moz-range-track {
   width: 16px;
   height: 16px;
   border-radius: 3px;
-  background-color: rgba(99,102,241,0.12);
-  transition: background-color 0.3s ease;
+  background-color: var(--primary);
+  opacity: 0.12;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  will-change: opacity, transform;
 }
 .lead-dot.active {
-  background-color: var(--primary);
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 /* Insight quote box */
@@ -2791,7 +2795,7 @@ input[type=range].calc-slider::-moz-range-track {
     .lead-dot {
         width: 13px !important;
         height: 13px !important;
-        transition: background-color 0.18s ease;
+        transition: opacity 0.18s ease, transform 0.18s ease !important;
     }
 
     /* Insight quote box */
