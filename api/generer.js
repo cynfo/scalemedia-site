@@ -49,7 +49,7 @@ module.exports = async function handler(req, res) {
   if (!rl.allowed) {
     res.setHeader('Retry-After', String(rl.retryAfterSec));
     return sendJson(res, 429, {
-      error: `Du har nådd grensen på ${rl.limit} genereringer per time. Book heller et gratis møte, så bygger vi siden ferdig sammen.`,
+      error: `Du har brukt dine ${rl.limit} gratis sider. Vil du ha mer? Book et gratis møte, så bygger vi siden ferdig sammen.`,
       retryAfterSec: rl.retryAfterSec,
       rateLimited: true
     });
