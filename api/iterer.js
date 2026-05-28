@@ -52,7 +52,7 @@ module.exports = async function handler(req, res) {
   }
 
   const ip = getClientIp(req);
-  const rl = checkRateLimit(ip, 'iterer');
+  const rl = await checkRateLimit(ip, 'iterer');
   if (!rl.allowed) {
     res.setHeader('Retry-After', String(rl.retryAfterSec));
     return sendJson(res, 429, {
