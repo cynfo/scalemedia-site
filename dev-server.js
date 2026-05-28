@@ -116,7 +116,11 @@ const server = http.createServer(async (req, res) => {
     return res.end('404 Not Found');
   }
   const ext = path.extname(filePath).toLowerCase();
-  res.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream' });
+  res.writeHead(200, {
+    'Content-Type': MIME[ext] || 'application/octet-stream',
+    // Dev: ikke cache, så endringer alltid vises ved refresh (unngår stale sider).
+    'Cache-Control': 'no-store, must-revalidate'
+  });
   fs.createReadStream(filePath).pipe(res);
 });
 
