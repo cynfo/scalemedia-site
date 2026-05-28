@@ -201,7 +201,8 @@
     background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.08));
     box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
 }
-.wiz-choice-ico { font-size: 1.6rem; line-height: 1; }
+.wiz-choice-ico { line-height: 1; display: flex; align-items: center; justify-content: center; height: 30px; }
+.wiz-choice-ico svg { width: 28px; height: 28px; color: var(--primary); }
 .wiz-choice-title { font-size: 0.92rem; font-weight: 700; color: var(--text-color); }
 .wiz-choice-sub { font-size: 0.75rem; color: var(--text-muted); }
 
@@ -299,7 +300,10 @@
     animation: spin 1s linear infinite;
 }
 .gen-loader-core {
-    font-size: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
     animation: floatCore 3s ease-in-out infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -351,6 +355,8 @@
     color: var(--text-muted);
     font-size: 0.95rem;
 }
+.gen-loading-facts li { display: flex; align-items: center; gap: 8px; }
+.gen-loading-facts li svg { width: 16px; height: 16px; color: var(--primary); flex-shrink: 0; }
 
 .gen-error-box {
     display: none;
@@ -530,6 +536,7 @@
 }
 .iterate-chip:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
 .iterate-chip:disabled { opacity: 0.45; cursor: not-allowed; }
+.iterate-chip svg { width: 15px; height: 15px; vertical-align: -3px; margin-right: 6px; }
 
 .iterate-form { display: flex; gap: 0.6rem; }
 .iterate-form input {
@@ -674,6 +681,8 @@
     margin-top: 0.75rem;
 }
 .lead-success.active { display: block; }
+.lead-success svg { width: 15px; height: 15px; vertical-align: -2px; margin-right: 5px; }
+#restart-btn svg { width: 16px; height: 16px; vertical-align: -3px; margin-right: 7px; }
 
 .result-restart { text-align: center; margin-top: 2.5rem; }
 
