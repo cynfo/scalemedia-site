@@ -3,7 +3,7 @@
     "api/seo-analyse.js": { "maxDuration": 20 },
     "api/send-lead.js":   { "maxDuration": 20 },
     "api/lead.js":        { "maxDuration": 20 },
-    "api/generer.js":     { "maxDuration": 60 },
-    "api/iterer.js":      { "maxDuration": 60 }
+    "api/generer.js":     { "maxDuration": 300 },
+    "api/iterer.js":      { "maxDuration": 300 }
   }
 }

@@ -89,11 +89,11 @@ Sett disse i Vercel-dashbordet (Settings → Environment Variables) eller i `.en
 | Variabel | Standard | Beskrivelse |
 |----------|----------|-------------|
 | `ANTHROPIC_API_KEY` | – | **Påkrevd.** Nøkkel fra console.anthropic.com. Forlater aldri backend. |
-| `ANTHROPIC_MODEL` | `claude-haiku-4-5` | Modell. Haiku er rask (~30s/side, passer Vercel Hobby). `claude-sonnet-4-6` gir rikere sider, men ~90-130s (krever Vercel Pro). |
-| `MAX_TOKENS` | `9000` | Maks tokens i svaret. Øk for rikere sider; senk for fart. |
-| `GENERER_TIMEOUT_MS` | `55000` | Timeout mot Claude i ms. Hold under 60000 på Vercel Hobby. |
-| `PRICE_IN_PER_MTOK` | `1` | USD per million input-tokens (kun for kostnadslogging; Haiku-pris). |
-| `PRICE_OUT_PER_MTOK` | `5` | USD per million output-tokens (kun for kostnadslogging; Haiku-pris). |
+| `ANTHROPIC_MODEL` | `claude-opus-4-7` | Modell. Opus = maks kvalitet (~2-4 min/side, **krever Vercel Pro**). `claude-sonnet-4-6` = premium (~90-130s, Pro). `claude-haiku-4-5` = rask (~30s, passer gratis Hobby, enklere sider). |
+| `MAX_TOKENS` | `12000` | Maks tokens i svaret. Øk for rikere sider; senk hvis sider avkuttes/tar for lang tid. |
+| `GENERER_TIMEOUT_MS` | `290000` | Timeout mot Claude i ms. Hold under `maxDuration` i vercel.json (Pro: 300000, Hobby: 60000). |
+| `PRICE_IN_PER_MTOK` | `5` | USD per million input-tokens (kun for kostnadslogging; Opus-pris). |
+| `PRICE_OUT_PER_MTOK` | `25` | USD per million output-tokens (kun for kostnadslogging; Opus-pris). |
 | `RATE_LIMIT_GENERER` | `8` | Maks genereringer per IP per time. |
 | `RATE_LIMIT_ITERER` | `20` | Maks iterasjoner per IP per time. |
 
