@@ -1,114 +1,153 @@
-# ScaleMedia – Gratis SEO-analysetjeneste
+# ScaleMedia – verktøy & lead-magneter
 
-Sanntids SEO-analyseverktøy for scalemedia.no. Fungerer som en leadmagnet og leverer reell, handlingsorientert verdi uten e-postvegg.
+Dette repoet inneholder ScaleMedias nettside (statiske sider) pluss to AI-/serverside-drevne lead-magneter:
 
-## Hva er inkludert
+1. **Nettside-generator** – `lag-din-nettside.html`: besøkende beskriver bedriften sin og får en ekte, kjørende nettside-forhåndsvisning generert i sanntid med Claude.
+2. **Gratis SEO-analyse** – `gratis-seo-analyse.html`: sanntids SEO-analyse av en hvilken som helst nettside.
+
+Alt kjører som vanilla HTML/CSS/JS i frontend og Node-serverless-funksjoner i `api/`. Ingen byggesteg, ingen frontend-rammeverk.
+
+---
+
+## Nettside-generatoren
+
+### Filer
 
 | Fil | Beskrivelse |
 |-----|-------------|
-| `gratis-seo-analyse.html` | Frontend-side |
-| `seo-analyse.css` | Stiler for analysesiden |
-| `seo-analyse.js` | Frontend-JavaScript |
-| `api/seo-analyse.js` | Serverless-funksjon: analyse-API |
-| `api/send-lead.js` | Serverless-funksjon: e-post til leads |
-| `package.json` | Node.js-avhengigheter |
-| `vercel.json` | Vercel-konfigurasjon |
-| `.env.example` | Mal for miljøvariabler |
+| `lag-din-nettside.html` | Frontend: wizard, generering, forhåndsvisning, iterasjon, konvertering |
+| `lag-din-nettside.css` | Sidespesifikke stiler (arver `style.css`) |
+| `lag-din-nettside.js` | Wizard-state, SSE-strømming, iframe-preview, iterasjon, lead-fangst |
+| `api/generer.js` | `POST /api/generer` – brief → generert side (SSE-streaming) |
+| `api/iterer.js` | `POST /api/iterer` – eksisterende side + endring → oppdatert side (SSE) |
+| `api/lead.js` | `POST /api/lead` – kontaktinfo + forhåndsvisning → e-post til post@scalemedia.no |
+| `lib/prompt.js` | System-prompt + bygging av bruker-prompt (generering & iterasjon) |
+| `lib/anthropic.js` | Claude API-klient (fetch + streaming) + kostnadslogging |
+| `lib/sse.js` | Felles SSE-strømming til nettleseren |
+| `lib/sanitize.js` | Sanitering av brukerinput (prompt injection) + HTML-uttrekk |
+| `lib/rate-limit.js` | Per-IP rate limiting (kostnadskontroll) |
+
+### Slik fungerer det
+
+```
+Wizard (4 steg) ──▶ POST /api/generer ──▶ Claude (streaming) ──▶ SSE ──▶ sandboxed <iframe>
+                                                                            │
+   "Mørkere", "Bytt fargetema", fritekst ──▶ POST /api/iterer ─────────────┘
+                                                                            │
+   "Send på e-post" / "Book møte" ──▶ POST /api/lead ──▶ e-post + kopi til besøkende
+```
+
+- Brukeren fyller ut en kort brief (kun bedriftsnavn + bransje + beskrivelse er obligatorisk).
+- Backend bygger en prompt og strømmer en komplett, selvstendig HTML-side fra Claude tilbake via Server-Sent Events. Kuraterte statusmeldinger følger faktisk fremdrift.
+- Den ferdige siden vises i en **sandboxed iframe** (ingen tilgang til parent, cookies eller backend), med desktop/mobil-veksling.
+- Maks 4 gratis iterasjoner per sesjon; deretter nudges brukeren mot å booke et møte.
+- **API-nøkkelen ligger kun på serveren** (miljøvariabel `ANTHROPIC_API_KEY`) og sendes aldri til frontend.
+
+---
 
 ## Kjøre lokalt
 
 ```bash
-# Installer avhengigheter
+# 1. Installer avhengigheter
 npm install
 
-# Installer Vercel CLI (én gang)
-npm install -g vercel
-
-# Kopier og fyll inn miljøvariabler
+# 2. Kopier og fyll inn miljøvariabler (minst ANTHROPIC_API_KEY)
 cp .env.example .env
 
-# Start dev-server (håndterer både statiske filer og API-ruter)
+# 3a. Enkleste vei – innebygd dev-server (statiske filer + alle API-ruter + SSE)
+npm run dev
+#    → http://localhost:3000/lag-din-nettside.html
+
+# 3b. Alternativt med Vercel CLI (matcher prod 1:1)
+npm install -g vercel
 vercel dev
 ```
 
-Åpne `http://localhost:3000/gratis-seo-analyse.html`
+`npm run dev` (`node dev-server.js`) laster `.env` automatisk og ruter både statiske filer og API-ene, inkludert streaming.
+
+> Uten `ANTHROPIC_API_KEY` svarer generatoren med en vennlig konfig-feilmelding i stedet for å krasje.
+
+---
 
 ## Deploye til Vercel
 
 ```bash
-# Første gang
-vercel
-
-# Produksjon
-vercel --prod
+vercel          # første gang
+vercel --prod   # produksjon
 ```
 
-Vercel oppdager automatisk `api/`-mappen og deployer funksjonene som serverless endpoints.
-Statiske filer serveres fra prosjektroten.
+Vercel oppdager `api/`-mappen automatisk og deployer funksjonene som serverless endpoints. `vercel.json` setter `maxDuration` til 60 s for generer/iterer (streaming kan ta tid). På Vercel Hobby er 60 s maks; Pro tillater opptil 300 s. Statiske filer serveres fra prosjektroten.
+
+---
 
 ## Miljøvariabler
 
-Sett disse i Vercel-dashboardet (Settings → Environment Variables):
+Sett disse i Vercel-dashbordet (Settings → Environment Variables) eller i `.env` lokalt.
+
+### Claude (generatoren)
+
+| Variabel | Standard | Beskrivelse |
+|----------|----------|-------------|
+| `ANTHROPIC_API_KEY` | – | **Påkrevd.** Nøkkel fra console.anthropic.com. Forlater aldri backend. |
+| `ANTHROPIC_MODEL` | `claude-sonnet-4-6` | Modell. Sonnet er rask og god til kodegenerering. |
+| `MAX_TOKENS` | `16000` | Maks tokens i svaret. Øk hvis sider avkuttes; senk for fart. |
+| `GENERER_TIMEOUT_MS` | `120000` | Timeout mot Claude i ms. |
+| `PRICE_IN_PER_MTOK` | `3` | USD per million input-tokens (kun for kostnadslogging). |
+| `PRICE_OUT_PER_MTOK` | `15` | USD per million output-tokens (kun for kostnadslogging). |
+| `RATE_LIMIT_GENERER` | `8` | Maks genereringer per IP per time. |
+| `RATE_LIMIT_ITERER` | `20` | Maks iterasjoner per IP per time. |
+
+### SMTP (lead-varsling, delt med SEO-verktøyet)
 
 | Variabel | Eksempel | Beskrivelse |
 |----------|---------|-------------|
-| `SMTP_HOST` | `smtp.sendgrid.net` | SMTP-server for utgående e-post |
-| `SMTP_PORT` | `587` | SMTP-port (vanligvis 587 for TLS) |
-| `SMTP_SECURE` | `false` | `true` for port 465, ellers `false` |
+| `SMTP_HOST` | `smtp.sendgrid.net` | SMTP-server |
+| `SMTP_PORT` | `587` | SMTP-port (587 for TLS) |
+| `SMTP_SECURE` | `false` | `true` for port 465 |
 | `SMTP_USER` | `apikey` | SMTP-brukernavn |
-| `SMTP_PASS` | `SG.xxx...` | SMTP-passord eller API-nøkkel |
+| `SMTP_PASS` | `SG.xxx…` | SMTP-passord / API-nøkkel |
 | `SMTP_FROM` | `post@scalemedia.no` | Avsender-adresse |
-| `LEAD_EMAIL` | `post@scalemedia.no` | Mottaker-adresse for leads |
+| `LEAD_EMAIL` | `post@scalemedia.no` | Mottaker for leads |
 
-### Anbefalte SMTP-leverandører (gratis tier)
+Gratis SMTP-tier: **SendGrid** (100/dag), **Resend** (3 000/mnd), **Brevo** (300/dag).
 
-- **SendGrid** – 100 e-poster/dag gratis. Bruk `apikey` som SMTP_USER og API-nøkkelen som SMTP_PASS.
-- **Resend** – 3 000 e-poster/mnd gratis. SMTP eller direkte API.
-- **Brevo (Sendinblue)** – 300 e-poster/dag gratis.
+---
 
-## Koble til fra forsiden
+## Justere generatoren
 
-Legg til en CTA i `index.html` for å lenke til analysetjenesten:
+Alt som styrer *hva* og *hvordan* Claude genererer ligger i **`lib/prompt.js`**:
 
-```html
-<a href="gratis-seo-analyse.html" class="btn btn-primary">
-  Få gratis SEO-analyse →
-</a>
-```
+- **Design, tone, struktur, regler** → rediger `SYSTEM_PROMPT`. Her ligger kravene om én selvstendig HTML-fil, 2026-design, ekte norsk salgstekst, bildestrategi (CSS/SVG/gradienter + `picsum.photos` som garantert-trygt fotografi) og injection-forsvar.
+- **Hvordan wizard-valgene tolkes** → rediger `SIDETYPE`-, `MAL`- og `STIL`-objektene. Tekstene der mates rett inn i prompten.
+- **Bildestrategi** → se «BILDER»-avsnittet i `SYSTEM_PROMPT`.
 
-Legg gjerne til en ny nav-lenke:
+Andre knapper:
 
-```html
-<li><a href="gratis-seo-analyse.html">SEO-analyse</a></li>
-```
+- **Modell / lengde / pris** → miljøvariabler (tabell over) – ingen kodeendring.
+- **Rate-grenser** → `RATE_LIMIT_GENERER` / `RATE_LIMIT_ITERER`.
+- **Antall gratis iterasjoner** → `MAX_ITERATIONS` øverst i `lag-din-nettside.js`.
+- **Anbefalt pakke per sidetype** → `PAKKER`-objektet i `lag-din-nettside.js`.
+- **Farger, fonter, knappestiler** → arves fra `style.css` via CSS-variabler (`--primary`, `--secondary` osv.).
 
-## Endre tekster og branding
+---
 
-- **Sidetittel / meta-tekster**: øverst i `gratis-seo-analyse.html`
-- **Anbefalings­tekster i analysen**: i `api/seo-analyse.js` – søk etter `recommendation:`
-- **Score-vekter**: `WEIGHTS`-objektet øverst i `api/seo-analyse.js`
-- **Farger og typografi**: arves fra `style.css` via CSS-variabler (`--primary`, `--secondary`, osv.)
+## Sikkerhet & kostnadskontroll
 
-## Slik fungerer analysen
+- **Sandboxed forhåndsvisning**: generert HTML kjøres i `<iframe sandbox="allow-scripts allow-popups">` uten `allow-same-origin` – ingen tilgang til parent, cookies eller backend.
+- **Prompt injection**: all brukerinput renses i `lib/sanitize.js` og pakkes i en `<bruker_brief>`-blokk som system-prompten eksplisitt behandler som data, ikke instruksjoner.
+- **Rate limiting**: per-IP, glidende timesvindu (`lib/rate-limit.js`). In-memory – godt nok som kostnadsgjerde. For hard global grense på tvers av instanser, bytt Map-en mot Vercel KV / Upstash Redis (samme signatur).
+- **Iterasjonsgrense**: maks 4 per sesjon (frontend) + per-IP-grense (backend).
+- **Kostnadslogging**: hvert Claude-kall logger én JSON-linje (`tag:"claude-usage"`) med modell, token-bruk, estimert USD-kostnad og varighet – fanges opp i Vercel-loggene.
+- **Robusthet**: API-timeout/-feil → retry-knapp; tom/ugyldig brief → vennlig krav om minimum; rate limit → nudge mot møtebooking. Ingen stack traces vises til sluttbruker.
 
-Analysen kjøres helt server-side for å unngå CORS og beskytte logikken. Den:
+---
 
-1. Normaliserer og validerer URL-en
-2. Henter siden med en User-Agent som identifiserer seg som ScaleMedias bot
-3. Henter `robots.txt` og `sitemap.xml` parallelt
-4. Parser HTML med Cheerio
-5. Kjører 7 analyse-kategorier med totalt ~45 enkeltsjekk
-6. Beregner vektet score og genererer norsk oppsummering
-7. Returnerer strukturert JSON til frontend
+## Gratis SEO-analyse
 
-**Kategorier og vekter:**
+| Fil | Beskrivelse |
+|-----|-------------|
+| `gratis-seo-analyse.html` / `seo-analyse.css` / `seo-analyse.js` | Frontend |
+| `api/seo-analyse.js` | Serverside-analyse (Cheerio), 7 kategorier, ~45 sjekker |
+| `api/send-lead.js` | E-post til leads |
 
-| Kategori | Vekt |
-|----------|------|
-| On-page SEO | 25% |
-| Teknisk SEO | 20% |
-| Ytelse | 15% |
-| Strukturerte data | 10% |
-| Open Graph | 10% |
-| Lokal SEO | 10% |
-| Innholdskvalitet | 10% |
+Analysen kjøres server-side: normaliserer URL, henter siden + `robots.txt`/`sitemap.xml`, parser HTML med Cheerio, kjører 7 vektede kategorier (On-page 25 %, Teknisk 20 %, Ytelse 15 %, Strukturerte data / Open Graph / Lokal SEO / Innhold 10 % hver) og returnerer norsk JSON. Juster anbefalinger og vekter i `api/seo-analyse.js`.

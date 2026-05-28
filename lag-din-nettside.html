@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lag din egen nettside med AI – gratis forhåndsvisning | ScaleMedia</title>
+    <meta name="description" content="Beskriv bedriften din, velg stil – og se en ekte, skreddersydd nettside bygget i sanntid med AI. Helt gratis forhåndsvisning, ingen registrering. Laget av ScaleMedia.">
+    <link rel="canonical" href="https://scalemedia.no/lag-din-nettside.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://scalemedia.no/lag-din-nettside.html">
+    <meta property="og:title"       content="Lag din egen nettside med AI – gratis forhåndsvisning | ScaleMedia">
+    <meta property="og:description" content="Beskriv bedriften din og se en ekte, skreddersydd nettside bygget i sanntid med AI. Gratis – ingen registrering.">
+    <meta property="og:image"       content="https://scalemedia.no/og-image.jpg">
+    <meta name="twitter:card"       content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="lag-din-nettside.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
+    <!-- Google Consent Mode V2 -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'default', {
+            'ad_storage':         'denied',
+            'ad_user_data':       'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage':  'denied',
+            'wait_for_update':    500
+        });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PBRKN3JVGW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PBRKN3JVGW');
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "ScaleMedia Nettside-generator",
+      "url": "https://scalemedia.no/lag-din-nettside.html",
+      "description": "Gratis AI-drevet nettside-generator. Beskriv bedriften din og få en ekte, skreddersydd nettside-forhåndsvisning bygget i sanntid.",
+      "applicationCategory": "BusinessApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "NOK" },
+      "provider": {
+        "@type": "Organization",
+        "name": "Scale Media AS",
+        "url": "https://scalemedia.no"
+      }
+    }
+    </script>
+
+    <script src="script.js" defer></script>
+    <script src="lag-din-nettside.js" defer></script>
+</head>
+<body>
+    <!-- Global bakgrunn (samme som resten av siden) -->
+    <div class="global-background">
+        <div class="ambient-bg">
+            <div class="ambient-orb orb-1"></div>
+            <div class="ambient-orb orb-2"></div>
+            <div class="ambient-orb orb-3"></div>
+        </div>
+        <div class="premium-grid"></div>
+    </div>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="/images/sm-logo.png" alt="ScaleMedia logo" width="40" height="40" style="margin-right:10px;display:block;">
+                Scale<span>Media</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Hjem</a></li>
+                    <li><a href="om-oss.html">Om oss</a></li>
+                    <li><a href="tjenester.html">Tjenester</a></li>
+                    <li><a href="index.html#prosjekter">Prosjekter</a></li>
+                    <li><a href="index.html#priser">Priser</a></li>
+                </ul>
+            </nav>
+            <div class="nav-cta">
+                <a href="index.html#kontakt" class="btn btn-primary">Kontakt Oss</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Meny">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ══ STEG-VELGER / WIZARD ════════════════════════════════════════════ -->
+        <section id="wizard-section" class="gen-section active">
+            <div class="container" style="position:relative;z-index:2;">
+
+                <div class="gen-intro">
+                    <div class="badge hero-badge" style="margin:0 auto 1.5rem;">
+                        <span class="pulse-dot"></span> Drevet av AI · helt gratis · ingen registrering
+                    </div>
+                    <h1>
+                        Lag din egen nettside<br>
+                        med <span class="hero-gradient-text">kunstig intelligens</span>
+                    </h1>
+                    <p class="gen-intro-sub">
+                        Beskriv bedriften din, velg stil – og se en ekte, skreddersydd nettside
+                        bygget for deg i løpet av sekunder. Helt uforpliktende.
+                    </p>
+                </div>
+
+                <!-- Fremdriftsindikator -->
+                <div class="wiz-progress" aria-hidden="true">
+                    <div class="wiz-progress-line"><span class="wiz-progress-fill" id="wiz-progress-fill"></span></div>
+                    <ol class="wiz-steps-indicator">
+                        <li class="wiz-dot active" data-step="1"><span class="wiz-dot-num">1</span><span class="wiz-dot-label">Bedriften</span></li>
+                        <li class="wiz-dot" data-step="2"><span class="wiz-dot-num">2</span><span class="wiz-dot-label">Type &amp; mål</span></li>
+                        <li class="wiz-dot" data-step="3"><span class="wiz-dot-num">3</span><span class="wiz-dot-label">Stil</span></li>
+                        <li class="wiz-dot" data-step="4"><span class="wiz-dot-num">4</span><span class="wiz-dot-label">Detaljer</span></li>
+                    </ol>
+                </div>
+
+                <form id="wizard-form" class="wiz-card glass" novalidate>
+
+                    <!-- ── Steg 1 ── -->
+                    <div class="wiz-step active" data-step="1">
+                        <h2 class="wiz-title">Fortell oss om bedriften</h2>
+                        <p class="wiz-subtitle">Dette er alt vi trenger for å komme i gang.</p>
+
+                        <div class="wiz-field">
+                            <label for="wiz-bedriftsnavn">Bedriftsnavn <span class="req">*</span></label>
+                            <input type="text" id="wiz-bedriftsnavn" name="bedriftsnavn" maxlength="120"
+                                   placeholder="F.eks. Nordvik Rørlegger AS" autocomplete="organization">
+                        </div>
+
+                        <div class="wiz-field">
+                            <label for="wiz-bransje">Bransje <span class="req">*</span></label>
+                            <select id="wiz-bransje" name="bransje">
+                                <option value="">Velg bransje …</option>
+                                <option>Bygg &amp; håndverk</option>
+                                <option>Rørlegger / elektriker</option>
+                                <option>Helse &amp; velvære</option>
+                                <option>Frisør &amp; skjønnhet</option>
+                                <option>Restaurant &amp; servering</option>
+                                <option>Bil &amp; verksted</option>
+                                <option>Eiendom &amp; megling</option>
+                                <option>Konsulent &amp; rådgivning</option>
+                                <option>Netthandel &amp; butikk</option>
+                                <option>Trening &amp; sport</option>
+                                <option>Utdanning &amp; kurs</option>
+                                <option>Teknologi &amp; IT</option>
+                                <option>Advokat &amp; juridisk</option>
+                                <option>Regnskap &amp; økonomi</option>
+                                <option>Transport &amp; logistikk</option>
+                                <option value="Annet">Annet …</option>
+                            </select>
+                            <input type="text" id="wiz-bransje-annet" class="wiz-hidden" maxlength="80"
+                                   placeholder="Skriv inn bransjen din" autocomplete="off" aria-label="Egen bransje">
+                        </div>
+
+                        <div class="wiz-field">
+                            <label for="wiz-beskrivelse">Kort beskrivelse <span class="req">*</span></label>
+                            <textarea id="wiz-beskrivelse" name="beskrivelse" rows="3" maxlength="1200"
+                                      placeholder="Hva gjør dere, og for hvem? F.eks. «Vi er en lokal rørleggerbedrift i Bergen med rask responstid og 15 års erfaring innen bad, oppussing og akutt hjelp.»"></textarea>
+                            <div class="wiz-counter"><span id="beskrivelse-count">0</span>/1200</div>
+                        </div>
+
+                        <div class="wiz-error" id="wiz-error-1"></div>
+
+                        <div class="wiz-nav">
+                            <span></span>
+                            <button type="button" class="btn btn-primary wiz-next" data-next="2">Neste <span class="arrow">→</span></button>
+                        </div>
+                    </div>
+
+                    <!-- ── Steg 2 ── -->
+                    <div class="wiz-step" data-step="2">
+                        <h2 class="wiz-title">Hva slags side, og hvorfor?</h2>
+                        <p class="wiz-subtitle">Velg det som passer best – du kan endre alt etterpå.</p>
+
+                        <div class="wiz-group-label">Type side</div>
+                        <div class="wiz-cards" data-field="sidetype">
+                            <button type="button" class="wiz-choice" data-value="onepage">
+                                <span class="wiz-choice-ico">📄</span>
+                                <span class="wiz-choice-title">Én-sides</span>
+                                <span class="wiz-choice-sub">Alt på én side</span>
+                            </button>
+                            <button type="button" class="wiz-choice" data-value="bedrift">
+                                <span class="wiz-choice-ico">🏢</span>
+                                <span class="wiz-choice-title">Bedriftsside</span>
+                                <span class="wiz-choice-sub">Flere undersider</span>
+                            </button>
+                            <button type="button" class="wiz-choice" data-value="nettbutikk">
+                                <span class="wiz-choice-ico">🛍️</span>
+                                <span class="wiz-choice-title">Nettbutikk</span>
+                                <span class="wiz-choice-sub">Selg produkter</span>
+                            </button>
+                            <button type="button" class="wiz-choice" data-value="booking">
+                                <span class="wiz-choice-ico">📅</span>
+                                <span class="wiz-choice-title">Booking</span>
+                                <span class="wiz-choice-sub">Timebestilling</span>
+                            </button>
+                            <button type="button" class="wiz-choice" data-value="landingsside">
+                                <span class="wiz-choice-ico">🎯</span>
+                                <span class="wiz-choice-title">Landingsside</span>
+                                <span class="wiz-choice-sub">Ett klart budskap</span>
+                            </button>
+                        </div>
+
+                        <div class="wiz-group-label" style="margin-top:1.75rem;">Primært mål</div>
+                        <div class="wiz-cards wiz-cards-goal" data-field="maal">
+                            <button type="button" class="wiz-choice" data-value="flere-kunder">
+                                <span class="wiz-choice-ico">📈</span>
+                                <span class="wiz-choice-title">Flere kunder</span>
+                            </button>
+                            <button type="button" class="wiz-choice" data-value="booke-timer">
+                                <span class="wiz-choice-ico">⏰</span>
+                                <span class="wiz-choice-title">Booke timer</span>
+                            </button>
+                            <button type="button" class="wiz-choice" data-value="selge">
+                                <span class="wiz-choice-ico">💳</span>
+                                <span class="wiz-choice-title">Selge mer</span>
+                            </button>
+                            <button type="button" class="wiz-choice" data-value="merkevare">
+                                <span class="wiz-choice-ico">✨</span>
+                                <span class="wiz-choice-title">Bygge merkevare</span>
+                            </button>
+                            <button type="button" class="wiz-choice" data-value="leads">
+                                <span class="wiz-choice-ico">🧲</span>
+                                <span class="wiz-choice-title">Samle leads</span>
+                            </button>
+                        </div>
+
+                        <div class="wiz-nav">
+                            <button type="button" class="btn btn-outline wiz-back" data-back="1">← Tilbake</button>
+                            <button type="button" class="btn btn-primary wiz-next" data-next="3">Neste <span class="arrow">→</span></button>
+                        </div>
+                    </div>
+
+                    <!-- ── Steg 3 ── -->
+                    <div class="wiz-step" data-step="3">
+                        <h2 class="wiz-title">Velg en stil</h2>
+                        <p class="wiz-subtitle">Estetikken setter tonen for hele siden.</p>
+
+                        <div class="wiz-group-label">Uttrykk</div>
+                        <div class="wiz-styles" data-field="stil">
+                            <button type="button" class="wiz-style" data-value="minimalistisk">
+                                <span class="wiz-style-swatch sw-min"></span>
+                                <span class="wiz-style-title">Minimalistisk</span>
+                                <span class="wiz-style-sub">Rent, luftig, tidløst</span>
+                            </button>
+                            <button type="button" class="wiz-style" data-value="dristig">
+                                <span class="wiz-style-swatch sw-bold"></span>
+                                <span class="wiz-style-title">Dristig</span>
+                                <span class="wiz-style-sub">Sterke farger, stor type</span>
+                            </button>
+                            <button type="button" class="wiz-style" data-value="elegant">
+                                <span class="wiz-style-swatch sw-elegant"></span>
+                                <span class="wiz-style-title">Elegant</span>
+                                <span class="wiz-style-sub">Raffinert og premium</span>
+                            </button>
+                            <button type="button" class="wiz-style" data-value="lekent">
+                                <span class="wiz-style-swatch sw-playful"></span>
+                                <span class="wiz-style-title">Lekent</span>
+                                <span class="wiz-style-sub">Vennlig og fargerikt</span>
+                            </button>
+                            <button type="button" class="wiz-style" data-value="industrielt">
+                                <span class="wiz-style-swatch sw-industrial"></span>
+                                <span class="wiz-style-title">Industrielt</span>
+                                <span class="wiz-style-sub">Stramt og teknisk</span>
+                            </button>
+                        </div>
+
+                        <div class="wiz-group-label" style="margin-top:1.75rem;">Fargevalg</div>
+                        <div class="wiz-colors" data-field="farger">
+                            <button type="button" class="wiz-color" data-value="la AI velge">
+                                <span class="wiz-color-swatch swatch-auto">AI</span>
+                                <span class="wiz-color-label">La AI velge</span>
+                            </button>
+                            <button type="button" class="wiz-color" data-value="blått og hvitt, rolig og tillitsvekkende">
+                                <span class="wiz-color-swatch" style="background:linear-gradient(135deg,#2563eb,#60a5fa);"></span>
+                                <span class="wiz-color-label">Blå &amp; hvit</span>
+                            </button>
+                            <button type="button" class="wiz-color" data-value="grønt og naturlig, friskt og bærekraftig">
+                                <span class="wiz-color-swatch" style="background:linear-gradient(135deg,#059669,#34d399);"></span>
+                                <span class="wiz-color-label">Grønn &amp; natur</span>
+                            </button>
+                            <button type="button" class="wiz-color" data-value="svart og gull, luksuriøst og eksklusivt">
+                                <span class="wiz-color-swatch" style="background:linear-gradient(135deg,#111827,#d4af37);"></span>
+                                <span class="wiz-color-label">Svart &amp; gull</span>
+                            </button>
+                            <button type="button" class="wiz-color" data-value="varm oransje og koral, energisk og innbydende">
+                                <span class="wiz-color-swatch" style="background:linear-gradient(135deg,#ea580c,#fb923c);"></span>
+                                <span class="wiz-color-label">Varm oransje</span>
+                            </button>
+                            <button type="button" class="wiz-color" data-value="lilla og rosa, moderne og kreativt">
+                                <span class="wiz-color-swatch" style="background:linear-gradient(135deg,#7c3aed,#ec4899);"></span>
+                                <span class="wiz-color-label">Lilla &amp; rosa</span>
+                            </button>
+                        </div>
+
+                        <div class="wiz-nav">
+                            <button type="button" class="btn btn-outline wiz-back" data-back="2">← Tilbake</button>
+                            <button type="button" class="btn btn-primary wiz-next" data-next="4">Neste <span class="arrow">→</span></button>
+                        </div>
+                    </div>
+
+                    <!-- ── Steg 4 ── -->
+                    <div class="wiz-step" data-step="4">
+                        <h2 class="wiz-title">Siste detaljer <span class="wiz-optional">(valgfritt)</span></h2>
+                        <p class="wiz-subtitle">Jo mer du fyller ut, jo mer treffsikker blir siden – men ingenting er obligatorisk.</p>
+
+                        <div class="wiz-field">
+                            <label for="wiz-tjenester">Hovedtjenester eller produkter</label>
+                            <textarea id="wiz-tjenester" name="tjenester" rows="3" maxlength="800"
+                                      placeholder="F.eks. Bad og våtrom, akutt rørleggerhjelp, vannbåren varme, service og vedlikehold"></textarea>
+                        </div>
+
+                        <div class="wiz-field-row">
+                            <div class="wiz-field">
+                                <label for="wiz-telefon">Telefon</label>
+                                <input type="tel" id="wiz-telefon" maxlength="40" placeholder="F.eks. 55 09 50 90" autocomplete="off">
+                            </div>
+                            <div class="wiz-field">
+                                <label for="wiz-epost">E-post</label>
+                                <input type="text" id="wiz-epost" maxlength="80" placeholder="post@bedrift.no" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="wiz-field">
+                            <label for="wiz-adresse">Adresse / område</label>
+                            <input type="text" id="wiz-adresse" maxlength="120" placeholder="F.eks. Kokstadvegen 41, 5257 Kokstad – betjener hele Bergen" autocomplete="off">
+                        </div>
+
+                        <div class="wiz-nav">
+                            <button type="button" class="btn btn-outline wiz-back" data-back="3">← Tilbake</button>
+                            <button type="submit" class="btn btn-primary wiz-generate" id="wiz-generate-btn">
+                                <span class="btn-text">Generer nettsiden min</span> <span class="arrow">✨</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+
+                <p class="gen-disclaimer">
+                    Forhåndsvisningen er en automatisk AI-demo og et utgangspunkt – ikke en ferdig publisert side.
+                    Vi lagrer ingenting før du selv velger å ta kontakt.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- ══ GENERERING / LASTING ════════════════════════════════════════════ -->
+        <section id="loading-section" class="gen-section" aria-live="polite" aria-label="Genererer nettside">
+            <div class="container gen-loading-inner" style="position:relative;z-index:2;">
+                <div class="gen-loader-orb">
+                    <div class="gen-loader-ring"></div>
+                    <div class="gen-loader-core">✨</div>
+                </div>
+                <h2 class="gen-loading-title">Bygger nettsiden din …</h2>
+                <p class="gen-loading-status" id="gen-status">Tolker briefen din …</p>
+
+                <div class="gen-progress-bar"><span class="gen-progress-fill" id="gen-progress-fill"></span></div>
+
+                <ul class="gen-loading-facts">
+                    <li>✓ Ekte salgstekst skrevet for nettopp din bedrift</li>
+                    <li>✓ Skreddersydd fargepalett og design</li>
+                    <li>✓ Fullt responsiv – ser bra ut på mobil og desktop</li>
+                </ul>
+
+                <!-- Feiltilstand under generering -->
+                <div class="gen-error-box" id="gen-error-box" role="alert">
+                    <p id="gen-error-msg"></p>
+                    <div class="gen-error-actions">
+                        <button type="button" class="btn btn-primary" id="gen-retry-btn">Prøv igjen</button>
+                        <a href="index.html#kontakt" class="btn btn-outline">Book et gratis møte i stedet</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ RESULTAT / FORHÅNDSVISNING ══════════════════════════════════════ -->
+        <section id="result-section" class="gen-section" aria-label="Forhåndsvisning av generert nettside">
+            <div class="container" style="position:relative;z-index:2;">
+
+                <div class="result-head">
+                    <h2 class="result-title">Her er <span class="hero-gradient-text">din nettside</span></h2>
+                    <p class="result-sub">Bygget i sanntid ut fra det du fortalte oss. Lik den? Da er vi nesten i mål.</p>
+                </div>
+
+                <!-- Verktøylinje: device-toggle -->
+                <div class="preview-toolbar">
+                    <div class="device-toggle" role="group" aria-label="Visningsmodus">
+                        <button type="button" class="device-btn active" data-device="desktop" aria-pressed="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                            Desktop
+                        </button>
+                        <button type="button" class="device-btn" data-device="mobile" aria-pressed="false">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                            Mobil
+                        </button>
+                    </div>
+                    <button type="button" class="preview-open-btn" id="preview-open-btn" title="Åpne i ny fane">
+                        Åpne i ny fane
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </button>
+                </div>
+
+                <!-- Device-ramme med sandboxed iframe -->
+                <div class="device-frame" id="device-frame" data-device="desktop">
+                    <div class="device-bar">
+                        <span class="device-dot"></span><span class="device-dot"></span><span class="device-dot"></span>
+                        <span class="device-url" id="device-url">forhåndsvisning.no</span>
+                    </div>
+                    <div class="device-screen">
+                        <iframe id="preview-iframe" title="Forhåndsvisning av nettside"
+                                sandbox="allow-scripts allow-popups"
+                                referrerpolicy="no-referrer"></iframe>
+                        <div class="preview-watermark">Demo laget av ScaleMedia</div>
+                    </div>
+                </div>
+
+                <!-- ── Iterasjon ── -->
+                <div class="iterate-panel glass">
+                    <div class="iterate-head">
+                        <h3>Vil du justere noe?</h3>
+                        <span class="iterate-counter" id="iterate-counter">4 gratis endringer igjen</span>
+                    </div>
+
+                    <div class="iterate-quick">
+                        <button type="button" class="iterate-chip" data-change="Gjør designet mørkere">🌙 Mørkere</button>
+                        <button type="button" class="iterate-chip" data-change="Gjør designet mer minimalistisk og luftig">⚪ Mer minimalistisk</button>
+                        <button type="button" class="iterate-chip" data-change="Bytt til et helt nytt fargetema">🎨 Bytt fargetema</button>
+                        <button type="button" class="iterate-chip" data-change="Gjør overskriftene og tekstene mer salgsutløsende">🔥 Mer selgende tekst</button>
+                        <button type="button" class="iterate-chip" data-change="Legg til en seksjon med kundeanmeldelser">⭐ Legg til anmeldelser</button>
+                    </div>
+
+                    <form id="iterate-form" class="iterate-form">
+                        <input type="text" id="iterate-input" maxlength="600" autocomplete="off"
+                               placeholder="Skriv din egen endring … f.eks. «legg til en prisliste» eller «bruk varmere farger»">
+                        <button type="submit" class="btn btn-primary" id="iterate-btn">Oppdater <span class="arrow">→</span></button>
+                    </form>
+
+                    <div class="iterate-status" id="iterate-status"></div>
+                    <div class="iterate-error" id="iterate-error"></div>
+
+                    <!-- Nudge når iterasjonene er brukt opp -->
+                    <div class="iterate-nudge" id="iterate-nudge">
+                        <strong>Du har brukt alle de gratis endringene.</strong>
+                        <p>Det er her vi tar over: vi finpusser hver detalj og publiserer siden for deg. Book et gratis møte, så fullfører vi den sammen.</p>
+                        <a href="index.html#kontakt" class="btn btn-primary">Book gratis møte →</a>
+                    </div>
+                </div>
+
+                <!-- ── Konvertering ── -->
+                <div class="convert-grid">
+                    <div class="convert-primary">
+                        <h3>Få denne siden ferdigstilt og publisert</h3>
+                        <p>Vi tar AI-utkastet videre til en ekte, lynrask og søkemotoroptimalisert nettside – med ditt innhold, dine bilder og din egen adresse. Book et uforpliktende møte, så viser vi deg veien dit.</p>
+                        <a href="index.html#kontakt" class="btn-white">Book gratis møte <span class="arrow">→</span></a>
+                        <div class="convert-pakke" id="convert-pakke">
+                            <span class="convert-pakke-label">Anbefalt pakke for deg</span>
+                            <span class="convert-pakke-name" id="pakke-name">Business</span>
+                            <span class="convert-pakke-price" id="pakke-price">15 990,-</span>
+                            <a href="index.html#priser" class="convert-pakke-link">Se hva som er inkludert →</a>
+                        </div>
+                    </div>
+
+                    <div class="convert-secondary glass">
+                        <h3>Send forhåndsvisningen på e-post</h3>
+                        <p>Få utkastet tilsendt, så tar vi en uforpliktende prat om veien videre.</p>
+                        <form id="lead-form" novalidate>
+                            <div class="lead-row">
+                                <input type="text"  name="lead-name"    placeholder="Ditt navn *"    autocomplete="name" required>
+                                <input type="email" name="lead-email"   placeholder="E-post *"        autocomplete="email" required>
+                            </div>
+                            <div class="lead-row">
+                                <input type="text"  name="lead-company" placeholder="Bedrift"         autocomplete="organization">
+                                <input type="tel"   name="lead-phone"   placeholder="Telefon (valgfri)" autocomplete="tel">
+                            </div>
+                            <p class="lead-consent">
+                                Ved å sende inn samtykker du til at ScaleMedia AS kan kontakte deg om forhåndsvisningen og relevante tjenester. Vi deler ikke informasjonen med tredjeparter.
+                            </p>
+                            <button type="submit" class="btn btn-primary w-100">Send meg forhåndsvisningen →</button>
+                            <div class="lead-error" id="lead-error"></div>
+                            <div class="lead-success" id="lead-success">✓ Takk! Vi har sendt forhåndsvisningen og tar kontakt for en uforpliktende prat.</div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="result-restart">
+                    <button type="button" class="btn btn-outline" id="restart-btn">↺ Start på nytt med en ny bedrift</button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container" style="display:flex;flex-direction:column;align-items:center;gap:0.8rem;">
+            <div style="display:flex;gap:1.5rem;color:var(--text-muted);font-size:0.95rem;flex-wrap:wrap;justify-content:center;align-items:center;">
+                <span style="text-align:center;line-height:1.4;">Kokstadvegen 41<br>5257 Kokstad</span>
+                <span>E-post: <a href="mailto:post@scalemedia.no" style="color:var(--text-muted);">post@scalemedia.no</a></span>
+                <span>Tlf: <a href="tel:55095090" style="color:var(--text-muted);">55 09 50 90</a></span>
+            </div>
+            <div style="margin-top:0.5rem;font-size:0.88rem;display:flex;gap:1.25rem;flex-wrap:wrap;justify-content:center;">
+                <a href="avtalevilkar.html" style="color:var(--text-muted);text-decoration:underline;">Avtalevilkår</a>
+                <a href="personvern.html"   style="color:var(--text-muted);text-decoration:underline;">Personvern</a>
+                <a href="#" id="open-cookie-settings" style="color:var(--text-muted);text-decoration:underline;">Cookie-innstillinger</a>
+            </div>
+            <p style="font-size:0.85rem;color:var(--text-muted);">© 2026 ScaleMedia AS</p>
+        </div>
+    </footer>
+
+    <!-- Cookie-banner (identisk med resten av siden) -->
+    <div id="sm-cookie" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#ffffff;border-top:2px solid #6366f1;padding:1.1rem 1.5rem;font-family:Outfit,sans-serif;box-shadow:0 -4px 24px rgba(99,102,241,0.15);">
+        <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+            <p style="flex:1;min-width:200px;margin:0;font-size:0.9rem;color:#374151;line-height:1.55;">
+                <strong style="color:#1e1b4b;display:block;margin-bottom:0.2rem;">Vi bruker informasjonskapsler</strong>
+                Vi bruker cookies for å analysere trafikk og forbedre opplevelsen din.
+                <a href="personvern.html" style="color:#6366f1;text-decoration:underline;">Les mer</a>
+            </p>
+            <div style="display:flex;gap:0.75rem;flex-shrink:0;flex-wrap:wrap;">
+                <button onclick="smReject()" style="min-height:44px;padding:0.6rem 1.3rem;border:1.5px solid #d1d5db;border-radius:50px;background:transparent;cursor:pointer;font-size:0.88rem;font-weight:600;font-family:Outfit,sans-serif;color:#6b7280;">Kun nødvendige</button>
+                <button onclick="smAccept()" style="min-height:44px;padding:0.6rem 1.5rem;border:none;border-radius:50px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;cursor:pointer;font-size:0.88rem;font-weight:700;font-family:Outfit,sans-serif;">Godta alle</button>
+            </div>
+        </div>
+    </div>
+    <script>
+    (function () {
+        var KEY = 'cookie_consent';
+        var el  = document.getElementById('sm-cookie');
+        try { if (!localStorage.getItem(KEY)) el.style.display = 'block'; } catch (e) { el.style.display = 'block'; }
+        window.smAccept = function () {
+            try { localStorage.setItem(KEY, JSON.stringify({ analytics: true, ts: Date.now() })); } catch (e) {}
+            if (typeof gtag === 'function') gtag('consent', 'update', { analytics_storage: 'granted' });
+            el.style.display = 'none';
+        };
+        window.smReject = function () {
+            try { localStorage.setItem(KEY, JSON.stringify({ analytics: false, ts: Date.now() })); } catch (e) {}
+            el.style.display = 'none';
+        };
+        document.addEventListener('click', function (e) {
+            if (e.target && e.target.id === 'open-cookie-settings') {
+                e.preventDefault();
+                try { localStorage.removeItem(KEY); } catch (e) {}
+                el.style.display = 'block';
+            }
+        });
+    }());
+    </script>
+
+</body>
+</html>

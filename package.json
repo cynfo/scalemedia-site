@@ -1,9 +1,12 @@
 {
-  "name": "scalemedia-seo-analyser",
-  "version": "1.0.0",
+  "name": "scalemedia-verktoy",
+  "version": "1.1.0",
   "private": true,
   "engines": {
     "node": ">=18"
+  },
+  "scripts": {
+    "dev": "node dev-server.js"
   },
   "dependencies": {
     "cheerio": "^1.0.0",
