@@ -35,6 +35,8 @@
 
   const genStatus   = document.getElementById('gen-status');
   const genProgress = document.getElementById('gen-progress-fill');
+  const genElapsed  = document.getElementById('gen-elapsed');
+  const genEst      = document.getElementById('gen-est');
   const genErrorBox = document.getElementById('gen-error-box');
   const genErrorMsg = document.getElementById('gen-error-msg');
   const genRetryBtn = document.getElementById('gen-retry-btn');
@@ -69,6 +71,8 @@
   let iterationsUsed = 0;
   let busy          = false;       // hindrer doble kall
   let blobUrl       = null;
+  let genTimer      = null;        // intervall for "tid brukt"-teller
+  let genStartMs    = 0;
 
   // ── Hjelpere ───────────────────────────────────────────────────────────────
   function showSection(name) {
@@ -76,6 +80,32 @@
   }
   function scrollTop() {
     setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 30);
+  }
+
+  // ── "Tid brukt"-teller på lasteskjermen ────────────────────────────────────
+  function fmtTime(totalSec) {
+    const m = Math.floor(totalSec / 60);
+    const s = totalSec % 60;
+    return `${m}:${String(s).padStart(2, '0')}`;
+  }
+  function startGenTimer() {
+    genStartMs = Date.now();
+    if (genElapsed) genElapsed.textContent = '0:00';
+    if (genEst) genEst.textContent = '';
+    stopGenTimer();
+    genTimer = setInterval(() => {
+      if (genElapsed) genElapsed.textContent = fmtTime(Math.floor((Date.now() - genStartMs) / 1000));
+    }, 1000);
+  }
+  function stopGenTimer() {
+    if (genTimer) { clearInterval(genTimer); genTimer = null; }
+  }
+  function setGenEstimate(sec) {
+    if (!genEst || !sec) return;
+    const mins = Math.round(sec / 60);
+    genEst.textContent = mins >= 2
+      ? `· vanligvis ~${mins} minutter med vår beste AI`
+      : `· vanligvis under ett minutt`;
   }
 
   // ── Wizard: bransje "Annet" ────────────────────────────────────────────────
@@ -219,7 +249,9 @@
           let evt;
           try { evt = JSON.parse(line.slice(5).trim()); } catch { continue; }
 
-          if (evt.type === 'status') {
+          if (evt.type === 'meta') {
+            cb.onMeta && cb.onMeta(evt.estSeconds);
+          } else if (evt.type === 'status') {
             cb.onStatus && cb.onStatus(evt.message);
           } else if (evt.type === 'delta') {
             full += evt.text;
@@ -253,10 +285,12 @@
     genErrorBox.classList.remove('active');
     genStatus.textContent = 'Tolker briefen din …';
     genProgress.style.width = '2%';
+    startGenTimer();
     showSection('loading');
     scrollTop();
 
     streamRequest('/api/generer', brief, {
+      onMeta: (sec) => setGenEstimate(sec),
       onStatus: (msg) => {
         genStatus.style.opacity = '0';
         setTimeout(() => { genStatus.textContent = msg; genStatus.style.opacity = '1'; }, 150);
@@ -267,6 +301,7 @@
       },
       onDone: (html) => {
         busy = false;
+        stopGenTimer();
         genProgress.style.width = '100%';
         renderPreview(html);
         setupResult(brief);
@@ -275,6 +310,7 @@
       },
       onError: (msg) => {
         busy = false;
+        stopGenTimer();
         genErrorMsg.textContent = msg;
         genErrorBox.classList.add('active');
       }
