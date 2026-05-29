@@ -94,6 +94,7 @@ Sett disse i Vercel-dashbordet (Settings → Environment Variables) eller i `.en
 | `GENERER_TIMEOUT_MS` | `290000` | Timeout mot Claude i ms. Hold under `maxDuration` i vercel.json (Pro: 300000, Hobby: 60000). |
 | `PRICE_IN_PER_MTOK` | `5` | USD per million input-tokens (kun for kostnadslogging; Opus-pris). |
 | `PRICE_OUT_PER_MTOK` | `25` | USD per million output-tokens (kun for kostnadslogging; Opus-pris). |
+| `UNSPLASH_ACCESS_KEY` | – | Valgfri. Gir proffe, relevante foto i genererte sider. Uten den brukes nøkkelord-baserte LoremFlickr-bilder. Gratis nøkkel: unsplash.com/developers. |
 | `RATE_LIMIT_GENERER` | `3` | Maks genereringer per IP per time. |
 | `RATE_LIMIT_ITERER` | `6` | Maks iterasjoner per IP per time. |
 
