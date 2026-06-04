@@ -335,16 +335,16 @@
 
   // ── Oppsett av resultat-seksjonen ────────────────────────────────────────────
   const PAKKER = {
-    onepage:      { name: 'One Page', price: '10 990,-' },
-    landingsside: { name: 'One Page', price: '10 990,-' },
-    bedrift:      { name: 'Business', price: '15 990,-' },
-    booking:      { name: 'Business', price: '15 990,-' },
-    nettbutikk:   { name: 'Premium',  price: '22 990,-' }
+    onepage:      { name: 'One Page', price: '17 990,-' },
+    landingsside: { name: 'One Page', price: '17 990,-' },
+    bedrift:      { name: 'Business', price: '22 990,-' },
+    booking:      { name: 'Business', price: '22 990,-' },
+    nettbutikk:   { name: 'Premium',  price: '29 990,-' }
   };
 
   function setupResult(brief) {
     // Anbefalt pakke basert på sidetype.
-    const pakke = PAKKER[brief.sidetype] || { name: 'Business', price: '15 990,-' };
+    const pakke = PAKKER[brief.sidetype] || { name: 'Business', price: '22 990,-' };
     document.getElementById('pakke-name').textContent = pakke.name;
     document.getElementById('pakke-price').textContent = pakke.price;
 
